@@ -1,10 +1,14 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 
+import {mockData} from './data/dummy.data';
+
 const App: React.FC = () => {
     return (
         <View>
-            <Text>Hello Expense Arc!!</Text>
+            {mockData.map(entries => (
+                <Text key={entries.id}>{entries.id}</Text>
+            ))}
         </View>
     );
 };
