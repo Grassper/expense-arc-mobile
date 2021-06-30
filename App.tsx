@@ -1,15 +1,19 @@
 import React from 'react';
 import {Text, View} from 'react-native';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {Provider} from 'react-redux';
 
-import {mockData} from './data/dummy.data';
+import store from './redux/store.redux';
 
 const App: React.FC = () => {
     return (
-        <View>
-            {mockData.map(entries => (
-                <Text key={entries.id}>{entries.id}</Text>
-            ))}
-        </View>
+        <SafeAreaProvider>
+            <Provider store={store}>
+                <View>
+                    <Text>Hello</Text>
+                </View>
+            </Provider>
+        </SafeAreaProvider>
     );
 };
 
