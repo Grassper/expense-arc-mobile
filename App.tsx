@@ -15,16 +15,16 @@ enableScreens();
 
 const fetchFonts = (): Promise<void> => {
     return Font.loadAsync({
-        ml: require('./fonts/Montserrat-Light.ttf'),
-        mr: require('./fonts/Montserrat-Regular.ttf'),
-        mm: require('./fonts/Montserrat-Medium.ttf'),
-        ms: require('./fonts/Montserrat-SemiBold.ttf'),
-        mb: require('./fonts/Montserrat-Bold.ttf'),
-        rl: require('./fonts/RobotoSlab-Light.ttf'),
-        rr: require('./fonts/RobotoSlab-Regular.ttf'),
-        rm: require('./fonts/RobotoSlab-Medium.ttf'),
-        rs: require('./fonts/RobotoSlab-SemiBold.ttf'),
-        rb: require('./fonts/RobotoSlab-Bold.ttf')
+        ml: require('./assets/fonts/Montserrat-Light.ttf'),
+        mr: require('./assets/fonts/Montserrat-Regular.ttf'),
+        mm: require('./assets/fonts/Montserrat-Medium.ttf'),
+        ms: require('./assets/fonts/Montserrat-SemiBold.ttf'),
+        mb: require('./assets/fonts/Montserrat-Bold.ttf'),
+        rl: require('./assets/fonts/RobotoSlab-Light.ttf'),
+        rr: require('./assets/fonts/RobotoSlab-Regular.ttf'),
+        rm: require('./assets/fonts/RobotoSlab-Medium.ttf'),
+        rs: require('./assets/fonts/RobotoSlab-SemiBold.ttf'),
+        rb: require('./assets/fonts/RobotoSlab-Bold.ttf')
     });
 };
 
