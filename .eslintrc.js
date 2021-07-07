@@ -35,6 +35,7 @@ module.exports = {
         }
     },
     rules: {
+        "no-console": "off",
         'prettier/prettier': ['error', {}, {usePrettierrc: true}],
         'react-native/no-unused-styles': 2,
         'react-native/split-platform-components': 2,
