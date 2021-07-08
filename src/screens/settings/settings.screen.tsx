@@ -1,5 +1,5 @@
 // importing icons
-import {SimpleLineIcons} from '@expo/vector-icons';
+import {AntDesign, SimpleLineIcons} from '@expo/vector-icons';
 import React from 'react';
 
 // importing Colors
@@ -9,6 +9,8 @@ import {
     AppContainer,
     BadgeContainer,
     BadgeText,
+    CloudContainer,
+    CloudText,
     Container,
     FieldContainer,
     FleidText,
@@ -35,6 +37,10 @@ const Settings: React.FC = () => {
                         <BadgeText>Prime</BadgeText>
                     </BadgeContainer>
                 </HeadingContainer>
+                <CloudContainer>
+                    <AntDesign name="cloud" size={24} color={Colors.white} />
+                    <CloudText>Enable Cloud Backup</CloudText>
+                </CloudContainer>
                 <ScrollContainer>
                     <FieldContainer>
                         <FleidText>Account</FleidText>
