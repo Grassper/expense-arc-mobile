@@ -1,5 +1,6 @@
 // importing icons
-import {AntDesign} from '@expo/vector-icons';
+import {AntDesign, SimpleLineIcons} from '@expo/vector-icons';
+import {StackNavigationProp} from '@react-navigation/stack';
 import React from 'react';
 
 // importing Colors
@@ -8,26 +9,71 @@ import TextContainer from './fieldText.component';
 // importing styled components
 import {
     AppContainer,
+    BadgeContainer,
+    BadgeText,
     CloudContainer,
     CloudText,
     Container,
     FieldContainer,
+    HeadingContainer,
+    HeadingText,
+    IconContainer,
     ScrollContainer
 } from './settings.styles';
 
-const Settings: React.FC = () => {
+type RootStackParamList = {
+    Preference: undefined;
+    Account: undefined;
+    Settings: undefined;
+    BackupAndSecurity: undefined;
+};
+
+type ProfileScreenNavigationProp = StackNavigationProp<
+    RootStackParamList,
+    'Settings'
+>;
+
+type Props = {
+    navigation: ProfileScreenNavigationProp;
+};
+
+const Settings: React.FC<Props> = ({navigation}) => {
     return (
         <AppContainer>
             <Container>
+                <HeadingContainer>
+                    <HeadingText>Settings</HeadingText>
+                    <BadgeContainer>
+                        <IconContainer>
+                            <SimpleLineIcons
+                                name="badge"
+                                size={15}
+                                color={Colors.white}
+                            />
+                        </IconContainer>
+                        <BadgeText>Prime</BadgeText>
+                    </BadgeContainer>
+                </HeadingContainer>
                 <CloudContainer>
                     <AntDesign name="cloud" size={24} color={Colors.white} />
                     <CloudText>Enable Cloud Backup</CloudText>
                 </CloudContainer>
                 <ScrollContainer>
                     <FieldContainer>
-                        <TextContainer content="Account" onClick={() => {}} />
-                        <TextContainer content="Expense preference" />
-                        <TextContainer content="backup & security" />
+                        <TextContainer
+                            content="Account"
+                            onClick={() => navigation.navigate('Account')}
+                        />
+                        <TextContainer
+                            content="Expense preference"
+                            onClick={() => navigation.navigate('Preference')}
+                        />
+                        <TextContainer
+                            content="backup & security"
+                            onClick={() =>
+                                navigation.navigate('BackupAndSecurity')
+                            }
+                        />
                         <TextContainer content="Rescan sms indox" />
                         <TextContainer content="Language" />
                     </FieldContainer>
