@@ -11,7 +11,13 @@ const defaultOptions = {
     headerStyle: {
         backgroundColor: Colors.background
     },
-    title: ''
+    headerTitleStyle: {
+        fontFamily: 'rr',
+        color: Colors.white,
+        fontSize: 26,
+        paddingTop: 20,
+        paddingHorizontal: 10
+    }
 };
 
 const Stack = createStackNavigator();
