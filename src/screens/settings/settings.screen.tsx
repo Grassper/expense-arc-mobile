@@ -3,18 +3,17 @@ import {AntDesign, SimpleLineIcons} from '@expo/vector-icons';
 import {StackNavigationProp} from '@react-navigation/stack';
 import React from 'react';
 
+import Container from '../../components/container.component';
+import FieldContainer from '../../components/fieldContainer.component';
+import FieldText from '../../components/fieldText.component';
 // importing Colors
 import Colors from '../../constants/colors.constant';
-import TextContainer from './fieldText.component';
 // importing styled components
 import {
-    AppContainer,
     BadgeContainer,
     BadgeText,
     CloudContainer,
     CloudText,
-    Container,
-    FieldContainer,
     HeadingContainer,
     HeadingText,
     IconContainer,
@@ -39,57 +38,53 @@ type Props = {
 
 const Settings: React.FC<Props> = ({navigation}) => {
     return (
-        <AppContainer>
-            <Container>
-                <HeadingContainer>
-                    <HeadingText>Settings</HeadingText>
-                    <BadgeContainer>
-                        <IconContainer>
-                            <SimpleLineIcons
-                                name="badge"
-                                size={15}
-                                color={Colors.white}
-                            />
-                        </IconContainer>
-                        <BadgeText>Prime</BadgeText>
-                    </BadgeContainer>
-                </HeadingContainer>
-                <CloudContainer>
-                    <AntDesign name="cloud" size={24} color={Colors.white} />
-                    <CloudText>Enable Cloud Backup</CloudText>
-                </CloudContainer>
-                <ScrollContainer>
-                    <FieldContainer>
-                        <TextContainer
-                            content="Account"
-                            onClick={() => navigation.navigate('Account')}
+        <Container>
+            <HeadingContainer>
+                <HeadingText>Settings</HeadingText>
+                <BadgeContainer>
+                    <IconContainer>
+                        <SimpleLineIcons
+                            name="badge"
+                            size={15}
+                            color={Colors.white}
                         />
-                        <TextContainer
-                            content="Expense preference"
-                            onClick={() => navigation.navigate('Preference')}
-                        />
-                        <TextContainer
-                            content="backup & security"
-                            onClick={() =>
-                                navigation.navigate('BackupAndSecurity')
-                            }
-                        />
-                        <TextContainer content="Rescan sms indox" />
-                        <TextContainer content="Language" />
-                    </FieldContainer>
-                    <FieldContainer>
-                        <TextContainer content="Contact us" />
-                        <TextContainer content="give Expense arc Review" />
-                        <TextContainer content="share Expense arc" />
-                    </FieldContainer>
-                    <FieldContainer>
-                        <TextContainer content="App version" />
-                        <TextContainer content="Terms of service" />
-                        <TextContainer content="Privacy policy" />
-                    </FieldContainer>
-                </ScrollContainer>
-            </Container>
-        </AppContainer>
+                    </IconContainer>
+                    <BadgeText>Prime</BadgeText>
+                </BadgeContainer>
+            </HeadingContainer>
+            <CloudContainer>
+                <AntDesign name="cloud" size={24} color={Colors.white} />
+                <CloudText>Enable Cloud Backup</CloudText>
+            </CloudContainer>
+            <ScrollContainer>
+                <FieldContainer>
+                    <FieldText
+                        mainText="Account"
+                        onClick={() => navigation.navigate('Account')}
+                    />
+                    <FieldText
+                        mainText="Expense preference"
+                        onClick={() => navigation.navigate('Preference')}
+                    />
+                    <FieldText
+                        mainText="backup & security"
+                        onClick={() => navigation.navigate('BackupAndSecurity')}
+                    />
+                    <FieldText mainText="Rescan sms indox" />
+                    <FieldText mainText="Language" />
+                </FieldContainer>
+                <FieldContainer>
+                    <FieldText mainText="Contact us" />
+                    <FieldText mainText="give Expense arc Review" />
+                    <FieldText mainText="share Expense arc" />
+                </FieldContainer>
+                <FieldContainer>
+                    <FieldText mainText="App version" />
+                    <FieldText mainText="Terms of service" />
+                    <FieldText mainText="Privacy policy" />
+                </FieldContainer>
+            </ScrollContainer>
+        </Container>
     );
 };
 
