@@ -3,7 +3,9 @@ const colors = {
     background: '#000000',
     white: '#ffffff',
     skyBlue: '#00B4D8',
-    darkGray: '#1F2125'
+    dodgerBlue: '#2699fbff',
+    darkGray: '#1F2125',
+    liteGray: '#D1D5DB'
 };
 
 export default colors;

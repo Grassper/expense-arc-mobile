@@ -43,7 +43,6 @@ export const BadgeContainer = styled.View`
 
 export const ScrollContainer = styled.ScrollView`
     width: 100%;
-    margin-top: 20px;
 `;
 
 export const CloudContainer = styled.View`
@@ -54,6 +53,7 @@ export const CloudContainer = styled.View`
     justify-content: center;
     align-items: center;
     flex-direction: row;
+    margin-bottom: 20px;
 `;
 
 export const CloudText = styled.Text`
