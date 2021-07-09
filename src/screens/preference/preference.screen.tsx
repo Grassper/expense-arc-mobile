@@ -1,15 +1,37 @@
+import {StackNavigationProp} from '@react-navigation/stack';
 import React from 'react';
 
+import BackButton from '../../components/backButton.component';
 import Container from '../../components/container.component';
 import FieldContainer from '../../components/fieldContainer.component';
 import FieldText from '../../components/fieldText.component';
+import Header from '../../components/header.component';
 import {HeadingContainer, HeadingText} from '../settings/settings.styles';
 
-const Preference: React.FC = () => {
+type RootStackParamList = {
+    Preference: undefined;
+    Account: undefined;
+    Settings: undefined;
+    BackupAndSecurity: undefined;
+};
+
+type ProfileScreenNavigationProp = StackNavigationProp<
+    RootStackParamList,
+    'Preference'
+>;
+
+type Props = {
+    navigation: ProfileScreenNavigationProp;
+};
+
+const Preference: React.FC<Props> = ({navigation}) => {
     return (
         <Container>
-            <HeadingContainer>
-                <HeadingText>Preference</HeadingText>
+            <Header>
+                <BackButton onClick={() => navigation.goBack()} />
+            </Header>
+            <HeadingContainer header>
+                <HeadingText>Expense Preference</HeadingText>
             </HeadingContainer>
             <FieldContainer>
                 <FieldText mainText="Accounts" subText="Manage accounts" />

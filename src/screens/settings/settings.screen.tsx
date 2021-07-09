@@ -60,15 +60,15 @@ const Settings: React.FC<Props> = ({navigation}) => {
                 <FieldContainer>
                     <FieldText
                         mainText="Account"
-                        onClick={() => navigation.navigate('Account')}
+                        onClick={() => navigation.push('Account')}
                     />
                     <FieldText
                         mainText="Expense preference"
-                        onClick={() => navigation.navigate('Preference')}
+                        onClick={() => navigation.push('Preference')}
                     />
                     <FieldText
                         mainText="backup & security"
-                        onClick={() => navigation.navigate('BackupAndSecurity')}
+                        onClick={() => navigation.push('BackupAndSecurity')}
                     />
                     <FieldText mainText="Rescan sms indox" />
                     <FieldText mainText="Language" />

@@ -3,9 +3,13 @@ import styled from 'styled-components/native';
 // importing colors
 import Colors from '../../constants/colors.constant';
 
-export const HeadingContainer = styled.View`
+interface HeadingContainerTypes {
+    header?: boolean;
+}
+
+export const HeadingContainer = styled.View<HeadingContainerTypes>`
     width: 100%;
-    margin: 20px 0;
+    margin: ${props => (props.header ? '0px 0px 20px' : '20px')};
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -14,6 +18,7 @@ export const HeadingContainer = styled.View`
 export const HeadingText = styled.Text`
     font-family: 'rr';
     font-size: 26px;
+    text-transform: capitalize;
     color: ${Colors.white};
 `;
 
