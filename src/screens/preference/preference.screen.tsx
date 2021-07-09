@@ -17,6 +17,8 @@ type RootStackParamList = {
     Account: undefined;
     Settings: undefined;
     BackupAndSecurity: undefined;
+    Categories: undefined;
+    Notification: undefined;
 };
 
 type ProfileScreenNavigationProp = StackNavigationProp<
@@ -51,6 +53,7 @@ const Preference: React.FC<Props> = ({navigation}) => {
                     <FieldText
                         mainText="Categories"
                         subText="Create and delete categories"
+                        onClick={() => navigation.push('Categories')}
                     />
                 </FieldContainer>
             </ScrollContainer>
