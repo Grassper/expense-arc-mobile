@@ -1,11 +1,37 @@
+import {StackNavigationProp} from '@react-navigation/stack';
 import React from 'react';
-import {Text, View} from 'react-native';
 
-const Account: React.FC = () => {
+import BackButton from '../../components/backButton.component';
+import Container from '../../components/container.component';
+import Header from '../../components/header.component';
+import {HeadingContainer, HeadingText} from '../settings/settings.styles';
+
+type RootStackParamList = {
+    Preference: undefined;
+    Account: undefined;
+    Settings: undefined;
+    BackupAndSecurity: undefined;
+};
+
+type ProfileScreenNavigationProp = StackNavigationProp<
+    RootStackParamList,
+    'Account'
+>;
+
+type Props = {
+    navigation: ProfileScreenNavigationProp;
+};
+
+const Account: React.FC<Props> = ({navigation}) => {
     return (
-        <View>
-            <Text>Account</Text>
-        </View>
+        <Container>
+            <Header>
+                <BackButton onClick={() => navigation.goBack()} />
+            </Header>
+            <HeadingContainer header>
+                <HeadingText>Account</HeadingText>
+            </HeadingContainer>
+        </Container>
     );
 };
 
