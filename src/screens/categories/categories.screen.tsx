@@ -7,11 +7,9 @@ import CategoryCard from '../../components/categoryCard.component';
 import Container from '../../components/container.component';
 import FieldContainer from '../../components/fieldContainer.component';
 import Header from '../../components/header.component';
-import {
-    HeadingContainer,
-    HeadingText,
-    ScrollContainer
-} from '../settings/settings.styles';
+import HeadingContainer from '../../components/headingContainer.component';
+import HeadingText from '../../components/headingText.component';
+import ScrollContainer from '../../components/scrollContainer.component';
 
 type RootStackParamList = {
     Preference: undefined;

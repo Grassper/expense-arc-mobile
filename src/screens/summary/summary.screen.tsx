@@ -3,8 +3,8 @@ import React from 'react';
 import {TouchableOpacity} from 'react-native';
 import styled from 'styled-components/native';
 
-import Container from '../../../components/container.component';
-import {HeadingContainer} from '../../settings/settings.styles';
+import Container from '../../components/container.component';
+import HeadingContainer from '../../components/headingContainer.component';
 
 type RootStackParamList = {
     Summary: undefined;

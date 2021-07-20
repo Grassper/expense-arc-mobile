@@ -2,12 +2,13 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import React from 'react';
 import styled from 'styled-components/native';
 
-import BackButton from '../../../components/backButton.component';
-import Container from '../../../components/container.component';
-import Header from '../../../components/header.component';
-import OutlineAdd from '../../../components/outlineAdd.component';
-import Colors from '../../../constants/colors.constant';
-import {HeadingContainer, HeadingText} from '../../settings/settings.styles';
+import BackButton from '../../components/backButton.component';
+import Container from '../../components/container.component';
+import Header from '../../components/header.component';
+import HeadingContainer from '../../components/headingContainer.component';
+import HeadingText from '../../components/headingText.component';
+import OutlineAdd from '../../components/outlineAdd.component';
+import Colors from '../../constants/colors.constant';
 
 type RootStackParamList = {
     Summary: undefined;

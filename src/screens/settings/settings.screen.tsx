@@ -1,4 +1,3 @@
-// importing icons
 import {AntDesign, SimpleLineIcons} from '@expo/vector-icons';
 import {StackNavigationProp} from '@react-navigation/stack';
 import React from 'react';
@@ -6,18 +5,16 @@ import React from 'react';
 import Container from '../../components/container.component';
 import FieldContainer from '../../components/fieldContainer.component';
 import FieldText from '../../components/fieldText.component';
-// importing Colors
+import HeadingContainer from '../../components/headingContainer.component';
+import HeadingText from '../../components/headingText.component';
+import ScrollContainer from '../../components/scrollContainer.component';
 import Colors from '../../constants/colors.constant';
-// importing styled components
 import {
     BadgeContainer,
     BadgeText,
     CloudContainer,
     CloudText,
-    HeadingContainer,
-    HeadingText,
-    IconContainer,
-    ScrollContainer
+    IconContainer
 } from './settings.styles';
 
 type RootStackParamList = {
@@ -70,7 +67,7 @@ const Settings: React.FC<Props> = ({navigation}) => {
                         mainText="backup & security"
                         onClick={() => navigation.push('BackupAndSecurity')}
                     />
-                    <FieldText mainText="Rescan sms indox" />
+                    <FieldText mainText="Rescan sms inbox" />
                     <FieldText mainText="Language" />
                 </FieldContainer>
                 <FieldContainer>

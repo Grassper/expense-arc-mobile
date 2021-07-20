@@ -4,7 +4,8 @@ import React from 'react';
 import BackButton from '../../components/backButton.component';
 import Container from '../../components/container.component';
 import Header from '../../components/header.component';
-import {HeadingContainer, HeadingText} from '../settings/settings.styles';
+import HeadingContainer from '../../components/headingContainer.component';
+import HeadingText from '../../components/headingText.component';
 
 type RootStackParamList = {
     Preference: undefined;

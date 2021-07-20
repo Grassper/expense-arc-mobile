@@ -5,14 +5,12 @@ import BackButton from '../../components/backButton.component';
 import Container from '../../components/container.component';
 import FieldContainer from '../../components/fieldContainer.component';
 import FieldText from '../../components/fieldText.component';
+import TextWithButton from '../../components/fieldTextWithButton.component';
 import Header from '../../components/header.component';
+import HeadingContainer from '../../components/headingContainer.component';
+import HeadingText from '../../components/headingText.component';
+import ScrollContainer from '../../components/scrollContainer.component';
 import ToggleButton from '../../components/toggle.component';
-import {
-    HeadingContainer,
-    HeadingText,
-    ScrollContainer
-} from '../settings/settings.styles';
-import {FieldTextWithButton} from './backup&Security.styles';
 
 type RootStackParamList = {
     Preference: undefined;
@@ -44,7 +42,7 @@ const BackupAndSecurity: React.FC<Props> = ({navigation}) => {
             </HeadingContainer>
             <ScrollContainer>
                 <FieldContainer>
-                    <FieldTextWithButton>
+                    <TextWithButton>
                         <FieldText
                             mainText="Backup & Restore Transactions"
                             subText="Up to date"
@@ -53,7 +51,7 @@ const BackupAndSecurity: React.FC<Props> = ({navigation}) => {
                             isEnabled={isEnabled}
                             onClick={toggleSwitch}
                         />
-                    </FieldTextWithButton>
+                    </TextWithButton>
                     <FieldText
                         mainText="Delete backup"
                         subText="Delete backup from server"
@@ -64,7 +62,7 @@ const BackupAndSecurity: React.FC<Props> = ({navigation}) => {
                     />
                     <FieldText
                         mainText="Backup now"
-                        subText="Request to backup immediatly"
+                        subText="Request to backup immediately"
                     />
                 </FieldContainer>
             </ScrollContainer>

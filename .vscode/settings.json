@@ -5,5 +5,5 @@
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
     },
-    "cSpell.words": ["Entypo", "Fontisto", "Ionicons", "Pressable"]
+    "cSpell.words": ["Entypo", "Fontisto", "Ionicons", "Pressable", "Rescan"]
 }
