@@ -6,11 +6,11 @@ import styled from 'styled-components/native';
 import Colors from '../constants/colors.constant';
 
 const ButtonContainer = styled.View`
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     justify-content: center;
     align-items: center;
-    border: 2px;
+    border: 1px;
     border-radius: 5px;
     border-color: ${Colors.white};
 `;
@@ -25,7 +25,7 @@ const OutlineAdd: React.FC<BackButtonTypes> = ({onClick}) => {
             <ButtonContainer>
                 <Ionicons
                     name="md-add-outline"
-                    size={24}
+                    size={20}
                     color={Colors.white}
                 />
             </ButtonContainer>

@@ -8,6 +8,8 @@ import Header from '../../components/header.component';
 import HeadingContainer from '../../components/headingContainer.component';
 import HeadingText from '../../components/headingText.component';
 import OutlineAdd from '../../components/outlineAdd.component';
+import OverviewCard from '../../components/overviewCard.component';
+import ScrollContainer from '../../components/scrollContainer.component';
 import Colors from '../../constants/colors.constant';
 
 type RootStackParamList = {
@@ -31,6 +33,8 @@ const SubHeading = styled.Text`
     font-family: 'mr';
     font-size: 16px;
     line-height: 28px;
+    margin-top: -5px;
+    margin-bottom: 20px;
     text-transform: capitalize;
     color: ${Colors.white};
 `;
@@ -52,6 +56,16 @@ const ExpenseOverview: React.FC<Props> = ({navigation}) => {
                 </HeadingContainer>
                 <SubHeading>You spend $ 6,225</SubHeading>
             </HeadingWrapper>
+            <ScrollContainer>
+                <OverviewCard />
+                <OverviewCard />
+                <OverviewCard />
+                <OverviewCard />
+                <OverviewCard />
+                <OverviewCard />
+                <OverviewCard />
+                <OverviewCard />
+            </ScrollContainer>
         </Container>
     );
 };
