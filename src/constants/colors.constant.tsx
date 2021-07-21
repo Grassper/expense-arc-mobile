@@ -7,7 +7,8 @@ const colors = {
     dodgerBlue: '#2699fbff',
     darkGray: '#1F2125',
     pink: '#eb7171ff',
-    liteGray: '#D1D5DB'
+    liteGray: '#D1D5DB',
+    border: '#2d3036'
 };
 
 export default colors;

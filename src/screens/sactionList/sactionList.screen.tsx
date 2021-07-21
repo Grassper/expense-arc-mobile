@@ -1,8 +1,8 @@
 import {StackNavigationProp} from '@react-navigation/stack';
 import React from 'react';
-import styled from 'styled-components/native';
 
 import OverviewTemplate from '@/root/src/components/overviewTemplate.component';
+import SactionCard from '@/root/src/components/sactionCard.component';
 
 type RootStackParamList = {
     Summary: undefined;
@@ -19,17 +19,14 @@ type Props = {
     navigation: ProfileScreenNavigationProp;
 };
 
-const Text = styled.Text`
-    color: #fff;
-`;
-
 const SactionList: React.FC<Props> = ({navigation}) => {
     return (
         <OverviewTemplate
             onClick={() => {}}
-            heading="Swiggy"
-            subHeading="You spend $ 3,040"
-        />
+            heading="Food"
+            subHeading="You spend $ 3,040">
+            <SactionCard />
+        </OverviewTemplate>
     );
 };
 
