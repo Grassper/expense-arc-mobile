@@ -40,7 +40,7 @@ const TopView = styled.View`
     flex-direction: row;
     width: 100%;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 `;
 
 const BottomView = styled.View`

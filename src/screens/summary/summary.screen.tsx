@@ -8,10 +8,8 @@ import HeadingContainer from '../../components/headingContainer.component';
 
 type RootStackParamList = {
     Summary: undefined;
-    ExpenseOverview: undefined;
-    IncomeOverview: undefined;
-    CategorySummary: undefined;
-    CategoryItemList: undefined;
+    Overview: undefined;
+    SactionList: undefined;
 };
 
 type ProfileScreenNavigationProp = StackNavigationProp<
@@ -31,9 +29,15 @@ const Summary: React.FC<Props> = ({navigation}) => {
     return (
         <Container>
             <HeadingContainer>
+                <TouchableOpacity onPress={() => navigation.push('Overview')}>
+                    <Text>ExpenseOverview</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.push('Overview')}>
+                    <Text>IncomeOverview</Text>
+                </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => navigation.push('ExpenseOverview')}>
-                    <Text>overview</Text>
+                    onPress={() => navigation.push('SactionList')}>
+                    <Text>SactionList</Text>
                 </TouchableOpacity>
             </HeadingContainer>
         </Container>
