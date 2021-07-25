@@ -25,7 +25,23 @@ const SactionList: React.FC<Props> = ({navigation}) => {
             onClick={() => {}}
             heading="Food"
             subHeading="You spend $ 3,040">
+            <SactionCard top />
             <SactionCard />
+            <SactionCard />
+            <SactionCard />
+            <SactionCard />
+            <SactionCard />
+            <SactionCard />
+            <SactionCard />
+            <SactionCard />
+            <SactionCard />
+            <SactionCard />
+            <SactionCard />
+            <SactionCard />
+            <SactionCard />
+            <SactionCard />
+            <SactionCard />
+            <SactionCard bottom />
         </OverviewTemplate>
     );
 };
