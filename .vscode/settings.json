@@ -12,6 +12,10 @@
         "Pressable",
         "Rescan",
         "Saction",
-        "navigations"
+        "clockcircleo",
+        "gorhom",
+        "navigations",
+        "redash",
+        "tabbar"
     ]
 }

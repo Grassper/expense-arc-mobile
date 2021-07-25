@@ -76,7 +76,7 @@ module.exports = {
         '@typescript-eslint/no-loop-func': ['error'],
         'no-shadow': 'off',
         '@typescript-eslint/no-shadow': ['error'],
-        'max-len': ['warn', {code: 80}],
+        'max-len': ['warn', {code: 100}],
         '@typescript-eslint/explicit-function-return-type': [
             'error',
             {

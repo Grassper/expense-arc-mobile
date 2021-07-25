@@ -1,4 +1,5 @@
 import React from 'react';
+import {TouchableWithoutFeedback} from 'react-native';
 import styled from 'styled-components/native';
 
 import Colors from '../constants/colors.constant';
@@ -13,7 +14,7 @@ const AssetContainer = styled.View`
     justify-content: center;
 `;
 
-const ContentContainer = styled.TouchableOpacity`
+const ContentContainer = styled.View`
     background-color: ${Colors.darkGray};
     flex-direction: row;
     justify-content: space-between;
@@ -30,7 +31,7 @@ interface LineTypes {
 const Line = styled.View<LineTypes>`
     width: 1px;
     height: ${({lineToggle}) => (lineToggle ? '50%' : '100%')};
-    background-color: white;
+    background-color: ${Colors.darkGray};
     position: absolute;
     left: 0;
 `;
@@ -56,11 +57,11 @@ const Triangle = styled.View`
 `;
 
 const Circle = styled.View`
-    height: 15px;
-    width: 15px;
+    height: 12px;
+    width: 12px;
     border-radius: 50px;
     background-color: ${Colors.white};
-    margin-left: -7.5px;
+    margin-left: -6px;
 `;
 
 const Text = styled.Text`
@@ -88,10 +89,12 @@ const SactionCard: React.FC<SactionCardTypes> = ({top, bottom, onClick}) => {
                 )}
                 <Circle />
                 <Triangle />
-                <ContentContainer onPress={onClick}>
-                    <Text>22 Mar, 04:07 am</Text>
-                    <Text>$804</Text>
-                </ContentContainer>
+                <TouchableWithoutFeedback onPress={onClick}>
+                    <ContentContainer>
+                        <Text>22 Mar, 04:07 am</Text>
+                        <Text>$804</Text>
+                    </ContentContainer>
+                </TouchableWithoutFeedback>
             </AssetContainer>
         </Container>
     );

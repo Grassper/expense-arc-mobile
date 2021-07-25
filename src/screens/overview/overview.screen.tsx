@@ -1,6 +1,7 @@
 import {StackNavigationProp} from '@react-navigation/stack';
 import React from 'react';
 
+import OverviewCard from '@/root/src/components/overviewCard.component';
 import OverviewTemplate from '@/root/src/components/overviewTemplate.component';
 
 type RootStackParamList = {
@@ -23,8 +24,15 @@ const ExpenseOverview: React.FC<Props> = ({navigation}) => {
         <OverviewTemplate
             onClick={() => navigation.goBack()}
             heading="Expense Overview"
-            subHeading="You spend $ 3,040"
-        />
+            subHeading="You spend $ 3,040">
+            <OverviewCard />
+            <OverviewCard />
+            <OverviewCard />
+            <OverviewCard />
+            <OverviewCard />
+            <OverviewCard />
+            <OverviewCard />
+        </OverviewTemplate>
     );
 };
 
