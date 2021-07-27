@@ -1,8 +1,9 @@
+import {AntDesign} from '@expo/vector-icons';
 import {StackNavigationProp} from '@react-navigation/stack';
 import React from 'react';
 import styled from 'styled-components/native';
 
-import TopContainer from '@/root/src/components/container.component';
+import OverviewCard from '@/root/src/components/overviewCard.component';
 import Colors from '@/root/src/constants/colors.constant';
 
 type RootStackParamList = {
@@ -26,10 +27,16 @@ const Container = styled.View`
 `;
 
 const DashboardContainer = styled.View`
+    background-color: ${Colors.background};
+    width: 100%;
+    align-items: center;
+`;
+
+const DashboardWrapper = styled.View`
+    width: 90%;
     justify-content: center;
     align-items: center;
     padding: 50px 0;
-    width: 100%;
 `;
 
 const PercentContainer = styled.View`
@@ -85,20 +92,68 @@ const Line = styled.View`
     width: 2px;
 `;
 
-const DetailsContainer = styled.View`
+const DetailsWrapper = styled.View`
     flex: 1;
     background-color: ${Colors.white};
+    align-items: center;
 `;
 
-const OverviewContainer = styled.View``;
+const DetailsContainer = styled.View`
+    width: 90%;
+    flex: 1;
+`;
 
-const TransactionContainer = styled.View``;
+const OverviewContainer = styled.View`
+    padding: 10px 20px;
+    margin-top: 20px;
+    flex-direction: row;
+    border-radius: 10px;
+    justify-content: space-between;
+`;
 
-const HeadingContainer = styled.View``;
+const OverviewBox = styled.View`
+    flex-direction: row;
+    align-items: center;
+`;
 
-const HeadingTextBold = styled.Text``;
+const OverviewContentBox = styled.View`
+    margin-left: 15px;
+`;
 
-const HeadingTextLight = styled.Text``;
+const OverviewText = styled.Text`
+    font-size: 16px;
+    font-family: 'mr';
+    color: ${Colors.primary};
+`;
+
+const OverviewTextBold = styled.Text`
+    font-size: 22px;
+    font-family: 'rs';
+    margin-top: 10px;
+    color: ${Colors.primary};
+`;
+
+const TransactionContainer = styled.ScrollView`
+    margin-top: 20px;
+`;
+
+const HeadingContainer = styled.View`
+    margin-top: 20px;
+    flex-direction: row;
+    justify-content: space-between;
+`;
+
+const HeadingTextBold = styled.Text`
+    font-size: 16px;
+    font-family: 'ms';
+    color: ${Colors.primary};
+`;
+
+const HeadingTextLight = styled.Text`
+    font-size: 14px;
+    font-family: 'ms';
+    color: ${Colors.toggleColor};
+`;
 
 const RateText = styled.Text`
     font-size: 18px;
@@ -127,8 +182,8 @@ const TopText = styled(Text)`
 const Summary: React.FC<Props> = ({navigation}) => {
     return (
         <Container>
-            <TopContainer>
-                <DashboardContainer>
+            <DashboardContainer>
+                <DashboardWrapper>
                     <TopText>Total expense</TopText>
                     <MainText>$ 24,000.50</MainText>
                     <Text>of $ 40,000 budgeted</Text>
@@ -149,9 +204,84 @@ const Summary: React.FC<Props> = ({navigation}) => {
                             <Text>Average / day</Text>
                         </RateBoxRight>
                     </RateContainer>
-                </DashboardContainer>
-            </TopContainer>
-            <DetailsContainer />
+                </DashboardWrapper>
+            </DashboardContainer>
+            <DetailsWrapper>
+                <DetailsContainer>
+                    <HeadingContainer>
+                        <HeadingTextBold>Recap</HeadingTextBold>
+                        <HeadingTextLight>Weekly</HeadingTextLight>
+                    </HeadingContainer>
+                    <OverviewContainer>
+                        <OverviewBox>
+                            <AntDesign name="arrowup" size={24} color="black" />
+                            <OverviewContentBox>
+                                <OverviewText>Income</OverviewText>
+                                <OverviewTextBold>$ 5,980</OverviewTextBold>
+                            </OverviewContentBox>
+                        </OverviewBox>
+                        <OverviewBox>
+                            <AntDesign
+                                name="arrowdown"
+                                size={24}
+                                color="black"
+                            />
+                            <OverviewContentBox>
+                                <OverviewText>Expense</OverviewText>
+                                <OverviewTextBold>$ 2,071</OverviewTextBold>
+                            </OverviewContentBox>
+                        </OverviewBox>
+                    </OverviewContainer>
+                    <HeadingContainer>
+                        <HeadingTextBold>Transaction</HeadingTextBold>
+                        <HeadingTextLight>Expense</HeadingTextLight>
+                    </HeadingContainer>
+                    <TransactionContainer>
+                        <OverviewCard
+                            tagText="pf"
+                            topLeftText="Petrol"
+                            topRightText="- $100"
+                            bottomLeftText="April 12, 2021"
+                            mode="light"
+                        />
+                        <OverviewCard
+                            tagText="pf"
+                            topLeftText="Petrol"
+                            topRightText="- $100"
+                            bottomLeftText="April 12, 2021"
+                            mode="light"
+                        />
+                        <OverviewCard
+                            tagText="pf"
+                            topLeftText="Petrol"
+                            topRightText="- $100"
+                            bottomLeftText="April 12, 2021"
+                            mode="light"
+                        />
+                        <OverviewCard
+                            tagText="pf"
+                            topLeftText="Petrol"
+                            topRightText="- $100"
+                            bottomLeftText="April 12, 2021"
+                            mode="light"
+                        />
+                        <OverviewCard
+                            tagText="pf"
+                            topLeftText="Petrol"
+                            topRightText="- $100"
+                            bottomLeftText="April 12, 2021"
+                            mode="light"
+                        />
+                        <OverviewCard
+                            tagText="pf"
+                            topLeftText="Petrol"
+                            topRightText="- $100"
+                            bottomLeftText="April 12, 2021"
+                            mode="light"
+                        />
+                    </TransactionContainer>
+                </DetailsContainer>
+            </DetailsWrapper>
         </Container>
     );
 };

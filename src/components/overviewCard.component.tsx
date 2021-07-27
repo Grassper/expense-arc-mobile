@@ -11,17 +11,22 @@ const Container = styled.View`
     margin-bottom: 20px;
 `;
 
-const ContentContainer = styled.View`
-    background-color: ${Colors.darkGray};
-    padding: 15px 20px;
+interface ModeTypes {
+    mode: string;
+}
+
+const ContentContainer = styled.View<ModeTypes>`
+    background-color: ${props =>
+        props.mode === 'dark' ? Colors.darkGray : Colors.white};
+    padding: ${props => (props.mode === 'dark' ? '15px 20px' : '0px 20px')};
     flex: 1;
-    padding-left: 35px;
+    padding-left: 40px;
     border-radius: 10px;
 `;
 
 const TagContainer = styled.View`
-    background-color: ${Colors.pink};
-    padding: 10px 15px;
+    background-color: ${Colors.dodgerBlue};
+    padding: 10px 17px;
     border-radius: 10px;
     justify-content: center;
     align-items: center;
@@ -49,34 +54,50 @@ const BottomView = styled.View`
     justify-content: space-between;
 `;
 
-const TopText = styled.Text`
+const TopText = styled.Text<ModeTypes>`
     font-family: 'ms';
     font-size: 16px;
     line-height: 28px;
-    color: ${Colors.white};
+    color: ${props => (props.mode === 'dark' ? Colors.white : Colors.primary)};
 `;
 
-const BottomText = styled.Text`
+const BottomText = styled.Text<ModeTypes>`
     font-family: 'mr';
     font-size: 14px;
     line-height: 24px;
-    color: ${Colors.white};
+    color: ${props => (props.mode === 'dark' ? Colors.white : Colors.primary)};
 `;
 
-const OverviewCard: React.FC = () => {
+interface OverviewCardTypes {
+    tagText: string;
+    topRightText: string;
+    topLeftText: string;
+    bottomRightText?: string;
+    bottomLeftText?: string;
+    mode: string;
+}
+
+const OverviewCard: React.FC<OverviewCardTypes> = ({
+    tagText,
+    topRightText,
+    topLeftText,
+    bottomRightText,
+    bottomLeftText,
+    mode
+}) => {
     return (
         <Container>
             <TagContainer>
-                <TagText>Rr</TagText>
+                <TagText>{tagText}</TagText>
             </TagContainer>
-            <ContentContainer>
+            <ContentContainer mode={mode}>
                 <TopView>
-                    <TopText>Food</TopText>
-                    <TopText>78%</TopText>
+                    <TopText mode={mode}>{topLeftText}</TopText>
+                    <TopText mode={mode}>{topRightText}</TopText>
                 </TopView>
                 <BottomView>
-                    <BottomText>21 Payments</BottomText>
-                    <BottomText>$202</BottomText>
+                    <BottomText mode={mode}>{bottomLeftText}</BottomText>
+                    <BottomText mode={mode}>{bottomRightText}</BottomText>
                 </BottomView>
             </ContentContainer>
         </Container>

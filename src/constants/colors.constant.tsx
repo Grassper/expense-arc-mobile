@@ -6,6 +6,7 @@ const colors = {
     skyBlue: '#00B4D8',
     dodgerBlue: '#2699fbff',
     darkGray: '#1F2125',
+    toggleColor: '#C8C7CC',
     pink: '#eb7171ff',
     liteGray: '#D1D5DB',
     border: '#2d3036'
