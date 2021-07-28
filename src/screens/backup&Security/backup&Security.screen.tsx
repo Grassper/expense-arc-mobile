@@ -1,16 +1,16 @@
 import {StackNavigationProp} from '@react-navigation/stack';
 import React, {useState} from 'react';
 
-import BackButton from '../../components/backButton.component';
-import Container from '../../components/container.component';
-import FieldContainer from '../../components/fieldContainer.component';
-import FieldText from '../../components/fieldText.component';
-import TextWithButton from '../../components/fieldTextWithButton.component';
-import Header from '../../components/header.component';
-import HeadingContainer from '../../components/headingContainer.component';
-import HeadingText from '../../components/headingText.component';
-import ScrollContainer from '../../components/scrollContainer.component';
-import ToggleButton from '../../components/toggle.component';
+import BackButton from '@/root/src/components/backButton.component';
+import Container from '@/root/src/components/container.component';
+import FieldContainer from '@/root/src/components/fieldContainer.component';
+import FieldText from '@/root/src/components/fieldText.component';
+import TextWithButton from '@/root/src/components/fieldTextWithButton.component';
+import Header from '@/root/src/components/header.component';
+import HeadingContainer from '@/root/src/components/headingContainer.component';
+import HeadingText from '@/root/src/components/headingText.component';
+import ScrollContainer from '@/root/src/components/scrollContainer.component';
+import ToggleButton from '@/root/src/components/toggle.component';
 
 type RootStackParamList = {
     Preference: undefined;

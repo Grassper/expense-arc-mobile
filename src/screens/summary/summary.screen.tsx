@@ -1,8 +1,10 @@
-import {AntDesign} from '@expo/vector-icons';
+import {AntDesign, Ionicons} from '@expo/vector-icons';
 import {StackNavigationProp} from '@react-navigation/stack';
-import React from 'react';
+import React, {useState} from 'react';
+import {Modal, TouchableWithoutFeedback} from 'react-native';
 import styled from 'styled-components/native';
 
+import Form from '@/root/src/components/form.component';
 import OverviewCard from '@/root/src/components/overviewCard.component';
 import Colors from '@/root/src/constants/colors.constant';
 
@@ -179,9 +181,20 @@ const TopText = styled(Text)`
     margin-bottom: -7px;
 `;
 
-const Summary: React.FC<Props> = ({navigation}) => {
+const IconContainer = styled.View`
+    position: absolute;
+    bottom: 5px;
+    right: 0px;
+    z-index: 10;
+`;
+
+const Summary: React.FC<Props> = () => {
+    const [modalVisible, setModalVisible] = useState(false);
     return (
         <Container>
+            <Modal animationType="slide" visible={modalVisible}>
+                <Form onClick={() => setModalVisible(false)} />
+            </Modal>
             <DashboardContainer>
                 <DashboardWrapper>
                     <TopText>Total expense</TopText>
@@ -208,6 +221,16 @@ const Summary: React.FC<Props> = ({navigation}) => {
             </DashboardContainer>
             <DetailsWrapper>
                 <DetailsContainer>
+                    <TouchableWithoutFeedback
+                        onPress={() => setModalVisible(true)}>
+                        <IconContainer>
+                            <Ionicons
+                                name="ios-add-circle"
+                                size={50}
+                                color={Colors.background}
+                            />
+                        </IconContainer>
+                    </TouchableWithoutFeedback>
                     <HeadingContainer>
                         <HeadingTextBold>Recap</HeadingTextBold>
                         <HeadingTextLight>Weekly</HeadingTextLight>
