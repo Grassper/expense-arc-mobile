@@ -8,7 +8,8 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {enableScreens} from 'react-native-screens';
 import {Provider} from 'react-redux';
 
-import GlobalNavigator from './navigations/global.navigation';
+import {GlobalNavigator} from '@/root/src/navigations';
+
 import store from './redux/store.redux';
 
 enableScreens();

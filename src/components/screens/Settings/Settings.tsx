@@ -36,7 +36,7 @@ type Props = {
     navigation: ProfileScreenNavigationProp;
 };
 
-const Settings: React.FC<Props> = ({navigation}) => {
+export const Settings: React.FC<Props> = ({navigation}) => {
     return (
         <Container>
             <HeadingContainer>
@@ -87,5 +87,3 @@ const Settings: React.FC<Props> = ({navigation}) => {
         </Container>
     );
 };
-
-export default Settings;

@@ -38,7 +38,7 @@ const Label = styled.Text`
     text-transform: capitalize;
 `;
 
-export const Tab: React.FC<TabTypes> = ({
+export const TabButton: React.FC<TabTypes> = ({
     label,
     name,
     accessibilityState,

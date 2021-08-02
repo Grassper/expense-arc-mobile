@@ -12,12 +12,10 @@ const Example: React.FC = () => {
     );
 };
 
-const TransactionStack: React.FC = () => {
+export const TransactionStack: React.FC = () => {
     return (
         <Stack.Navigator headerMode="none">
             <Stack.Screen name="Example" component={Example} />
         </Stack.Navigator>
     );
 };
-
-export default TransactionStack;
