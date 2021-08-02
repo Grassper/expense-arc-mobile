@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
-import Colors from '@/root/src/constants/colors.constant';
+import Colors from '@/root/src/constants/colors';
 
 const Wrapper = styled.View`
     background-color: ${Colors.background};

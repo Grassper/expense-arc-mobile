@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import Colors from '@/root/src/constants/colors.constant';
+import Colors from '@/root/src/constants/colors';
 
 interface HeadingTextTypes {
     size?: number;

@@ -2,7 +2,7 @@ import React from 'react';
 import {Pressable} from 'react-native';
 import styled from 'styled-components/native';
 
-import Colors from '@/root/src/constants/colors.constant';
+import Colors from '@/root/src/constants/colors';
 
 interface BoxTypes {
     color: string;

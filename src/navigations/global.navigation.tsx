@@ -3,7 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 
 import TabComponent from '@/root/src/components/tab.component';
-import Colors from '@/root/src/constants/colors.constant';
+import Colors from '@/root/src/constants/colors';
 
 import OverviewStack from './overview.stack';
 import SettingsStack from './settings.stack';
