@@ -9,8 +9,6 @@ const HeaderContainer = styled.View`
     width: 100%;
 `;
 
-const Header: React.FC = ({children}) => {
+export const Header: React.FC = ({children}) => {
     return <HeaderContainer>{children}</HeaderContainer>;
 };
-
-export default Header;

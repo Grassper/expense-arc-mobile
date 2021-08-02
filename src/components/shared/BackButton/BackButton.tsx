@@ -3,7 +3,11 @@ import React from 'react';
 import {Pressable} from 'react-native';
 import styled from 'styled-components/native';
 
-import Colors from '../constants/colors.constant';
+import Colors from '@/root/src/constants/colors.constant';
+
+interface BackButtonTypes {
+    onClick?: () => void;
+}
 
 const ButtonContainer = styled.View`
     background-color: ${Colors.darkGray};
@@ -14,11 +18,7 @@ const ButtonContainer = styled.View`
     align-items: center;
 `;
 
-interface BackButtonTypes {
-    onClick?: () => void;
-}
-
-const BackButton: React.FC<BackButtonTypes> = ({onClick}) => {
+export const BackButton: React.FC<BackButtonTypes> = ({onClick}) => {
     return (
         <Pressable onPress={onClick}>
             <ButtonContainer>
@@ -27,5 +27,3 @@ const BackButton: React.FC<BackButtonTypes> = ({onClick}) => {
         </Pressable>
     );
 };
-
-export default BackButton;

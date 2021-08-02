@@ -1,15 +1,15 @@
 import {StackNavigationProp} from '@react-navigation/stack';
 import React, {useState} from 'react';
 
-import BackButton from '@/root/src/components/backButton.component';
-import Container from '@/root/src/components/container.component';
 import FieldContainer from '@/root/src/components/fieldContainer.component';
 import FieldText from '@/root/src/components/fieldText.component';
 import TextWithButton from '@/root/src/components/fieldTextWithButton.component';
-import Header from '@/root/src/components/header.component';
-import HeadingContainer from '@/root/src/components/headingContainer.component';
-import HeadingText from '@/root/src/components/headingText.component';
 import ScrollContainer from '@/root/src/components/scrollContainer.component';
+import {BackButton} from '@/root/src/components/shared/BackButton';
+import {Container} from '@/root/src/components/shared/Container';
+import {Header} from '@/root/src/components/shared/Header';
+import {HeadingContainer} from '@/root/src/components/shared/HeaderContainer';
+import {HeadingText} from '@/root/src/components/shared/HeadingText';
 import ToggleButton from '@/root/src/components/toggle.component';
 
 type RootStackParamList = {

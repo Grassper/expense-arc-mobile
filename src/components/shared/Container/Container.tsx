@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
-import Colors from '../constants/colors.constant';
+import Colors from '@/root/src/constants/colors.constant';
 
 const Wrapper = styled.View`
     background-color: ${Colors.background};
@@ -15,12 +15,10 @@ const AppContainer = styled.View`
     width: 90%;
 `;
 
-const Container: React.FC = ({children}) => {
+export const Container: React.FC = ({children}) => {
     return (
         <Wrapper>
             <AppContainer>{children}</AppContainer>
         </Wrapper>
     );
 };
-
-export default Container;

@@ -2,17 +2,23 @@ import React from 'react';
 import {Pressable} from 'react-native';
 import styled from 'styled-components/native';
 
-import Colors from '../constants/colors.constant';
+import Colors from '@/root/src/constants/colors.constant';
+
+interface BoxTypes {
+    color: string;
+}
+
+interface CategoryCardTypes {
+    color: string;
+    mainText: string;
+    onClick?: () => void;
+}
 
 const Card = styled.View`
     flex-direction: row;
     align-items: center;
     margin: 10px 0px;
 `;
-
-interface BoxTypes {
-    color: string;
-}
 
 const Box = styled.View<BoxTypes>`
     width: 30px;
@@ -28,13 +34,7 @@ const Text = styled.Text`
     margin: 10px 0 10px 10px;
 `;
 
-interface CategoryCardTypes {
-    color: string;
-    mainText: string;
-    onClick?: () => void;
-}
-
-const CategoryCard: React.FC<CategoryCardTypes> = ({
+export const CategoryCard: React.FC<CategoryCardTypes> = ({
     color,
     mainText,
     onClick
@@ -48,5 +48,3 @@ const CategoryCard: React.FC<CategoryCardTypes> = ({
         </Pressable>
     );
 };
-
-export default CategoryCard;

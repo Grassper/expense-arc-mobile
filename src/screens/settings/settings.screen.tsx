@@ -2,11 +2,12 @@ import {AntDesign, SimpleLineIcons} from '@expo/vector-icons';
 import {StackNavigationProp} from '@react-navigation/stack';
 import React from 'react';
 
-import Container from '../../components/container.component';
+import {Container} from '@/root/src/components/shared/Container';
+import {HeadingContainer} from '@/root/src/components/shared/HeaderContainer';
+import {HeadingText} from '@/root/src/components/shared/HeadingText';
+
 import FieldContainer from '../../components/fieldContainer.component';
 import FieldText from '../../components/fieldText.component';
-import HeadingContainer from '../../components/headingContainer.component';
-import HeadingText from '../../components/headingText.component';
 import ScrollContainer from '../../components/scrollContainer.component';
 import Colors from '../../constants/colors.constant';
 import {
