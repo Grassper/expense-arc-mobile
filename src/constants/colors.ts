@@ -1,6 +1,7 @@
 const colors = {
     primary: '#121212',
     background: '#000000',
+    modalBackground: '#00000030',
     white: '#ffffff',
     whiteTab: '#ffffff30',
     skyBlue: '#00B4D8',

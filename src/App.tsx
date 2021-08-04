@@ -16,16 +16,16 @@ enableScreens();
 
 const fetchFonts = (): Promise<void> => {
     return Font.loadAsync({
-        ml: require('./assets/fonts/Montserrat-Light.ttf'),
-        mr: require('./assets/fonts/Montserrat-Regular.ttf'),
-        mm: require('./assets/fonts/Montserrat-Medium.ttf'),
-        ms: require('./assets/fonts/Montserrat-SemiBold.ttf'),
-        mb: require('./assets/fonts/Montserrat-Bold.ttf'),
-        rl: require('./assets/fonts/RobotoSlab-Light.ttf'),
-        rr: require('./assets/fonts/RobotoSlab-Regular.ttf'),
-        rm: require('./assets/fonts/RobotoSlab-Medium.ttf'),
-        rs: require('./assets/fonts/RobotoSlab-SemiBold.ttf'),
-        rb: require('./assets/fonts/RobotoSlab-Bold.ttf')
+        ml: require('@/root/assets/fonts/Montserrat-Light.ttf'),
+        mr: require('@/root/assets/fonts/Montserrat-Regular.ttf'),
+        mm: require('@/root/assets/fonts/Montserrat-Medium.ttf'),
+        ms: require('@/root/assets/fonts/Montserrat-SemiBold.ttf'),
+        mb: require('@/root/assets/fonts/Montserrat-Bold.ttf'),
+        rl: require('@/root/assets/fonts/RobotoSlab-Light.ttf'),
+        rr: require('@/root/assets/fonts/RobotoSlab-Regular.ttf'),
+        rm: require('@/root/assets/fonts/RobotoSlab-Medium.ttf'),
+        rs: require('@/root/assets/fonts/RobotoSlab-SemiBold.ttf'),
+        rb: require('@/root/assets/fonts/RobotoSlab-Bold.ttf')
     });
 };
 

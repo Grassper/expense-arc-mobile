@@ -1,12 +1,13 @@
 import {Ionicons} from '@expo/vector-icons';
 import React, {useState} from 'react';
-import {Pressable} from 'react-native';
+import {Modal, Pressable, TouchableWithoutFeedback} from 'react-native';
 import styled from 'styled-components/native';
 
 import {
     Container,
     ScrollContainer
 } from '@/root/src/components/shared/Container';
+import {PickerModel} from '@/root/src/components/shared/Form/PickerModal';
 import {Header} from '@/root/src/components/shared/Header';
 import {HeadingText} from '@/root/src/components/shared/HeadingText';
 import Colors from '@/root/src/constants/colors';
@@ -37,12 +38,6 @@ const TextBold = styled.Text`
     font-size: 16px;
     color: ${Colors.white};
     margin-bottom: 15px;
-`;
-
-const TextLight = styled.Text`
-    font-family: 'mr';
-    font-size: 16px;
-    color: ${Colors.white};
 `;
 
 const RadioContainer = styled.View`
@@ -87,16 +82,59 @@ const TextInput = styled.TextInput`
     padding: 17px 15px;
 `;
 
+const TextLight = styled.Text`
+    font-family: 'mr';
+    font-size: 16px;
+    color: ${Colors.white};
+`;
+
+const Picker = styled(TextLight)<Color>`
+    color: ${props => props.color};
+    background-color: ${Colors.darkGray};
+    border-radius: 7px;
+    padding: 20px 15px;
+`;
+
 const Spacer = styled.View`
     padding: 5px;
 `;
 
+const CategoryArr = [
+    ['Food', '#FBAB7E'],
+    ['Petrol', '#85FFBD'],
+    ['Shopping', '#C850C0']
+];
+const TransferArr = [['Indian Bank x31'], ['State Bank x31'], ['Cash']];
+
 export const Form: React.FC<FormTypes> = ({onClick}) => {
+    const [categoryModel, setCategoryModel] = useState(false);
+    const [transferModel, setTransferModel] = useState(false);
     const [type, setType] = useState('Expense');
     const [name, setName] = useState('');
     const [amount, setAmount] = useState('');
+    const [category, setCategory] = useState('');
+    const [transferType, setTransferType] = useState('');
+
     return (
         <Container>
+            <Modal animationType="fade" visible={categoryModel}>
+                <PickerModel
+                    title="Categories"
+                    contentArray={CategoryArr}
+                    onClick={() => setCategoryModel(false)}
+                    selected={category}
+                    setSelected={setCategory}
+                />
+            </Modal>
+            <Modal animationType="fade" visible={transferModel}>
+                <PickerModel
+                    title="Transfer Type"
+                    contentArray={TransferArr}
+                    onClick={() => setTransferModel(false)}
+                    selected={transferType}
+                    setSelected={setTransferType}
+                />
+            </Modal>
             <Header>
                 <HeadingText size={22}>Add Transaction</HeadingText>
                 <Pressable onPress={onClick}>
@@ -150,6 +188,16 @@ export const Form: React.FC<FormTypes> = ({onClick}) => {
                     />
                 </InputContainer>
                 <InputContainer>
+                    <TextBold>Category</TextBold>
+                    <TouchableWithoutFeedback
+                        onPress={() => setCategoryModel(true)}>
+                        <Picker
+                            color={category ? Colors.white : Colors.whiteTab}>
+                            {category || 'Select'}
+                        </Picker>
+                    </TouchableWithoutFeedback>
+                </InputContainer>
+                <InputContainer>
                     <TextBold>Amount</TextBold>
                     <TextInput
                         onChangeText={setAmount}
@@ -168,6 +216,18 @@ export const Form: React.FC<FormTypes> = ({onClick}) => {
                         placeholderTextColor={Colors.whiteTab}
                         keyboardType="number-pad"
                     />
+                </InputContainer>
+                <InputContainer>
+                    <TextBold>Transfer Type</TextBold>
+                    <TouchableWithoutFeedback
+                        onPress={() => setTransferModel(true)}>
+                        <Picker
+                            color={
+                                transferType ? Colors.white : Colors.whiteTab
+                            }>
+                            {transferType || 'Select'}
+                        </Picker>
+                    </TouchableWithoutFeedback>
                 </InputContainer>
             </ScrollContainer>
         </Container>
