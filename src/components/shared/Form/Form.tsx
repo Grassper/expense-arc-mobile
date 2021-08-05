@@ -1,6 +1,12 @@
-import {Ionicons} from '@expo/vector-icons';
+import {Entypo, Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
+import DateTimePicker from '@react-native-community/datetimepicker';
 import React, {useState} from 'react';
-import {Modal, Pressable, TouchableWithoutFeedback} from 'react-native';
+import {
+    Modal,
+    Platform,
+    Pressable,
+    TouchableWithoutFeedback
+} from 'react-native';
 import styled from 'styled-components/native';
 
 import {
@@ -31,6 +37,12 @@ const ButtonContainer = styled.View`
 
 const InputContainer = styled.View`
     margin-bottom: 20px;
+    flex: auto;
+`;
+
+const SplitContainer = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
 `;
 
 const TextBold = styled.Text`
@@ -99,6 +111,19 @@ const Spacer = styled.View`
     padding: 5px;
 `;
 
+const DateContainer = styled.View`
+    background-color: ${Colors.darkGray};
+    border-radius: 7px;
+    padding: 20px 15px;
+    flex-direction: row;
+    align-items: center;
+`;
+
+const DateText = styled(TextLight)<Color>`
+    margin-left: 10px;
+    color: ${props => props.color};
+`;
+
 const CategoryArr = [
     ['Food', '#FBAB7E'],
     ['Petrol', '#85FFBD'],
@@ -115,6 +140,28 @@ export const Form: React.FC<FormTypes> = ({onClick}) => {
     const [category, setCategory] = useState('');
     const [transferType, setTransferType] = useState('');
 
+    const [date, setDate] = useState(new Date());
+    const [mode, setMode] = useState('date');
+    const [show, setShow] = useState(false);
+
+    const onChange = (event: Event, selectedDate?: Date): void => {
+        const currentDate = selectedDate || date;
+        setShow(Platform.OS === 'ios');
+        setDate(currentDate);
+    };
+
+    const showMode = (currentMode: string): void => {
+        setShow(true);
+        setMode(currentMode);
+    };
+
+    const showDatepicker = (): void => {
+        showMode('date');
+    };
+
+    const showTimepicker = (): void => {
+        showMode('time');
+    };
     return (
         <Container>
             <Modal animationType="fade" visible={categoryModel}>
@@ -207,16 +254,55 @@ export const Form: React.FC<FormTypes> = ({onClick}) => {
                         keyboardType="number-pad"
                     />
                 </InputContainer>
-                <InputContainer>
-                    <TextBold>Date</TextBold>
-                    <TextInput
-                        onChangeText={setAmount}
-                        value={amount}
-                        placeholder="$10"
-                        placeholderTextColor={Colors.whiteTab}
-                        keyboardType="number-pad"
+                <SplitContainer>
+                    <InputContainer>
+                        <TextBold>Date</TextBold>
+                        <TouchableWithoutFeedback onPress={showDatepicker}>
+                            <DateContainer>
+                                <MaterialCommunityIcons
+                                    name="calendar"
+                                    size={24}
+                                    color={Colors.white}
+                                />
+                                <DateText
+                                    color={
+                                        date ? Colors.white : Colors.whiteTab
+                                    }>
+                                    {date.toLocaleDateString()}
+                                </DateText>
+                            </DateContainer>
+                        </TouchableWithoutFeedback>
+                    </InputContainer>
+                    <Spacer />
+                    <InputContainer>
+                        <TextBold>Time</TextBold>
+                        <TouchableWithoutFeedback onPress={showTimepicker}>
+                            <DateContainer>
+                                <Entypo
+                                    name="time-slot"
+                                    size={24}
+                                    color={Colors.white}
+                                />
+                                <DateText
+                                    color={
+                                        date ? Colors.white : Colors.whiteTab
+                                    }>
+                                    {date.toLocaleTimeString()}
+                                </DateText>
+                            </DateContainer>
+                        </TouchableWithoutFeedback>
+                    </InputContainer>
+                </SplitContainer>
+                {show && (
+                    <DateTimePicker
+                        testID="dateTimePicker"
+                        value={date}
+                        mode={mode}
+                        is24Hour
+                        display="default"
+                        onChange={onChange}
                     />
-                </InputContainer>
+                )}
                 <InputContainer>
                     <TextBold>Transfer Type</TextBold>
                     <TouchableWithoutFeedback
