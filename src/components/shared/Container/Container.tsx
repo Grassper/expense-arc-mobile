@@ -3,8 +3,12 @@ import styled from 'styled-components/native';
 
 import Colors from '@/root/src/constants/colors';
 
-const Wrapper = styled.View`
-    background-color: ${Colors.background};
+interface WrapperTypes {
+    backgroundColor: string;
+}
+
+const Wrapper = styled.View<WrapperTypes>`
+    background-color: ${props => props.backgroundColor};
     flex: 1;
     align-items: center;
 `;
@@ -15,9 +19,14 @@ const AppContainer = styled.View`
     width: 90%;
 `;
 
-export const Container: React.FC = ({children}) => {
+interface Types {
+    backgroundColor?: string;
+    children: React.ReactNode;
+}
+
+export const Container: React.FC<Types> = ({backgroundColor, children}) => {
     return (
-        <Wrapper>
+        <Wrapper backgroundColor={backgroundColor || Colors.background}>
             <AppContainer>{children}</AppContainer>
         </Wrapper>
     );

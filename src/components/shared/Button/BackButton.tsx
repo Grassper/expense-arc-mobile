@@ -7,10 +7,15 @@ import Colors from '@/root/src/constants/colors';
 
 interface BackButtonTypes {
     onClick?: () => void;
+    backgroundColor?: string;
 }
 
-const ButtonContainer = styled.View`
-    background-color: ${Colors.darkGray};
+interface ButtonContainerTypes {
+    backgroundColor: string;
+}
+
+const ButtonContainer = styled.View<ButtonContainerTypes>`
+    background-color: ${props => props.backgroundColor};
     width: 50px;
     height: 50px;
     border-radius: 50px;
@@ -18,10 +23,14 @@ const ButtonContainer = styled.View`
     align-items: center;
 `;
 
-export const BackButton: React.FC<BackButtonTypes> = ({onClick}) => {
+export const BackButton: React.FC<BackButtonTypes> = ({
+    backgroundColor,
+    onClick
+}) => {
     return (
         <Pressable onPress={onClick}>
-            <ButtonContainer>
+            <ButtonContainer
+                backgroundColor={backgroundColor || Colors.darkGray}>
                 <AntDesign name="arrowleft" size={24} color={Colors.white} />
             </ButtonContainer>
         </Pressable>

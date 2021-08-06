@@ -5,21 +5,22 @@ import {OverviewTemplate} from '@/root/src/components/shared/Overview';
 import {TransactionCard} from '@/root/src/components/shared/Transaction';
 
 type RootStackParamList = {
-    Summary: undefined;
+    Home: undefined;
     Overview: undefined;
-    SactionList: undefined;
+    TransactionList: undefined;
+    TransactionDetail: undefined;
 };
 
 type ProfileScreenNavigationProp = StackNavigationProp<
     RootStackParamList,
-    'SactionList'
+    'TransactionList'
 >;
 
 type Props = {
     navigation: ProfileScreenNavigationProp;
 };
 
-export const Transaction: React.FC<Props> = () => {
+export const TransactionList: React.FC<Props> = () => {
     return (
         <OverviewTemplate
             onClick={() => {}}

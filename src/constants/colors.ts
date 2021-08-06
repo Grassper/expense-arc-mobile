@@ -8,7 +8,8 @@ const colors = {
     dodgerBlue: '#2699fbff',
     darkGray: '#1F2125',
     toggleColor: '#C8C7CC',
-    pink: '#eb7171ff',
+    pink: '#E87373',
+    litePink: '#eb7171',
     liteGray: '#D1D5DB',
     border: '#2d3036'
 };

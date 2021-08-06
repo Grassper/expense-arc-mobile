@@ -4,9 +4,10 @@ import React from 'react';
 import {OverviewTemplate} from '@/root/src/components/shared/Overview';
 
 type RootStackParamList = {
-    Summary: undefined;
+    Home: undefined;
     Overview: undefined;
-    SactionList: undefined;
+    TransactionList: undefined;
+    TransactionDetail: undefined;
 };
 
 type ProfileScreenNavigationProp = StackNavigationProp<

@@ -1,4 +1,5 @@
 import React from 'react';
+import {TouchableWithoutFeedback} from 'react-native';
 import styled from 'styled-components/native';
 
 import Colors from '@/root/src/constants/colors';
@@ -14,6 +15,7 @@ interface OverviewCardTypes {
     bottomRightText?: string;
     bottomLeftText?: string;
     mode: string;
+    onClick?: () => void;
 }
 
 const Container = styled.View`
@@ -83,23 +85,26 @@ export const OverviewCard: React.FC<OverviewCardTypes> = ({
     topLeftText,
     bottomRightText,
     bottomLeftText,
-    mode
+    mode,
+    onClick
 }) => {
     return (
-        <Container>
-            <TagContainer>
-                <TagText>{tagText}</TagText>
-            </TagContainer>
-            <ContentContainer mode={mode}>
-                <TopView>
-                    <TopText mode={mode}>{topLeftText}</TopText>
-                    <TopText mode={mode}>{topRightText}</TopText>
-                </TopView>
-                <BottomView>
-                    <BottomText mode={mode}>{bottomLeftText}</BottomText>
-                    <BottomText mode={mode}>{bottomRightText}</BottomText>
-                </BottomView>
-            </ContentContainer>
-        </Container>
+        <TouchableWithoutFeedback onPress={onClick}>
+            <Container>
+                <TagContainer>
+                    <TagText>{tagText}</TagText>
+                </TagContainer>
+                <ContentContainer mode={mode}>
+                    <TopView>
+                        <TopText mode={mode}>{topLeftText}</TopText>
+                        <TopText mode={mode}>{topRightText}</TopText>
+                    </TopView>
+                    <BottomView>
+                        <BottomText mode={mode}>{bottomLeftText}</BottomText>
+                        <BottomText mode={mode}>{bottomRightText}</BottomText>
+                    </BottomView>
+                </ContentContainer>
+            </Container>
+        </TouchableWithoutFeedback>
     );
 };

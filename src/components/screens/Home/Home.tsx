@@ -11,7 +11,8 @@ import Colors from '@/root/src/constants/colors';
 type RootStackParamList = {
     Home: undefined;
     Overview: undefined;
-    SactionList: undefined;
+    TransactionList: undefined;
+    TransactionDetail: undefined;
 };
 
 type ProfileScreenNavigationProp = StackNavigationProp<
@@ -188,7 +189,7 @@ const IconContainer = styled.View`
     z-index: 10;
 `;
 
-export const Home: React.FC<Props> = () => {
+export const Home: React.FC<Props> = ({navigation}) => {
     const [modalVisible, setModalVisible] = useState(false);
     return (
         <Container>
@@ -266,6 +267,9 @@ export const Home: React.FC<Props> = () => {
                             topRightText="- $100"
                             bottomLeftText="April 12, 2021"
                             mode="light"
+                            onClick={() => {
+                                navigation.navigate('TransactionDetail');
+                            }}
                         />
                         <OverviewCard
                             tagText="pf"
