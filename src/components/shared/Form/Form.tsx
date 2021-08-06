@@ -1,4 +1,10 @@
-import {Entypo, Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
+import {
+    AntDesign,
+    Entypo,
+    Feather,
+    Ionicons,
+    MaterialCommunityIcons
+} from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import React, {useState} from 'react';
 import {
@@ -9,6 +15,7 @@ import {
 } from 'react-native';
 import styled from 'styled-components/native';
 
+import {SaveButton, ToggleButton} from '@/root/src/components/shared/Button';
 import {
     Container,
     ScrollContainer
@@ -40,6 +47,21 @@ const InputContainer = styled.View`
     flex: auto;
 `;
 
+const ImageContainer = styled.View`
+    margin-bottom: 20px;
+    height: 150px;
+    flex: auto;
+    border-radius: 7px;
+    overflow: hidden;
+`;
+
+const Image = styled.Image`
+    width: 100%;
+    height: 100%;
+    border-radius: 7px;
+    background-color: ${Colors.white};
+`;
+
 const SplitContainer = styled.View`
     flex-direction: row;
     justify-content: space-between;
@@ -52,9 +74,17 @@ const TextBold = styled.Text`
     margin-bottom: 15px;
 `;
 
+const RowText = styled(TextBold)`
+    margin-bottom: 0px;
+`;
+
 const RadioContainer = styled.View`
     flex-direction: row;
     justify-content: space-between;
+`;
+
+const RowContainer = styled(RadioContainer)`
+    align-items: center;
 `;
 
 const RadioButton = styled.Pressable<Color>`
@@ -103,6 +133,7 @@ const TextLight = styled.Text`
 const Picker = styled(TextLight)<Color>`
     color: ${props => props.color};
     background-color: ${Colors.darkGray};
+    line-height: 28px;
     border-radius: 7px;
     padding: 20px 15px;
 `;
@@ -134,13 +165,17 @@ const TransferArr = [['Indian Bank x31'], ['State Bank x31'], ['Cash']];
 export const Form: React.FC<FormTypes> = ({onClick}) => {
     const [categoryModel, setCategoryModel] = useState(false);
     const [transferModel, setTransferModel] = useState(false);
+
     const [type, setType] = useState('Expense');
     const [name, setName] = useState('');
     const [amount, setAmount] = useState('');
     const [category, setCategory] = useState('');
     const [transferType, setTransferType] = useState('');
-
     const [date, setDate] = useState(new Date());
+    const [trackAsExpense, setTrackAsExpense] = useState(true);
+    const [transactionMessage, setTransactionMessage] = useState('');
+    const [imageUrl, setImageUrl] = useState('');
+
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
 
@@ -162,6 +197,23 @@ export const Form: React.FC<FormTypes> = ({onClick}) => {
     const showTimepicker = (): void => {
         showMode('time');
     };
+
+    type AndroidMode = 'date' | 'time';
+
+    const handleSubmit = (): void => {
+        console.log({
+            type,
+            name,
+            amount,
+            category,
+            transferType,
+            date,
+            trackAsExpense,
+            transactionMessage,
+            imageUrl
+        });
+    };
+
     return (
         <Container>
             <Modal animationType="fade" visible={categoryModel}>
@@ -297,7 +349,7 @@ export const Form: React.FC<FormTypes> = ({onClick}) => {
                     <DateTimePicker
                         testID="dateTimePicker"
                         value={date}
-                        mode={mode}
+                        mode={mode as AndroidMode}
                         is24Hour
                         display="default"
                         onChange={onChange}
@@ -315,6 +367,71 @@ export const Form: React.FC<FormTypes> = ({onClick}) => {
                         </Picker>
                     </TouchableWithoutFeedback>
                 </InputContainer>
+                <InputContainer>
+                    <RowContainer>
+                        <RowText>Upload Bill Or Warranty</RowText>
+                        {!imageUrl ? (
+                            <Feather
+                                name="upload-cloud"
+                                size={24}
+                                color={Colors.white}
+                            />
+                        ) : (
+                            <Ionicons
+                                name="ios-close"
+                                size={24}
+                                color={Colors.white}
+                            />
+                        )}
+                    </RowContainer>
+                </InputContainer>
+                {!!imageUrl && (
+                    <ImageContainer>
+                        <Image
+                            source={{
+                                uri:
+                                    'https://images.pexels.com/' +
+                                    'photos/1602726/pexels-photo-1602726.jpeg'
+                            }}
+                            accessibilityLabel="bill image"
+                        />
+                    </ImageContainer>
+                )}
+                <InputContainer>
+                    <RowContainer>
+                        <RowText>Track As Expense</RowText>
+                        <ToggleButton
+                            isEnabled={trackAsExpense}
+                            onClick={() => setTrackAsExpense(!trackAsExpense)}
+                        />
+                    </RowContainer>
+                </InputContainer>
+                <InputContainer>
+                    <RowContainer>
+                        <RowText>Link Transaction</RowText>
+                        {!transactionMessage ? (
+                            <AntDesign
+                                name="link"
+                                size={24}
+                                color={Colors.white}
+                            />
+                        ) : (
+                            <Ionicons
+                                name="ios-close"
+                                size={24}
+                                color={Colors.white}
+                            />
+                        )}
+                    </RowContainer>
+                </InputContainer>
+                {!!transactionMessage && (
+                    <InputContainer>
+                        <Picker color={Colors.white}>
+                            {transactionMessage}
+                        </Picker>
+                    </InputContainer>
+                )}
+                <SaveButton onClick={handleSubmit} />
             </ScrollContainer>
         </Container>
     );
