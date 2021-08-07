@@ -9,6 +9,7 @@ const colors = {
     darkGray: '#1F2125',
     toggleColor: '#C8C7CC',
     pink: '#E87373',
+    stick: '#707070',
     litePink: '#eb7171',
     liteGray: '#D1D5DB',
     border: '#2d3036'

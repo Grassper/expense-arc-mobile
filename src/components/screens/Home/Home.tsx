@@ -1,11 +1,12 @@
-import {AntDesign, Ionicons} from '@expo/vector-icons';
+import {Ionicons} from '@expo/vector-icons';
 import {StackNavigationProp} from '@react-navigation/stack';
 import React, {useState} from 'react';
 import {Modal, TouchableWithoutFeedback} from 'react-native';
 import styled from 'styled-components/native';
 
 import {Form} from '@/root/src/components/shared/Form';
-import {OverviewCard} from '@/root/src/components/shared/Overview';
+import {OverviewStats} from '@/root/src/components/shared/Overview';
+import {TransactionScroll} from '@/root/src/components/shared/Transaction';
 import Colors from '@/root/src/constants/colors';
 
 type RootStackParamList = {
@@ -106,58 +107,6 @@ const DetailsContainer = styled.View`
     flex: 1;
 `;
 
-const OverviewContainer = styled.View`
-    padding: 10px 20px;
-    margin-top: 20px;
-    flex-direction: row;
-    border-radius: 10px;
-    justify-content: space-between;
-`;
-
-const OverviewBox = styled.View`
-    flex-direction: row;
-    align-items: center;
-`;
-
-const OverviewContentBox = styled.View`
-    margin-left: 15px;
-`;
-
-const OverviewText = styled.Text`
-    font-size: 16px;
-    font-family: 'mr';
-    color: ${Colors.primary};
-`;
-
-const OverviewTextBold = styled.Text`
-    font-size: 22px;
-    font-family: 'rs';
-    margin-top: 10px;
-    color: ${Colors.primary};
-`;
-
-const TransactionContainer = styled.ScrollView`
-    margin-top: 20px;
-`;
-
-const HeadingContainer = styled.View`
-    margin-top: 20px;
-    flex-direction: row;
-    justify-content: space-between;
-`;
-
-const HeadingTextBold = styled.Text`
-    font-size: 16px;
-    font-family: 'ms';
-    color: ${Colors.primary};
-`;
-
-const HeadingTextLight = styled.Text`
-    font-size: 14px;
-    font-family: 'ms';
-    color: ${Colors.toggleColor};
-`;
-
 const RateText = styled.Text`
     font-size: 18px;
     font-family: 'rr';
@@ -232,81 +181,12 @@ export const Home: React.FC<Props> = ({navigation}) => {
                             />
                         </IconContainer>
                     </TouchableWithoutFeedback>
-                    <HeadingContainer>
-                        <HeadingTextBold>Recap</HeadingTextBold>
-                        <HeadingTextLight>Weekly</HeadingTextLight>
-                    </HeadingContainer>
-                    <OverviewContainer>
-                        <OverviewBox>
-                            <AntDesign name="arrowup" size={24} color="black" />
-                            <OverviewContentBox>
-                                <OverviewText>Income</OverviewText>
-                                <OverviewTextBold>$ 5,980</OverviewTextBold>
-                            </OverviewContentBox>
-                        </OverviewBox>
-                        <OverviewBox>
-                            <AntDesign
-                                name="arrowdown"
-                                size={24}
-                                color="black"
-                            />
-                            <OverviewContentBox>
-                                <OverviewText>Expense</OverviewText>
-                                <OverviewTextBold>$ 2,071</OverviewTextBold>
-                            </OverviewContentBox>
-                        </OverviewBox>
-                    </OverviewContainer>
-                    <HeadingContainer>
-                        <HeadingTextBold>Transaction</HeadingTextBold>
-                        <HeadingTextLight>Expense</HeadingTextLight>
-                    </HeadingContainer>
-                    <TransactionContainer>
-                        <OverviewCard
-                            tagText="pf"
-                            topLeftText="Petrol"
-                            topRightText="- $100"
-                            bottomLeftText="April 12, 2021"
-                            mode="light"
-                            onClick={() => {
-                                navigation.navigate('TransactionDetail');
-                            }}
-                        />
-                        <OverviewCard
-                            tagText="pf"
-                            topLeftText="Petrol"
-                            topRightText="- $100"
-                            bottomLeftText="April 12, 2021"
-                            mode="light"
-                        />
-                        <OverviewCard
-                            tagText="pf"
-                            topLeftText="Petrol"
-                            topRightText="- $100"
-                            bottomLeftText="April 12, 2021"
-                            mode="light"
-                        />
-                        <OverviewCard
-                            tagText="pf"
-                            topLeftText="Petrol"
-                            topRightText="- $100"
-                            bottomLeftText="April 12, 2021"
-                            mode="light"
-                        />
-                        <OverviewCard
-                            tagText="pf"
-                            topLeftText="Petrol"
-                            topRightText="- $100"
-                            bottomLeftText="April 12, 2021"
-                            mode="light"
-                        />
-                        <OverviewCard
-                            tagText="pf"
-                            topLeftText="Petrol"
-                            topRightText="- $100"
-                            bottomLeftText="April 12, 2021"
-                            mode="light"
-                        />
-                    </TransactionContainer>
+                    <OverviewStats
+                        Heading="Recap"
+                        Income={5980}
+                        Expense={2071}
+                    />
+                    <TransactionScroll Heading="Transaction" />
                 </DetailsContainer>
             </DetailsWrapper>
         </Container>
