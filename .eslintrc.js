@@ -77,6 +77,7 @@ module.exports = {
         'no-shadow': 'off',
         '@typescript-eslint/no-shadow': ['error'],
         'max-len': ['warn', {code: 100}],
+        "react/jsx-props-no-spreading": "off",
         '@typescript-eslint/explicit-function-return-type': [
             'error',
             {

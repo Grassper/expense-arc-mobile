@@ -1,67 +1,42 @@
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 
-import {TabButton} from '@/root/src/components/shared/Button';
-import Colors from '@/root/src/constants/colors';
-import {
-    HomeStack,
-    SettingsStack,
-    TransactionStack
-} from '@/root/src/navigations/stack';
+import {Account} from '@/root/src/components/screens/Account';
+import {BackupAndSecurity} from '@/root/src/components/screens/Backup&Security';
+import {Categories} from '@/root/src/components/screens/Categories';
+import {Notification} from '@/root/src/components/screens/Notification';
+import {Overview} from '@/root/src/components/screens/Overview';
+import {Preference} from '@/root/src/components/screens/Preference';
+import {TransactionDetail} from '@/root/src/components/screens/TransactionDetail';
+import {TransactionList} from '@/root/src/components/screens/TransactionList';
+import {HomeTabs} from '@/root/src/navigations/Tabs';
 
-const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 export const GlobalNavigator: React.FC = () => {
     return (
         <NavigationContainer>
-            <Tab.Navigator
-                tabBarOptions={{
-                    style: {
-                        backgroundColor: Colors.background,
-                        height: 75,
-                        borderTopWidth: 0
-                    }
-                }}>
-                <Tab.Screen
-                    name="Overview"
-                    component={HomeStack}
-                    options={{
-                        tabBarButton: props => (
-                            // eslint-disable-next-line react/jsx-props-no-spreading
-                            <TabButton label="home" name="home" {...props} />
-                        )
-                    }}
+            <Stack.Navigator headerMode="none">
+                <Stack.Screen name="Home" component={HomeTabs} />
+                <Stack.Screen name="Overview" component={Overview} />
+                <Stack.Screen
+                    name="TransactionDetail"
+                    component={TransactionDetail}
                 />
-                <Tab.Screen
-                    name="Transaction"
-                    component={TransactionStack}
-                    options={{
-                        tabBarButton: props => (
-                            <TabButton
-                                label="Transaction"
-                                name="swap"
-                                // eslint-disable-next-line react/jsx-props-no-spreading
-                                {...props}
-                            />
-                        )
-                    }}
+                <Stack.Screen
+                    name="TransactionList"
+                    component={TransactionList}
                 />
-                <Tab.Screen
-                    name="Settings"
-                    component={SettingsStack}
-                    options={{
-                        tabBarButton: props => (
-                            <TabButton
-                                label="Settings"
-                                name="setting"
-                                // eslint-disable-next-line react/jsx-props-no-spreading
-                                {...props}
-                            />
-                        )
-                    }}
+                <Stack.Screen name="Account" component={Account} />
+                <Stack.Screen name="Preference" component={Preference} />
+                <Stack.Screen
+                    name="BackupAndSecurity"
+                    component={BackupAndSecurity}
                 />
-            </Tab.Navigator>
+                <Stack.Screen name="Notification" component={Notification} />
+                <Stack.Screen name="Categories" component={Categories} />
+            </Stack.Navigator>
         </NavigationContainer>
     );
 };
