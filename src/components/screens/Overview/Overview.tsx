@@ -20,18 +20,27 @@ type Props = {
     route: OverviewScreenRouteProp;
 };
 
-export const Overview: React.FC<Props> = ({navigation}) => {
+export const Overview: React.FC<Props> = ({route, navigation}) => {
+    const {heading, subHeading} = route.params;
+
     return (
         <OverviewTemplate
             onClick={() => navigation.goBack()}
-            heading="Expense Overview"
-            subHeading="You spend $ 3,040">
+            heading={heading}
+            subHeading={subHeading}>
             <OverviewCard
-                tagText="pf"
-                topLeftText="Petrol"
-                topRightText="- $100"
-                bottomLeftText="April 12, 2021"
+                tagText="V"
+                topLeftText="Vehicle"
+                topRightText="100%"
+                bottomLeftText="2 Payments"
+                bottomRightText="$ 1,024"
                 mode="dark"
+                onClick={() =>
+                    navigation.navigate('CategorySummary', {
+                        heading: 'Vehicle',
+                        subHeading: 'You Spend $1,024'
+                    })
+                }
             />
         </OverviewTemplate>
     );

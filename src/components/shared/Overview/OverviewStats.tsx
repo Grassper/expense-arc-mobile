@@ -62,10 +62,6 @@ interface Props {
 export const OverviewStats: React.FC<Props> = ({Heading, Income, Expense}) => {
     const navigation = useNavigation();
 
-    const onClick = (): void => {
-        navigation.navigate('Overview');
-    };
-
     return (
         <>
             <HeadingContainer>
@@ -73,14 +69,26 @@ export const OverviewStats: React.FC<Props> = ({Heading, Income, Expense}) => {
                 <HeadingTextLight>Weekly</HeadingTextLight>
             </HeadingContainer>
             <OverviewContainer>
-                <OverviewBox onPress={onClick}>
+                <OverviewBox
+                    onPress={() =>
+                        navigation.navigate('Overview', {
+                            heading: 'Income Overview',
+                            subHeading: 'You Earn $3,040'
+                        })
+                    }>
                     <AntDesign name="arrowup" size={24} color="black" />
                     <OverviewContentBox>
                         <OverviewText>Income</OverviewText>
                         <OverviewTextBold>$ {Income}</OverviewTextBold>
                     </OverviewContentBox>
                 </OverviewBox>
-                <OverviewBox onPress={onClick}>
+                <OverviewBox
+                    onPress={() =>
+                        navigation.navigate('Overview', {
+                            heading: 'Expense Overview',
+                            subHeading: 'You Spend $3,040'
+                        })
+                    }>
                     <AntDesign name="arrowdown" size={24} color="black" />
                     <OverviewContentBox>
                         <OverviewText>Expense</OverviewText>

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {Modal} from 'react-native';
 import styled from 'styled-components/native';
 
 import {BackButton, OutlineAdd} from '@/root/src/components/shared/Button';
@@ -7,6 +8,7 @@ import {
     HeadingContainer,
     ScrollContainer
 } from '@/root/src/components/shared/Container';
+import {Form} from '@/root/src/components/shared/Form';
 import {Header} from '@/root/src/components/shared/Header';
 import {HeadingText} from '@/root/src/components/shared/HeadingText';
 import Colors from '@/root/src/constants/colors';
@@ -38,11 +40,15 @@ export const OverviewTemplate: React.FC<OverviewTemplateTypes> = ({
     subHeading,
     children
 }) => {
+    const [modalVisible, setModalVisible] = useState(false);
     return (
         <Container>
+            <Modal animationType="slide" visible={modalVisible}>
+                <Form onClick={() => setModalVisible(false)} />
+            </Modal>
             <Header>
                 <BackButton onClick={onClick} />
-                <OutlineAdd />
+                <OutlineAdd onClick={() => setModalVisible(true)} />
             </Header>
             <HeadingWrapper>
                 <HeadingContainer header>

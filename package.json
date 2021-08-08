@@ -10,7 +10,7 @@
         "test": "jest",
         "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
         "lint-fix": "eslint \"**/*.{js,jsx,ts,tsx}\" --fix",
-        "format": "pretty-quick",
+        "format": "prettier --write \"**/*.{js,jsx,ts,tsx}\" --config ./.prettierrc.js",
         "precommit": "lint-staged && pretty-quick --staged"
     },
     "dependencies": {

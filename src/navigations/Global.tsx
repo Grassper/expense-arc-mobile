@@ -4,7 +4,10 @@ import React from 'react';
 
 import {Account} from '@/root/src/components/screens/Account';
 import {BackupAndSecurity} from '@/root/src/components/screens/Backup&Security';
-import {Categories} from '@/root/src/components/screens/Categories';
+import {
+    Categories,
+    CategorySummary
+} from '@/root/src/components/screens/Categories';
 import {Notification} from '@/root/src/components/screens/Notification';
 import {Overview} from '@/root/src/components/screens/Overview';
 import {Preference} from '@/root/src/components/screens/Preference';
@@ -36,6 +39,10 @@ export const GlobalNavigator: React.FC = () => {
                 />
                 <Stack.Screen name="Notification" component={Notification} />
                 <Stack.Screen name="Categories" component={Categories} />
+                <Stack.Screen
+                    name="CategorySummary"
+                    component={CategorySummary}
+                />
             </Stack.Navigator>
         </NavigationContainer>
     );

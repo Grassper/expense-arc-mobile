@@ -130,6 +130,10 @@ const IconContainer = styled.View`
     bottom: 5px;
     right: 0px;
     z-index: 10;
+    border-radius: 50px;
+    justify-content: center;
+    align-items: center;
+    background-color: ${Colors.white};
 `;
 
 export const Home: React.FC<Props> = ({navigation}) => {
