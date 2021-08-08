@@ -3,21 +3,15 @@ import React from 'react';
 
 import {OverviewTemplate} from '@/root/src/components/shared/Overview';
 import {TransactionCard} from '@/root/src/components/shared/Transaction';
+import {RootStackParamList} from '@/root/src/types/index';
 
-type RootStackParamList = {
-    Home: undefined;
-    Overview: undefined;
-    TransactionList: undefined;
-    TransactionDetail: undefined;
-};
-
-type ProfileScreenNavigationProp = StackNavigationProp<
+type ListScreenNavigationProp = StackNavigationProp<
     RootStackParamList,
     'TransactionList'
 >;
 
 type Props = {
-    navigation: ProfileScreenNavigationProp;
+    navigation: ListScreenNavigationProp;
 };
 
 export const TransactionList: React.FC<Props> = () => {

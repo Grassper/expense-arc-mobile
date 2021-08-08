@@ -18,15 +18,15 @@ export const GlobalNavigator: React.FC = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator headerMode="none">
-                <Stack.Screen name="Home" component={HomeTabs} />
+                <Stack.Screen name="HomeTabs" component={HomeTabs} />
                 <Stack.Screen name="Overview" component={Overview} />
-                <Stack.Screen
-                    name="TransactionDetail"
-                    component={TransactionDetail}
-                />
                 <Stack.Screen
                     name="TransactionList"
                     component={TransactionList}
+                />
+                <Stack.Screen
+                    name="TransactionDetail"
+                    component={TransactionDetail}
                 />
                 <Stack.Screen name="Account" component={Account} />
                 <Stack.Screen name="Preference" component={Preference} />

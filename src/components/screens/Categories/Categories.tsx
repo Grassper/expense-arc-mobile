@@ -12,23 +12,15 @@ import {
 } from '@/root/src/components/shared/Container';
 import {Header} from '@/root/src/components/shared/Header';
 import {HeadingText} from '@/root/src/components/shared/HeadingText';
+import {RootStackParamList} from '@/root/src/types/index';
 
-type RootStackParamList = {
-    Preference: undefined;
-    Account: undefined;
-    Settings: undefined;
-    BackupAndSecurity: undefined;
-    Categories: undefined;
-    Notification: undefined;
-};
-
-type ProfileScreenNavigationProp = StackNavigationProp<
+type CategoryScreenNavigationProp = StackNavigationProp<
     RootStackParamList,
     'Categories'
 >;
 
 type Props = {
-    navigation: ProfileScreenNavigationProp;
+    navigation: CategoryScreenNavigationProp;
 };
 
 export const Categories: React.FC<Props> = ({navigation}) => {

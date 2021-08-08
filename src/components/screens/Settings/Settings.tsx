@@ -11,6 +11,7 @@ import {
 import {Text} from '@/root/src/components/shared/FieldText';
 import {HeadingText} from '@/root/src/components/shared/HeadingText';
 import Colors from '@/root/src/constants/colors';
+import {RootStackParamList} from '@/root/src/types/index';
 
 import {
     BadgeContainer,
@@ -20,20 +21,13 @@ import {
     IconContainer
 } from './Settings.styles';
 
-type RootStackParamList = {
-    Preference: undefined;
-    Account: undefined;
-    Settings: undefined;
-    BackupAndSecurity: undefined;
-};
-
-type ProfileScreenNavigationProp = StackNavigationProp<
+type SettingsScreenNavigationProp = StackNavigationProp<
     RootStackParamList,
-    'Settings'
+    'HomeTabs'
 >;
 
 type Props = {
-    navigation: ProfileScreenNavigationProp;
+    navigation: SettingsScreenNavigationProp;
 };
 
 export const Settings: React.FC<Props> = ({navigation}) => {

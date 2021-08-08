@@ -8,21 +8,15 @@ import {Form} from '@/root/src/components/shared/Form';
 import {OverviewStats} from '@/root/src/components/shared/Overview';
 import {TransactionScroll} from '@/root/src/components/shared/Transaction';
 import Colors from '@/root/src/constants/colors';
+import {RootStackParamList} from '@/root/src/types/index';
 
-type RootStackParamList = {
-    Home: undefined;
-    Overview: undefined;
-    TransactionList: undefined;
-    TransactionDetail: undefined;
-};
-
-type ProfileScreenNavigationProp = StackNavigationProp<
+type HomeScreenNavigationProp = StackNavigationProp<
     RootStackParamList,
-    'Home'
+    'HomeTabs'
 >;
 
 type Props = {
-    navigation: ProfileScreenNavigationProp;
+    navigation: HomeScreenNavigationProp;
 };
 
 const Container = styled.View`

@@ -8,21 +8,15 @@ import {
 } from '@/root/src/components/shared/Container';
 import {Header} from '@/root/src/components/shared/Header';
 import {HeadingText} from '@/root/src/components/shared/HeadingText';
+import {RootStackParamList} from '@/root/src/types/index';
 
-type RootStackParamList = {
-    Preference: undefined;
-    Account: undefined;
-    Settings: undefined;
-    BackupAndSecurity: undefined;
-};
-
-type ProfileScreenNavigationProp = StackNavigationProp<
+type AccountScreenNavigationProp = StackNavigationProp<
     RootStackParamList,
     'Account'
 >;
 
 type Props = {
-    navigation: ProfileScreenNavigationProp;
+    navigation: AccountScreenNavigationProp;
 };
 
 export const Account: React.FC<Props> = ({navigation}) => {

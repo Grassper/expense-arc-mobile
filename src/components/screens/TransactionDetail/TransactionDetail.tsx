@@ -10,21 +10,15 @@ import {
 } from '@/root/src/components/shared/Container';
 import {Header} from '@/root/src/components/shared/Header';
 import Colors from '@/root/src/constants/colors';
+import {RootStackParamList} from '@/root/src/types/index';
 
-type RootStackParamList = {
-    Home: undefined;
-    Overview: undefined;
-    TransactionList: undefined;
-    TransactionDetail: undefined;
-};
-
-type ProfileScreenNavigationProp = StackNavigationProp<
+type DetailsScreenNavigationProp = StackNavigationProp<
     RootStackParamList,
     'TransactionDetail'
 >;
 
 type Props = {
-    navigation: ProfileScreenNavigationProp;
+    navigation: DetailsScreenNavigationProp;
 };
 
 const IconContainer = styled.View`

@@ -12,21 +12,15 @@ import {
 import {Text} from '@/root/src/components/shared/FieldText';
 import {Header} from '@/root/src/components/shared/Header';
 import {HeadingText} from '@/root/src/components/shared/HeadingText';
+import {RootStackParamList} from '@/root/src/types/index';
 
-type RootStackParamList = {
-    Preference: undefined;
-    Account: undefined;
-    Settings: undefined;
-    BackupAndSecurity: undefined;
-};
-
-type ProfileScreenNavigationProp = StackNavigationProp<
+type BackupScreenNavigationProp = StackNavigationProp<
     RootStackParamList,
     'BackupAndSecurity'
 >;
 
 type Props = {
-    navigation: ProfileScreenNavigationProp;
+    navigation: BackupScreenNavigationProp;
 };
 
 const TextWithButton = styled.View`

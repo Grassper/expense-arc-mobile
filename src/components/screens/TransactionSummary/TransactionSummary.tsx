@@ -2,28 +2,22 @@ import {Ionicons} from '@expo/vector-icons';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {LinearGradient} from 'expo-linear-gradient';
 import React, {useState} from 'react';
-import {I18nManager, Modal, TouchableWithoutFeedback} from 'react-native';
+import {Modal, TouchableWithoutFeedback} from 'react-native';
 import styled from 'styled-components/native';
 
 import {Form} from '@/root/src/components/shared/Form';
 import {OverviewStats} from '@/root/src/components/shared/Overview';
 import {TransactionScroll} from '@/root/src/components/shared/Transaction';
 import Colors from '@/root/src/constants/colors';
+import {RootStackParamList} from '@/root/src/types/index';
 
-type RootStackParamList = {
-    TransactionSummary: undefined;
-    Overview: undefined;
-    TransactionList: undefined;
-    TransactionDetail: undefined;
-};
-
-type ProfileScreenNavigationProp = StackNavigationProp<
+type SummaryScreenNavigationProp = StackNavigationProp<
     RootStackParamList,
-    'TransactionSummary'
+    'HomeTabs'
 >;
 
 type Props = {
-    navigation: ProfileScreenNavigationProp;
+    navigation: SummaryScreenNavigationProp;
 };
 
 const Container = styled.View`

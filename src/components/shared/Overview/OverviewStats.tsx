@@ -1,4 +1,5 @@
 import {AntDesign} from '@expo/vector-icons';
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import styled from 'styled-components/native';
 
@@ -12,7 +13,7 @@ const OverviewContainer = styled.View`
     justify-content: space-between;
 `;
 
-const OverviewBox = styled.View`
+const OverviewBox = styled.Pressable`
     flex-direction: row;
     align-items: center;
 `;
@@ -59,6 +60,12 @@ interface Props {
 }
 
 export const OverviewStats: React.FC<Props> = ({Heading, Income, Expense}) => {
+    const navigation = useNavigation();
+
+    const onClick = (): void => {
+        navigation.navigate('Overview');
+    };
+
     return (
         <>
             <HeadingContainer>
@@ -66,14 +73,14 @@ export const OverviewStats: React.FC<Props> = ({Heading, Income, Expense}) => {
                 <HeadingTextLight>Weekly</HeadingTextLight>
             </HeadingContainer>
             <OverviewContainer>
-                <OverviewBox>
+                <OverviewBox onPress={onClick}>
                     <AntDesign name="arrowup" size={24} color="black" />
                     <OverviewContentBox>
                         <OverviewText>Income</OverviewText>
                         <OverviewTextBold>$ {Income}</OverviewTextBold>
                     </OverviewContentBox>
                 </OverviewBox>
-                <OverviewBox>
+                <OverviewBox onPress={onClick}>
                     <AntDesign name="arrowdown" size={24} color="black" />
                     <OverviewContentBox>
                         <OverviewText>Expense</OverviewText>

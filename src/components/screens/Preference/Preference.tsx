@@ -11,23 +11,15 @@ import {
 import {Text} from '@/root/src/components/shared/FieldText';
 import {Header} from '@/root/src/components/shared/Header';
 import {HeadingText} from '@/root/src/components/shared/HeadingText';
+import {RootStackParamList} from '@/root/src/types/index';
 
-type RootStackParamList = {
-    Preference: undefined;
-    Account: undefined;
-    Settings: undefined;
-    BackupAndSecurity: undefined;
-    Categories: undefined;
-    Notification: undefined;
-};
-
-type ProfileScreenNavigationProp = StackNavigationProp<
+type PreferenceScreenNavigationProp = StackNavigationProp<
     RootStackParamList,
     'Preference'
 >;
 
 type Props = {
-    navigation: ProfileScreenNavigationProp;
+    navigation: PreferenceScreenNavigationProp;
 };
 
 export const Preference: React.FC<Props> = ({navigation}) => {

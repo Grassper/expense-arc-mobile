@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import styled from 'styled-components/native';
 
@@ -31,6 +32,11 @@ interface Props {
 }
 
 export const TransactionScroll: React.FC<Props> = ({Heading}) => {
+    const navigation = useNavigation();
+
+    const onClick = (): void => {
+        navigation.navigate('TransactionDetail');
+    };
     return (
         <>
             <HeadingContainer>
@@ -44,6 +50,7 @@ export const TransactionScroll: React.FC<Props> = ({Heading}) => {
                     topRightText="- $100"
                     bottomLeftText="April 12, 2021"
                     mode="light"
+                    onClick={onClick}
                 />
                 <OverviewCard
                     tagText="pf"
@@ -51,6 +58,7 @@ export const TransactionScroll: React.FC<Props> = ({Heading}) => {
                     topRightText="- $100"
                     bottomLeftText="April 12, 2021"
                     mode="light"
+                    onClick={onClick}
                 />
                 <OverviewCard
                     tagText="pf"
