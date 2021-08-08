@@ -1,10 +1,11 @@
-import {Ionicons} from '@expo/vector-icons';
+import {EvilIcons, Ionicons} from '@expo/vector-icons';
 import {StackNavigationProp} from '@react-navigation/stack';
 import React, {useState} from 'react';
 import {Modal, TouchableWithoutFeedback} from 'react-native';
 import styled from 'styled-components/native';
 
 import {Form} from '@/root/src/components/shared/Form';
+import {BudgetModel} from '@/root/src/components/shared/Modal';
 import {OverviewStats} from '@/root/src/components/shared/Overview';
 import {TransactionScroll} from '@/root/src/components/shared/Transaction';
 import Colors from '@/root/src/constants/colors';
@@ -136,18 +137,46 @@ const IconContainer = styled.View`
     background-color: ${Colors.white};
 `;
 
+const BudgetContainer = styled.View`
+    flex-direction: row;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+`;
+
+const PencilIcon = styled.Pressable`
+    position: absolute;
+    right: 18%;
+`;
+
 export const Home: React.FC<Props> = ({navigation}) => {
-    const [modalVisible, setModalVisible] = useState(false);
+    const [formModelVisible, setFormModalVisible] = useState(false);
+    const [budgetModelVisible, setBudgetModalVisible] = useState(false);
     return (
         <Container>
-            <Modal animationType="slide" visible={modalVisible}>
-                <Form onClick={() => setModalVisible(false)} />
+            <Modal animationType="slide" visible={formModelVisible}>
+                <Form onClick={() => setFormModalVisible(false)} />
+            </Modal>
+            <Modal
+                animationType="fade"
+                visible={budgetModelVisible}
+                transparent>
+                <BudgetModel onClick={() => setBudgetModalVisible(false)} />
             </Modal>
             <DashboardContainer>
                 <DashboardWrapper>
                     <TopText>Total expense</TopText>
                     <MainText>$ 24,000.50</MainText>
-                    <Text>of $ 40,000 budgeted</Text>
+                    <BudgetContainer>
+                        <Text>of $ 40,000 budgeted</Text>
+                        <PencilIcon onPress={() => setBudgetModalVisible(true)}>
+                            <EvilIcons
+                                name="pencil"
+                                size={24}
+                                color={Colors.white}
+                            />
+                        </PencilIcon>
+                    </BudgetContainer>
                     <PercentContainer>
                         <BarContainer>
                             <ConsumedBar width={76} />
@@ -170,7 +199,7 @@ export const Home: React.FC<Props> = ({navigation}) => {
             <DetailsWrapper>
                 <DetailsContainer>
                     <TouchableWithoutFeedback
-                        onPress={() => setModalVisible(true)}>
+                        onPress={() => setFormModalVisible(true)}>
                         <IconContainer>
                             <Ionicons
                                 name="ios-add-circle"

@@ -19,7 +19,6 @@ const ButtonContainer = styled.Text`
     padding: 10px;
     border-radius: 7px;
     align-items: center;
-    margin-bottom: 20px;
 `;
 
 export const SaveButton: React.FC<SaveButtonTypes> = ({onClick}) => {
