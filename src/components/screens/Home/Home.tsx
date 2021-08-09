@@ -5,7 +5,11 @@ import {Modal, TouchableWithoutFeedback} from 'react-native';
 import styled from 'styled-components/native';
 
 import {Form} from '@/root/src/components/shared/Form';
-import {BudgetModel, TypeModal} from '@/root/src/components/shared/Modal';
+import {
+    BudgetModel,
+    FilterModal,
+    TypeModal
+} from '@/root/src/components/shared/Modal';
 import {OverviewStats} from '@/root/src/components/shared/Overview';
 import {TransactionScroll} from '@/root/src/components/shared/Transaction';
 import Colors from '@/root/src/constants/colors';
@@ -152,12 +156,19 @@ const PencilIcon = styled.Pressable`
 export const Home: React.FC<Props> = () => {
     const [formModalVisible, setFormModalVisible] = useState(false);
     const [budgetModalVisible, setBudgetModalVisible] = useState(false);
+    const [filterModalVisible, setFilterModalVisible] = useState(false);
     const [typeModalVisible, setTypeModalVisible] = useState(false);
     const [type, setType] = useState('Expense');
+    const [filter, setFilter] = useState('Monthly');
 
     const handleTypeModal = (value: string): void => {
         setType(value);
         setTypeModalVisible(false);
+    };
+
+    const handleFilterModal = (value: string): void => {
+        setFilter(value);
+        setFilterModalVisible(false);
     };
 
     return (
@@ -175,6 +186,15 @@ export const Home: React.FC<Props> = () => {
                 <TypeModal
                     onClick={(value: string) => handleTypeModal(value)}
                     inputType={type}
+                />
+            </Modal>
+            <Modal
+                animationType="fade"
+                visible={filterModalVisible}
+                transparent>
+                <FilterModal
+                    onClick={(value: string) => handleFilterModal(value)}
+                    inputFilter={filter}
                 />
             </Modal>
             <DashboardContainer>
@@ -225,8 +245,9 @@ export const Home: React.FC<Props> = () => {
                     <OverviewStats
                         Heading="Recap"
                         Income={5980}
+                        filter={filter}
                         Expense={2071}
-                        onClick={() => {}}
+                        onClick={() => setFilterModalVisible(true)}
                     />
                     <TransactionScroll
                         Heading="Transaction"

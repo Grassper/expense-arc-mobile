@@ -1,6 +1,7 @@
 import {AntDesign} from '@expo/vector-icons';
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
+import {TouchableWithoutFeedback} from 'react-native';
 import styled from 'styled-components/native';
 
 import Colors from '@/root/src/constants/colors';
@@ -57,6 +58,7 @@ interface Props {
     Income: number;
     Expense: number;
     Heading: string;
+    filter: string;
     onClick?: () => void;
 }
 
@@ -64,6 +66,7 @@ export const OverviewStats: React.FC<Props> = ({
     Heading,
     Income,
     Expense,
+    filter,
     onClick
 }) => {
     const navigation = useNavigation();
@@ -72,7 +75,9 @@ export const OverviewStats: React.FC<Props> = ({
         <>
             <HeadingContainer>
                 <HeadingTextBold>{Heading}</HeadingTextBold>
-                <HeadingTextLight>Weekly</HeadingTextLight>
+                <TouchableWithoutFeedback onPress={onClick}>
+                    <HeadingTextLight>{filter}</HeadingTextLight>
+                </TouchableWithoutFeedback>
             </HeadingContainer>
             <OverviewContainer>
                 <OverviewBox
