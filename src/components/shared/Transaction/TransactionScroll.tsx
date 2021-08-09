@@ -1,5 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
+import {TouchableWithoutFeedback} from 'react-native';
 import styled from 'styled-components/native';
 
 import {OverviewCard} from '@/root/src/components/shared/Overview';
@@ -29,19 +30,27 @@ const HeadingTextLight = styled.Text`
 
 interface Props {
     Heading: string;
+    onClick?: () => void;
+    type: string;
 }
 
-export const TransactionScroll: React.FC<Props> = ({Heading}) => {
+export const TransactionScroll: React.FC<Props> = ({
+    Heading,
+    type,
+    onClick
+}) => {
     const navigation = useNavigation();
 
-    const onClick = (): void => {
+    const handleNavigation = (): void => {
         navigation.navigate('TransactionDetail');
     };
     return (
         <>
             <HeadingContainer>
                 <HeadingTextBold>{Heading}</HeadingTextBold>
-                <HeadingTextLight>Expense</HeadingTextLight>
+                <TouchableWithoutFeedback onPress={onClick}>
+                    <HeadingTextLight>{type}</HeadingTextLight>
+                </TouchableWithoutFeedback>
             </HeadingContainer>
             <TransactionContainer>
                 <OverviewCard
@@ -50,7 +59,7 @@ export const TransactionScroll: React.FC<Props> = ({Heading}) => {
                     topRightText="- $100"
                     bottomLeftText="April 12, 2021"
                     mode="light"
-                    onClick={onClick}
+                    onClick={handleNavigation}
                 />
                 <OverviewCard
                     tagText="pf"
@@ -58,7 +67,7 @@ export const TransactionScroll: React.FC<Props> = ({Heading}) => {
                     topRightText="- $100"
                     bottomLeftText="April 12, 2021"
                     mode="light"
-                    onClick={onClick}
+                    onClick={handleNavigation}
                 />
                 <OverviewCard
                     tagText="pf"

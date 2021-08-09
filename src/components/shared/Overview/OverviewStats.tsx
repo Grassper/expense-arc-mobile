@@ -57,9 +57,15 @@ interface Props {
     Income: number;
     Expense: number;
     Heading: string;
+    onClick?: () => void;
 }
 
-export const OverviewStats: React.FC<Props> = ({Heading, Income, Expense}) => {
+export const OverviewStats: React.FC<Props> = ({
+    Heading,
+    Income,
+    Expense,
+    onClick
+}) => {
     const navigation = useNavigation();
 
     return (

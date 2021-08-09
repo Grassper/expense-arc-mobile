@@ -5,7 +5,7 @@ import {Modal, TouchableWithoutFeedback} from 'react-native';
 import styled from 'styled-components/native';
 
 import {Form} from '@/root/src/components/shared/Form';
-import {BudgetModel} from '@/root/src/components/shared/Modal';
+import {BudgetModel, TypeModal} from '@/root/src/components/shared/Modal';
 import {OverviewStats} from '@/root/src/components/shared/Overview';
 import {TransactionScroll} from '@/root/src/components/shared/Transaction';
 import Colors from '@/root/src/constants/colors';
@@ -149,19 +149,33 @@ const PencilIcon = styled.Pressable`
     right: 18%;
 `;
 
-export const Home: React.FC<Props> = ({navigation}) => {
-    const [formModelVisible, setFormModalVisible] = useState(false);
-    const [budgetModelVisible, setBudgetModalVisible] = useState(false);
+export const Home: React.FC<Props> = () => {
+    const [formModalVisible, setFormModalVisible] = useState(false);
+    const [budgetModalVisible, setBudgetModalVisible] = useState(false);
+    const [typeModalVisible, setTypeModalVisible] = useState(false);
+    const [type, setType] = useState('Expense');
+
+    const handleTypeModal = (value: string): void => {
+        setType(value);
+        setTypeModalVisible(false);
+    };
+
     return (
         <Container>
-            <Modal animationType="slide" visible={formModelVisible}>
+            <Modal animationType="slide" visible={formModalVisible}>
                 <Form onClick={() => setFormModalVisible(false)} />
             </Modal>
             <Modal
                 animationType="fade"
-                visible={budgetModelVisible}
+                visible={budgetModalVisible}
                 transparent>
                 <BudgetModel onClick={() => setBudgetModalVisible(false)} />
+            </Modal>
+            <Modal animationType="fade" visible={typeModalVisible} transparent>
+                <TypeModal
+                    onClick={(value: string) => handleTypeModal(value)}
+                    inputType={type}
+                />
             </Modal>
             <DashboardContainer>
                 <DashboardWrapper>
@@ -212,8 +226,13 @@ export const Home: React.FC<Props> = ({navigation}) => {
                         Heading="Recap"
                         Income={5980}
                         Expense={2071}
+                        onClick={() => {}}
                     />
-                    <TransactionScroll Heading="Transaction" />
+                    <TransactionScroll
+                        Heading="Transaction"
+                        type={type}
+                        onClick={() => setTypeModalVisible(true)}
+                    />
                 </DetailsContainer>
             </DetailsWrapper>
         </Container>
