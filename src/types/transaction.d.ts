@@ -7,8 +7,8 @@ export interface TransactionSchema {
     amount: number;
     date: string;
     transferType: string;
-    transactionMessage: string | null;
-    billUrl: string | null;
+    transactionMessage: string;
+    billUrl: string;
 }
 
 export interface IncomeSchema extends TransactionSchema {
