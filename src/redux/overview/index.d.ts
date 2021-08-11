@@ -1,9 +1,9 @@
-import Expense from '../../models/expense.model';
-import Income from '../../models/income.model';
+import Expense from '@/root/src/models/expense.model';
+import Income from '@/root/src/models/income.model';
 
 export interface Overview {
     loading: boolean;
-    errorOccured: boolean;
+    errorOccurred: boolean;
     errorMessage: string;
     budget: number;
     budgetConsumed: number;
