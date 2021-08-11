@@ -9,8 +9,7 @@ import {enableScreens} from 'react-native-screens';
 import {Provider} from 'react-redux';
 
 import {GlobalNavigator} from '@/root/src/navigations';
-
-import store from './redux/store.redux';
+import {store} from '@/root/src/redux';
 
 enableScreens();
 

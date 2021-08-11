@@ -1,9 +1,8 @@
-import Expense from '../../models/expense.model';
-import Income from '../../models/income.model';
+import {ExpenseSchema, IncomeSchema} from '@/root/src/types/transaction';
 
-export interface Overview {
+export interface HomeType {
     loading: boolean;
-    errorOccured: boolean;
+    errorOccurred: boolean;
     errorMessage: string;
     budget: number;
     budgetConsumed: number;
@@ -13,11 +12,11 @@ export interface Overview {
     transactionFilter: string;
     income: number;
     expense: number;
-    incomeTransaction: Array<Income>;
-    expenseTransaction: Array<Expense>;
+    incomeTransaction: Array<IncomeSchema>;
+    expenseTransaction: Array<ExpenseSchema>;
 }
 
-export interface Action<Payload> {
+export interface HomeActionType<Payload> {
     type: string;
     payload: Payload;
 }
