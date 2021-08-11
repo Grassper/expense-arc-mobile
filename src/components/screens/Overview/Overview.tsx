@@ -25,13 +25,10 @@ export const Overview: React.FC<Props> = ({route, navigation}) => {
 
     return (
         <OverviewTemplate
-            onClick={() => navigation.goBack()}
             heading={heading}
+            onClick={() => navigation.goBack()}
             subHeading={subHeading}>
             <OverviewCard
-                tagText="V"
-                topLeftText="Vehicle"
-                topRightText="100%"
                 bottomLeftText="2 Payments"
                 bottomRightText="$ 1,024"
                 mode="dark"
@@ -41,6 +38,9 @@ export const Overview: React.FC<Props> = ({route, navigation}) => {
                         subHeading: 'You Spend $1,024'
                     })
                 }
+                tagText="V"
+                topLeftText="Vehicle"
+                topRightText="100%"
             />
         </OverviewTemplate>
     );

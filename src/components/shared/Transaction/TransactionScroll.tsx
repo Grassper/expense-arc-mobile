@@ -54,90 +54,90 @@ export const TransactionScroll: React.FC<Props> = ({
             </HeadingContainer>
             <TransactionContainer>
                 <OverviewCard
-                    tagText="pf"
-                    topLeftText="Petrol"
-                    topRightText="- $100"
                     bottomLeftText="April 12, 2021"
                     mode="light"
                     onClick={handleNavigation}
-                />
-                <OverviewCard
                     tagText="pf"
                     topLeftText="Petrol"
                     topRightText="- $100"
+                />
+                <OverviewCard
                     bottomLeftText="April 12, 2021"
                     mode="light"
                     onClick={handleNavigation}
-                />
-                <OverviewCard
                     tagText="pf"
                     topLeftText="Petrol"
                     topRightText="- $100"
-                    bottomLeftText="April 12, 2021"
-                    mode="light"
                 />
                 <OverviewCard
+                    bottomLeftText="April 12, 2021"
+                    mode="light"
                     tagText="pf"
                     topLeftText="Petrol"
                     topRightText="- $100"
-                    bottomLeftText="April 12, 2021"
-                    mode="light"
                 />
                 <OverviewCard
+                    bottomLeftText="April 12, 2021"
+                    mode="light"
                     tagText="pf"
                     topLeftText="Petrol"
                     topRightText="- $100"
-                    bottomLeftText="April 12, 2021"
-                    mode="light"
                 />
                 <OverviewCard
+                    bottomLeftText="April 12, 2021"
+                    mode="light"
                     tagText="pf"
                     topLeftText="Petrol"
                     topRightText="- $100"
-                    bottomLeftText="April 12, 2021"
-                    mode="light"
                 />
                 <OverviewCard
+                    bottomLeftText="April 12, 2021"
+                    mode="light"
                     tagText="pf"
                     topLeftText="Petrol"
                     topRightText="- $100"
-                    bottomLeftText="April 12, 2021"
-                    mode="light"
                 />
                 <OverviewCard
+                    bottomLeftText="April 12, 2021"
+                    mode="light"
                     tagText="pf"
                     topLeftText="Petrol"
                     topRightText="- $100"
-                    bottomLeftText="April 12, 2021"
-                    mode="light"
                 />
                 <OverviewCard
+                    bottomLeftText="April 12, 2021"
+                    mode="light"
                     tagText="pf"
                     topLeftText="Petrol"
                     topRightText="- $100"
-                    bottomLeftText="April 12, 2021"
-                    mode="light"
                 />
                 <OverviewCard
+                    bottomLeftText="April 12, 2021"
+                    mode="light"
                     tagText="pf"
                     topLeftText="Petrol"
                     topRightText="- $100"
-                    bottomLeftText="April 12, 2021"
-                    mode="light"
                 />
                 <OverviewCard
+                    bottomLeftText="April 12, 2021"
+                    mode="light"
                     tagText="pf"
                     topLeftText="Petrol"
                     topRightText="- $100"
-                    bottomLeftText="April 12, 2021"
-                    mode="light"
                 />
                 <OverviewCard
+                    bottomLeftText="April 12, 2021"
+                    mode="light"
                     tagText="pf"
                     topLeftText="Petrol"
                     topRightText="- $100"
+                />
+                <OverviewCard
                     bottomLeftText="April 12, 2021"
                     mode="light"
+                    tagText="pf"
+                    topLeftText="Petrol"
+                    topRightText="- $100"
                 />
             </TransactionContainer>
         </>

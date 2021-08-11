@@ -53,11 +53,11 @@ export const BudgetModel: React.FC<BudgetModal> = ({onClick}) => {
             <ModalContainer>
                 <TextBold>Monthly</TextBold>
                 <TextInput
+                    keyboardType="number-pad"
                     onChangeText={setAmount}
-                    value={amount}
                     placeholder="$10"
                     placeholderTextColor={Colors.whiteTab}
-                    keyboardType="number-pad"
+                    value={amount}
                 />
                 <SaveButton onClick={handleSubmit} />
             </ModalContainer>

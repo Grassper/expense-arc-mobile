@@ -221,16 +221,16 @@ export const TransactionSummary: React.FC<Props> = () => {
                         onPress={() => setModalVisible(true)}>
                         <IconContainer>
                             <Ionicons
+                                color={Colors.background}
                                 name="ios-add-circle"
                                 size={50}
-                                color={Colors.background}
                             />
                         </IconContainer>
                     </TouchableWithoutFeedback>
                     <OverviewStats
+                        Expense={2071}
                         Heading="Recap"
                         Income={5980}
-                        Expense={2071}
                     />
                     <TransactionScroll Heading="Transaction" />
                 </DetailsContainer>

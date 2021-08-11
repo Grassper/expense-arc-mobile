@@ -11,10 +11,10 @@ interface ToggleTypes {
 export const ToggleButton: React.FC<ToggleTypes> = ({isEnabled, onClick}) => {
     return (
         <Switch
-            trackColor={{false: Colors.white, true: Colors.white}}
-            thumbColor={isEnabled ? Colors.dodgerBlue : Colors.liteGray}
             ios_backgroundColor={Colors.white}
             onValueChange={onClick}
+            thumbColor={isEnabled ? Colors.dodgerBlue : Colors.liteGray}
+            trackColor={{false: Colors.white, true: Colors.white}}
             value={isEnabled}
         />
     );

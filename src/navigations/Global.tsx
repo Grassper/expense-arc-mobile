@@ -21,27 +21,27 @@ export const GlobalNavigator: React.FC = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator headerMode="none">
-                <Stack.Screen name="HomeTabs" component={HomeTabs} />
-                <Stack.Screen name="Overview" component={Overview} />
+                <Stack.Screen component={HomeTabs} name="HomeTabs" />
+                <Stack.Screen component={Overview} name="Overview" />
                 <Stack.Screen
-                    name="TransactionList"
                     component={TransactionList}
+                    name="TransactionList"
                 />
                 <Stack.Screen
-                    name="TransactionDetail"
                     component={TransactionDetail}
+                    name="TransactionDetail"
                 />
-                <Stack.Screen name="Account" component={Account} />
-                <Stack.Screen name="Preference" component={Preference} />
+                <Stack.Screen component={Account} name="Account" />
+                <Stack.Screen component={Preference} name="Preference" />
                 <Stack.Screen
-                    name="BackupAndSecurity"
                     component={BackupAndSecurity}
+                    name="BackupAndSecurity"
                 />
-                <Stack.Screen name="Notification" component={Notification} />
-                <Stack.Screen name="Categories" component={Categories} />
+                <Stack.Screen component={Notification} name="Notification" />
+                <Stack.Screen component={Categories} name="Categories" />
                 <Stack.Screen
-                    name="CategorySummary"
                     component={CategorySummary}
+                    name="CategorySummary"
                 />
             </Stack.Navigator>
         </NavigationContainer>

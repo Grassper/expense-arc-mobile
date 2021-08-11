@@ -22,12 +22,12 @@ export const TransactionList: React.FC<Props> = ({route, navigation}) => {
     const {heading, subHeading} = route.params;
     return (
         <OverviewTemplate
-            onClick={() => navigation.goBack()}
             heading={heading}
+            onClick={() => navigation.goBack()}
             subHeading={subHeading}>
             <TransactionCard
-                top
                 onClick={() => navigation.navigate('TransactionDetail')}
+                top
             />
             <TransactionCard />
             <TransactionCard />

@@ -47,9 +47,9 @@ export const TabButton: React.FC<TabTypes> = ({
     const focused = accessibilityState?.selected;
     const transition = (
         <Transition.Sequence>
-            <Transition.Out type="fade" durationMs={0} />
-            <Transition.Change interpolation="easeInOut" durationMs={100} />
-            <Transition.In type="fade" durationMs={10} />
+            <Transition.Out durationMs={0} type="fade" />
+            <Transition.Change durationMs={100} interpolation="easeInOut" />
+            <Transition.In durationMs={10} type="fade" />
         </Transition.Sequence>
     );
     const ref = useAnimatedRef();
@@ -59,11 +59,11 @@ export const TabButton: React.FC<TabTypes> = ({
     };
     return (
         <Container onPress={onPressHandler}>
-            <Background focused={focused} ref={ref} transition={transition}>
+            <Background ref={ref} focused={focused} transition={transition}>
                 <AntDesign
+                    color={focused ? Colors.darkGray : Colors.whiteTab}
                     name={name}
                     size={24}
-                    color={focused ? Colors.darkGray : Colors.whiteTab}
                 />
                 {focused && <Label>{label}</Label>}
             </Background>

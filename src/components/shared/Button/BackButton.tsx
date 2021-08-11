@@ -31,7 +31,7 @@ export const BackButton: React.FC<BackButtonTypes> = ({
         <Pressable onPress={onClick}>
             <ButtonContainer
                 backgroundColor={backgroundColor || Colors.darkGray}>
-                <AntDesign name="arrowleft" size={24} color={Colors.white} />
+                <AntDesign color={Colors.white} name="arrowleft" size={24} />
             </ButtonContainer>
         </Pressable>
     );

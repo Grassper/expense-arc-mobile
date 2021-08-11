@@ -25,13 +25,10 @@ export const CategorySummary: React.FC<Props> = ({route, navigation}) => {
 
     return (
         <OverviewTemplate
-            onClick={() => navigation.goBack()}
             heading={heading}
+            onClick={() => navigation.goBack()}
             subHeading={subHeading}>
             <OverviewCard
-                tagText="C"
-                topLeftText="Car Wash"
-                topRightText="25%"
                 bottomLeftText="1 Payments"
                 bottomRightText="$ 348"
                 mode="dark"
@@ -41,11 +38,11 @@ export const CategorySummary: React.FC<Props> = ({route, navigation}) => {
                         subHeading: 'You Spend $340'
                     })
                 }
+                tagText="C"
+                topLeftText="Car Wash"
+                topRightText="25%"
             />
             <OverviewCard
-                tagText="E"
-                topLeftText="Engine works"
-                topRightText="75%"
                 bottomLeftText="1 Payments"
                 bottomRightText="$ 768"
                 mode="dark"
@@ -55,6 +52,9 @@ export const CategorySummary: React.FC<Props> = ({route, navigation}) => {
                         subHeading: 'You Spend $340'
                     })
                 }
+                tagText="E"
+                topLeftText="Engine works"
+                topRightText="75%"
             />
         </OverviewTemplate>
     );

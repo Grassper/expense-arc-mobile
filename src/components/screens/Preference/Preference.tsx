@@ -44,8 +44,8 @@ export const Preference: React.FC<Props> = ({navigation}) => {
                     />
                     <Text
                         mainText="Categories"
-                        subText="Create and delete categories"
                         onClick={() => navigation.push('Categories')}
+                        subText="Create and delete categories"
                     />
                 </FieldContainer>
             </ScrollContainer>

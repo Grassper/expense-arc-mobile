@@ -127,7 +127,7 @@ export const PickerModel: React.FC<PickerTypes> = ({
         <ModalContainer>
             <Pressable onPress={onClick}>
                 <ButtonContainer>
-                    <Ionicons name="ios-close" size={24} color={Colors.white} />
+                    <Ionicons color={Colors.white} name="ios-close" size={24} />
                 </ButtonContainer>
             </Pressable>
             <MainText>{title}</MainText>
@@ -135,11 +135,11 @@ export const PickerModel: React.FC<PickerTypes> = ({
                 {contentArray.map(entry => {
                     return (
                         <PickerButton
-                            color={entry[1] || undefined}
                             key={entry[0]}
+                            color={entry[1] || undefined}
                             content={entry[0]}
-                            setSelected={setSelected}
                             selected={selected}
+                            setSelected={setSelected}
                         />
                     );
                 })}

@@ -20,8 +20,8 @@ export const HomeTabs: React.FC = () => {
                 }
             }}>
             <Tab.Screen
-                name="Home"
                 component={Home}
+                name="Home"
                 options={{
                     tabBarButton: props => (
                         <TabButton label="home" name="home" {...props} />
@@ -29,8 +29,8 @@ export const HomeTabs: React.FC = () => {
                 }}
             />
             <Tab.Screen
-                name="Transaction"
                 component={TransactionSummary}
+                name="Transaction"
                 options={{
                     tabBarButton: props => (
                         <TabButton label="Transaction" name="swap" {...props} />
@@ -38,8 +38,8 @@ export const HomeTabs: React.FC = () => {
                 }}
             />
             <Tab.Screen
-                name="Settings"
                 component={Settings}
+                name="Settings"
                 options={{
                     tabBarButton: props => (
                         <TabButton label="Settings" name="setting" {...props} />

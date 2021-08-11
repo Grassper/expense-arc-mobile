@@ -34,9 +34,9 @@ const App: React.FC = () => {
     if (!dataLoaded) {
         return (
             <AppLoading
-                startAsync={fetchFonts}
-                onFinish={() => setDataLoaded(true)}
                 onError={err => console.log(err)}
+                onFinish={() => setDataLoaded(true)}
+                startAsync={fetchFonts}
             />
         );
     }

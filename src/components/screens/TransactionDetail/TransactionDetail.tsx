@@ -130,15 +130,15 @@ export const TransactionDetail: React.FC<Props> = ({navigation}) => {
                         <BackButton onClick={() => navigation.goBack()} />
                         <IconContainer>
                             <MaterialIcons
+                                color={Colors.white}
                                 name="mode-edit"
                                 size={26}
-                                color={Colors.white}
                             />
                             <Spacer />
                             <MaterialIcons
+                                color={Colors.white}
                                 name="delete"
                                 size={26}
-                                color={Colors.white}
                             />
                         </IconContainer>
                     </Header>
@@ -180,10 +180,10 @@ export const TransactionDetail: React.FC<Props> = ({navigation}) => {
                                     </FieldHeading>
                                     <ImageContainer>
                                         <Image
+                                            accessibilityLabel="bill image"
                                             source={{
                                                 uri: imageUrl
                                             }}
-                                            accessibilityLabel="bill image"
                                         />
                                     </ImageContainer>
                                 </>

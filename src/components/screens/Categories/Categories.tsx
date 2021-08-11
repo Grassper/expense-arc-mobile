@@ -31,7 +31,7 @@ export const Categories: React.FC<Props> = ({navigation}) => {
             </Header>
             <HeadingContainer header>
                 <HeadingText>Categories</HeadingText>
-                <AntDesign name="plus" size={24} color="white" />
+                <AntDesign color="white" name="plus" size={24} />
             </HeadingContainer>
             <ScrollContainer>
                 <FieldContainer>

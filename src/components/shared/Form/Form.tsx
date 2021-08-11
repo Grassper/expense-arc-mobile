@@ -218,20 +218,20 @@ export const Form: React.FC<FormTypes> = ({onClick}) => {
         <Container>
             <Modal animationType="fade" visible={categoryModel}>
                 <PickerModel
-                    title="Categories"
                     contentArray={CategoryArr}
                     onClick={() => setCategoryModel(false)}
                     selected={category}
                     setSelected={setCategory}
+                    title="Categories"
                 />
             </Modal>
             <Modal animationType="fade" visible={transferModel}>
                 <PickerModel
-                    title="Transfer Type"
                     contentArray={TransferArr}
                     onClick={() => setTransferModel(false)}
                     selected={transferType}
                     setSelected={setTransferType}
+                    title="Transfer Type"
                 />
             </Modal>
             <Header>
@@ -239,9 +239,9 @@ export const Form: React.FC<FormTypes> = ({onClick}) => {
                 <Pressable onPress={onClick}>
                     <ButtonContainer>
                         <Ionicons
+                            color={Colors.white}
                             name="ios-close"
                             size={24}
-                            color={Colors.white}
                         />
                     </ButtonContainer>
                 </Pressable>
@@ -252,24 +252,24 @@ export const Form: React.FC<FormTypes> = ({onClick}) => {
                     <TextBold>Type</TextBold>
                     <RadioContainer>
                         <RadioButton
-                            onPress={() => setType('Income')}
                             color={
                                 type === 'Income'
                                     ? Colors.skyBlue
                                     : Colors.darkGray
-                            }>
+                            }
+                            onPress={() => setType('Income')}>
                             <CircleOuter>
                                 {type === 'Income' && <CircleInner />}
                             </CircleOuter>
                             <TextLight>Income</TextLight>
                         </RadioButton>
                         <RadioButton
-                            onPress={() => setType('Expense')}
                             color={
                                 type === 'Expense'
                                     ? Colors.pink
                                     : Colors.darkGray
-                            }>
+                            }
+                            onPress={() => setType('Expense')}>
                             <CircleOuter>
                                 {type === 'Expense' && <CircleInner />}
                             </CircleOuter>
@@ -281,9 +281,9 @@ export const Form: React.FC<FormTypes> = ({onClick}) => {
                     <TextBold>Name</TextBold>
                     <TextInput
                         onChangeText={setName}
-                        value={name}
                         placeholder="Food"
                         placeholderTextColor={Colors.whiteTab}
+                        value={name}
                     />
                 </InputContainer>
                 <InputContainer>
@@ -299,11 +299,11 @@ export const Form: React.FC<FormTypes> = ({onClick}) => {
                 <InputContainer>
                     <TextBold>Amount</TextBold>
                     <TextInput
+                        keyboardType="number-pad"
                         onChangeText={setAmount}
-                        value={amount}
                         placeholder="$10"
                         placeholderTextColor={Colors.whiteTab}
-                        keyboardType="number-pad"
+                        value={amount}
                     />
                 </InputContainer>
                 <SplitContainer>
@@ -312,9 +312,9 @@ export const Form: React.FC<FormTypes> = ({onClick}) => {
                         <TouchableWithoutFeedback onPress={showDatepicker}>
                             <DateContainer>
                                 <MaterialCommunityIcons
+                                    color={Colors.white}
                                     name="calendar"
                                     size={24}
-                                    color={Colors.white}
                                 />
                                 <DateText
                                     color={
@@ -331,9 +331,9 @@ export const Form: React.FC<FormTypes> = ({onClick}) => {
                         <TouchableWithoutFeedback onPress={showTimepicker}>
                             <DateContainer>
                                 <Entypo
+                                    color={Colors.white}
                                     name="time-slot"
                                     size={24}
-                                    color={Colors.white}
                                 />
                                 <DateText
                                     color={
@@ -347,12 +347,12 @@ export const Form: React.FC<FormTypes> = ({onClick}) => {
                 </SplitContainer>
                 {show && (
                     <DateTimePicker
+                        display="default"
+                        is24Hour
+                        mode={mode as AndroidMode}
+                        onChange={onChange}
                         testID="dateTimePicker"
                         value={date}
-                        mode={mode as AndroidMode}
-                        is24Hour
-                        display="default"
-                        onChange={onChange}
                     />
                 )}
                 <InputContainer>
@@ -372,15 +372,15 @@ export const Form: React.FC<FormTypes> = ({onClick}) => {
                         <RowText>Upload Bill Or Warranty</RowText>
                         {!imageUrl ? (
                             <Feather
+                                color={Colors.white}
                                 name="upload-cloud"
                                 size={24}
-                                color={Colors.white}
                             />
                         ) : (
                             <Ionicons
+                                color={Colors.white}
                                 name="ios-close"
                                 size={24}
-                                color={Colors.white}
                             />
                         )}
                     </RowContainer>
@@ -388,12 +388,12 @@ export const Form: React.FC<FormTypes> = ({onClick}) => {
                 {!!imageUrl && (
                     <ImageContainer>
                         <Image
+                            accessibilityLabel="bill image"
                             source={{
                                 uri:
                                     'https://images.pexels.com/' +
                                     'photos/1602726/pexels-photo-1602726.jpeg'
                             }}
-                            accessibilityLabel="bill image"
                         />
                     </ImageContainer>
                 )}
@@ -411,15 +411,15 @@ export const Form: React.FC<FormTypes> = ({onClick}) => {
                         <RowText>Link Transaction</RowText>
                         {!transactionMessage ? (
                             <AntDesign
+                                color={Colors.white}
                                 name="link"
                                 size={24}
-                                color={Colors.white}
                             />
                         ) : (
                             <Ionicons
+                                color={Colors.white}
                                 name="ios-close"
                                 size={24}
-                                color={Colors.white}
                             />
                         )}
                     </RowContainer>

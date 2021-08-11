@@ -90,36 +90,36 @@ export const FilterModal: React.FC<PropTypes> = ({onClick, inputFilter}) => {
                 <TextBold>Monthly</TextBold>
                 <RadioContainer>
                     <RadioButton
-                        onPress={() => setFilter('Daily')}
                         color={
                             filter === 'Daily'
                                 ? Colors.skyBlue
                                 : Colors.darkGray
-                        }>
+                        }
+                        onPress={() => setFilter('Daily')}>
                         <CircleOuter>
                             {filter === 'Daily' && <CircleInner />}
                         </CircleOuter>
                         <TextLight>Daily</TextLight>
                     </RadioButton>
                     <RadioButton
-                        onPress={() => setFilter('Weekly')}
                         color={
                             filter === 'Weekly'
                                 ? Colors.skyBlue
                                 : Colors.darkGray
-                        }>
+                        }
+                        onPress={() => setFilter('Weekly')}>
                         <CircleOuter>
                             {filter === 'Weekly' && <CircleInner />}
                         </CircleOuter>
                         <TextLight>Weekly</TextLight>
                     </RadioButton>
                     <RadioButton
-                        onPress={() => setFilter('Monthly')}
                         color={
                             filter === 'Monthly'
                                 ? Colors.skyBlue
                                 : Colors.darkGray
-                        }>
+                        }
+                        onPress={() => setFilter('Monthly')}>
                         <CircleOuter>
                             {filter === 'Monthly' && <CircleInner />}
                         </CircleOuter>

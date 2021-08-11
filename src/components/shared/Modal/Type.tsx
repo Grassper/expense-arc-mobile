@@ -90,22 +90,22 @@ export const TypeModal: React.FC<PropTypes> = ({onClick, inputType}) => {
                 <TextBold>Transaction</TextBold>
                 <RadioContainer>
                     <RadioButton
-                        onPress={() => setType('Income')}
                         color={
                             type === 'Income' ? Colors.skyBlue : Colors.darkGray
-                        }>
+                        }
+                        onPress={() => setType('Income')}>
                         <CircleOuter>
                             {type === 'Income' && <CircleInner />}
                         </CircleOuter>
                         <TextLight>Income</TextLight>
                     </RadioButton>
                     <RadioButton
-                        onPress={() => setType('Expense')}
                         color={
                             type === 'Expense'
                                 ? Colors.skyBlue
                                 : Colors.darkGray
-                        }>
+                        }
+                        onPress={() => setType('Expense')}>
                         <CircleOuter>
                             {type === 'Expense' && <CircleInner />}
                         </CircleOuter>

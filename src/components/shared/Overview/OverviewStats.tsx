@@ -87,7 +87,7 @@ export const OverviewStats: React.FC<Props> = ({
                             subHeading: 'You Earn $3,040'
                         })
                     }>
-                    <AntDesign name="arrowup" size={24} color="black" />
+                    <AntDesign color="black" name="arrowup" size={24} />
                     <OverviewContentBox>
                         <OverviewText>Income</OverviewText>
                         <OverviewTextBold>$ {Income}</OverviewTextBold>
@@ -100,7 +100,7 @@ export const OverviewStats: React.FC<Props> = ({
                             subHeading: 'You Spend $3,040'
                         })
                     }>
-                    <AntDesign name="arrowdown" size={24} color="black" />
+                    <AntDesign color="black" name="arrowdown" size={24} />
                     <OverviewContentBox>
                         <OverviewText>Expense</OverviewText>
                         <OverviewTextBold>$ {Expense}</OverviewTextBold>

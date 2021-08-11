@@ -24,9 +24,9 @@ export const OutlineAdd: React.FC<BackButtonTypes> = ({onClick}) => {
         <Pressable onPress={onClick}>
             <ButtonContainer>
                 <Ionicons
+                    color={Colors.white}
                     name="md-add-outline"
                     size={20}
-                    color={Colors.white}
                 />
             </ButtonContainer>
         </Pressable>

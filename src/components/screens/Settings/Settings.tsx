@@ -38,16 +38,16 @@ export const Settings: React.FC<Props> = ({navigation}) => {
                 <BadgeContainer>
                     <IconContainer>
                         <SimpleLineIcons
+                            color={Colors.white}
                             name="badge"
                             size={15}
-                            color={Colors.white}
                         />
                     </IconContainer>
                     <BadgeText>Prime</BadgeText>
                 </BadgeContainer>
             </HeadingContainer>
             <CloudContainer>
-                <AntDesign name="cloud" size={24} color={Colors.white} />
+                <AntDesign color={Colors.white} name="cloud" size={24} />
                 <CloudText>Enable Cloud Backup</CloudText>
             </CloudContainer>
             <ScrollContainer>
