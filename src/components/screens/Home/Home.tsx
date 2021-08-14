@@ -139,16 +139,18 @@ export const Home: React.FC<Props> = () => {
                         </Styled.IconContainer>
                     </TouchableWithoutFeedback>
                     <OverviewStats
-                        Expense={2071}
-                        filter={filter}
+                        Expense={home.expense}
+                        filter={home.overviewFilter}
                         Heading="Recap"
-                        Income={5980}
+                        Income={home.income}
                         onClick={() => setFilterModalVisible(true)}
                     />
                     <TransactionScroll
                         Heading="Transaction"
                         onClick={() => setTypeModalVisible(true)}
-                        type={type}
+                        type={home.transactionFilter}
+                        incomeTransaction={home.incomeTransaction}
+                        expenseTransaction={home.expenseTransaction}
                     />
                 </Styled.DetailsContainer>
             </Styled.DetailsWrapper>

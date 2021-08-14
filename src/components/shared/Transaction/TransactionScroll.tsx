@@ -5,8 +5,9 @@ import styled from 'styled-components/native';
 
 import {OverviewCard} from '@/root/src/components/shared/Overview';
 import Colors from '@/root/src/constants/colors';
+import {ExpenseSchema, IncomeSchema} from '@/root/src/types';
 
-const TransactionContainer = styled.ScrollView`
+const TransactionContainer = styled.FlatList`
     margin-top: 20px;
 `;
 
@@ -32,12 +33,16 @@ interface Props {
     Heading: string;
     onClick?: () => void;
     type: string;
+    incomeTransaction: IncomeSchema[] | null | undefined;
+    expenseTransaction: ExpenseSchema[] | null | undefined;
 }
 
 export const TransactionScroll: React.FC<Props> = ({
     Heading,
     type,
-    onClick
+    onClick,
+    incomeTransaction,
+    expenseTransaction
 }) => {
     const navigation = useNavigation();
 
@@ -52,94 +57,37 @@ export const TransactionScroll: React.FC<Props> = ({
                     <HeadingTextLight>{type}</HeadingTextLight>
                 </TouchableWithoutFeedback>
             </HeadingContainer>
-            <TransactionContainer>
-                <OverviewCard
-                    bottomLeftText="April 12, 2021"
-                    mode="light"
-                    onClick={handleNavigation}
-                    tagText="pf"
-                    topLeftText="Petrol"
-                    topRightText="- $100"
+            {type === 'Expense' ? (
+                <TransactionContainer
+                    data={expenseTransaction}
+                    renderItem={item => (
+                        <OverviewCard
+                            bottomLeftText="April 12, 2021"
+                            mode="light"
+                            onClick={handleNavigation}
+                            tagText="pf"
+                            topLeftText="Petrol"
+                            topRightText="- $100"
+                        />
+                    )}
+                    keyExtractor={item => item.id}
                 />
-                <OverviewCard
-                    bottomLeftText="April 12, 2021"
-                    mode="light"
-                    onClick={handleNavigation}
-                    tagText="pf"
-                    topLeftText="Petrol"
-                    topRightText="- $100"
+            ) : (
+                <TransactionContainer
+                    data={incomeTransaction}
+                    renderItem={item => (
+                        <OverviewCard
+                            bottomLeftText="April 12, 2021"
+                            mode="light"
+                            onClick={handleNavigation}
+                            tagText="pf"
+                            topLeftText="Petrol"
+                            topRightText="- $100"
+                        />
+                    )}
+                    keyExtractor={item => item.id}
                 />
-                <OverviewCard
-                    bottomLeftText="April 12, 2021"
-                    mode="light"
-                    tagText="pf"
-                    topLeftText="Petrol"
-                    topRightText="- $100"
-                />
-                <OverviewCard
-                    bottomLeftText="April 12, 2021"
-                    mode="light"
-                    tagText="pf"
-                    topLeftText="Petrol"
-                    topRightText="- $100"
-                />
-                <OverviewCard
-                    bottomLeftText="April 12, 2021"
-                    mode="light"
-                    tagText="pf"
-                    topLeftText="Petrol"
-                    topRightText="- $100"
-                />
-                <OverviewCard
-                    bottomLeftText="April 12, 2021"
-                    mode="light"
-                    tagText="pf"
-                    topLeftText="Petrol"
-                    topRightText="- $100"
-                />
-                <OverviewCard
-                    bottomLeftText="April 12, 2021"
-                    mode="light"
-                    tagText="pf"
-                    topLeftText="Petrol"
-                    topRightText="- $100"
-                />
-                <OverviewCard
-                    bottomLeftText="April 12, 2021"
-                    mode="light"
-                    tagText="pf"
-                    topLeftText="Petrol"
-                    topRightText="- $100"
-                />
-                <OverviewCard
-                    bottomLeftText="April 12, 2021"
-                    mode="light"
-                    tagText="pf"
-                    topLeftText="Petrol"
-                    topRightText="- $100"
-                />
-                <OverviewCard
-                    bottomLeftText="April 12, 2021"
-                    mode="light"
-                    tagText="pf"
-                    topLeftText="Petrol"
-                    topRightText="- $100"
-                />
-                <OverviewCard
-                    bottomLeftText="April 12, 2021"
-                    mode="light"
-                    tagText="pf"
-                    topLeftText="Petrol"
-                    topRightText="- $100"
-                />
-                <OverviewCard
-                    bottomLeftText="April 12, 2021"
-                    mode="light"
-                    tagText="pf"
-                    topLeftText="Petrol"
-                    topRightText="- $100"
-                />
-            </TransactionContainer>
+            )}
         </>
     );
 };
