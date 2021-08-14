@@ -3,6 +3,7 @@ import React from 'react';
 import {Pressable} from 'react-native';
 import styled from 'styled-components/native';
 
+import {OutlineAdd} from '@/root/src/components/shared/Button';
 import Colors from '@/root/src/constants/colors';
 
 interface PickerTypes {
@@ -98,6 +99,13 @@ const Box = styled.View<BoxTypes>`
     background-color: ${props => props.color};
 `;
 
+const HeaderContainer = styled.View`
+    justify-content: space-between;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+`;
+
 export const PickerButton: React.FC<PickerButtonTypes> = ({
     content,
     color,
@@ -110,7 +118,6 @@ export const PickerButton: React.FC<PickerButtonTypes> = ({
                 {color && <Box color={color} />}
                 <TextLight>{content}</TextLight>
             </Container>
-
             <CircleOuter>{selected === content && <CircleInner />}</CircleOuter>
         </RadioButton>
     );
@@ -125,11 +132,18 @@ export const PickerModel: React.FC<PickerTypes> = ({
 }) => {
     return (
         <ModalContainer>
-            <Pressable onPress={onClick}>
-                <ButtonContainer>
-                    <Ionicons color={Colors.white} name="ios-close" size={24} />
-                </ButtonContainer>
-            </Pressable>
+            <HeaderContainer>
+                <Pressable onPress={onClick}>
+                    <ButtonContainer>
+                        <Ionicons
+                            color={Colors.white}
+                            name="ios-close"
+                            size={24}
+                        />
+                    </ButtonContainer>
+                </Pressable>
+                <OutlineAdd onClick={() => {}} />
+            </HeaderContainer>
             <MainText>{title}</MainText>
             <ScrollContainer>
                 {contentArray.map(entry => {
