@@ -1,4 +1,5 @@
-import {IncomeSchema} from './modelTypes';
+import {IncomeSchema} from '@/root/src/types';
+
 import Transaction from './transaction.model';
 
 class Income extends Transaction {

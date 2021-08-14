@@ -1,4 +1,4 @@
-import {TransactionSchema} from './modelTypes';
+import {TransactionSchema} from '@/root/src/types';
 
 class Transaction {
     id: string;

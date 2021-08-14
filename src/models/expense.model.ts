@@ -1,4 +1,5 @@
-import {ExpenseSchema} from './modelTypes';
+import {ExpenseSchema} from '@/root/src/types';
+
 import Transaction from './transaction.model';
 
 class Expense extends Transaction {

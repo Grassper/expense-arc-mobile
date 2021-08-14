@@ -8,8 +8,8 @@ const error = {
 };
 
 const filters = {
-    overviewFilter: 'monthly',
-    transactionFilter: 'expense'
+    overviewFilter: 'Monthly',
+    transactionFilter: 'Expense'
 };
 
 const stats = {
