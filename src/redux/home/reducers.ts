@@ -1,6 +1,4 @@
-import {HomeActionType, HomeType} from '@/root/src/types';
-
-import {ActionTypes} from './actionTypes';
+import {HomeType} from '@/root/src/types';
 
 const error = {
     errorOccurred: false,
@@ -34,29 +32,16 @@ const initialState = {
     ...error
 };
 
-export const homeReducer = (
+interface ActionType<Payload> {
+    type: string;
+    payload: Payload;
+}
+
+export const home = (
     state: HomeType = initialState,
-    action: HomeActionType<string>
+    action: ActionType<string>
 ): HomeType => {
     switch (action.type) {
-        case ActionTypes.FETCH_OVERVIEW_START:
-            return {
-                ...state,
-                loading: true,
-                errorOccurred: false,
-                errorMessage: ''
-            };
-        case ActionTypes.FETCH_OVERVIEW_SUCCESS:
-            return {
-                ...state
-            };
-        case ActionTypes.FETCH_OVERVIEW_FAILURE:
-            return {
-                ...state,
-                loading: false,
-                errorOccurred: true,
-                errorMessage: action.payload
-            };
         default:
             return state;
     }

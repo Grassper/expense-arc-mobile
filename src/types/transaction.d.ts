@@ -1,12 +1,17 @@
+interface CommonTypes {
+    _id: string;
+    name: string;
+}
+
 export interface TransactionSchema {
     id: string;
-    type: string;
+    type: 'income' | 'expense';
     name: string;
-    category: string;
+    category: CommonTypes;
     description: string;
     amount: number;
     date: string;
-    transferType: string;
+    transferType: CommonTypes;
     transactionMessage: string;
     billUrl: string;
 }

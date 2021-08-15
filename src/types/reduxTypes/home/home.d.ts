@@ -15,8 +15,3 @@ export interface HomeType {
     incomeTransaction: Array<IncomeSchema>;
     expenseTransaction: Array<ExpenseSchema>;
 }
-
-export interface HomeActionType<Payload> {
-    type: string;
-    payload: Payload;
-}
