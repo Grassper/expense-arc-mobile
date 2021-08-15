@@ -1,9 +1,10 @@
 import {Ionicons} from '@expo/vector-icons';
-import React from 'react';
-import {Pressable} from 'react-native';
+import React, {useState} from 'react';
+import {Modal, Pressable} from 'react-native';
 import styled from 'styled-components/native';
 
 import {OutlineAdd} from '@/root/src/components/shared/Button';
+import {CategoryAndTypesModal} from '@/root/src/components/shared/Modal';
 import Colors from '@/root/src/constants/colors';
 
 interface PickerTypes {
@@ -130,8 +131,16 @@ export const PickerModel: React.FC<PickerTypes> = ({
     selected,
     setSelected
 }) => {
+    const [modal, setModal] = useState(false);
+
     return (
         <ModalContainer>
+            <Modal animationType="fade" visible={modal}>
+                <CategoryAndTypesModal
+                    title="Add Category"
+                    onClick={() => setModal(false)}
+                />
+            </Modal>
             <HeaderContainer>
                 <Pressable onPress={onClick}>
                     <ButtonContainer>
@@ -142,7 +151,7 @@ export const PickerModel: React.FC<PickerTypes> = ({
                         />
                     </ButtonContainer>
                 </Pressable>
-                <OutlineAdd onClick={() => {}} />
+                <OutlineAdd onClick={() => setModal(true)} />
             </HeaderContainer>
             <MainText>{title}</MainText>
             <ScrollContainer>

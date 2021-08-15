@@ -35,8 +35,8 @@ const CategoryArr = [
 const TransferArr = [['Indian Bank x31'], ['State Bank x31'], ['Cash']];
 
 export const Form: React.FC<PropsTypes> = ({onClick}) => {
-    const [categoryModel, setCategoryModel] = useState(false);
-    const [transferModel, setTransferModel] = useState(false);
+    const [categoryModal, setCategoryModal] = useState(false);
+    const [transferModal, setTransferModal] = useState(false);
 
     const [type, setType] = useState('Expense');
     const [name, setName] = useState('');
@@ -102,7 +102,7 @@ export const Form: React.FC<PropsTypes> = ({onClick}) => {
                 />
                 <InputSelect
                     name="Category"
-                    onPress={() => setCategoryModel(true)}
+                    onPress={() => setCategoryModal(true)}
                     input={category}
                 />
                 <InputBox
@@ -119,7 +119,7 @@ export const Form: React.FC<PropsTypes> = ({onClick}) => {
                 />
                 <InputSelect
                     name="Transfer Type"
-                    onPress={() => setTransferModel(true)}
+                    onPress={() => setTransferModal(true)}
                     input={transferType}
                 />
                 <Styled.InputContainer>
@@ -187,19 +187,19 @@ export const Form: React.FC<PropsTypes> = ({onClick}) => {
                     </Styled.InputContainer>
                 )}
                 <SaveButton onClick={handleSubmit} />
-                <Modal animationType="fade" visible={categoryModel}>
+                <Modal animationType="fade" visible={categoryModal}>
                     <PickerModel
                         contentArray={CategoryArr}
-                        onClick={() => setCategoryModel(false)}
+                        onClick={() => setCategoryModal(false)}
                         selected={category}
                         setSelected={setCategory}
                         title="Categories"
                     />
                 </Modal>
-                <Modal animationType="fade" visible={transferModel}>
+                <Modal animationType="fade" visible={transferModal}>
                     <PickerModel
                         contentArray={TransferArr}
-                        onClick={() => setTransferModel(false)}
+                        onClick={() => setTransferModal(false)}
                         selected={transferType}
                         setSelected={setTransferType}
                         title="Transfer Type"
