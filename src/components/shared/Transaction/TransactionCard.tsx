@@ -8,6 +8,12 @@ interface LineTypes {
     lineToggle?: boolean;
 }
 
+interface SactionCardTypes {
+    top?: boolean;
+    bottom?: boolean;
+    onClick?: () => void;
+}
+
 const Container = styled.View`
     padding-left: 10px;
 `;
@@ -70,12 +76,6 @@ const Text = styled.Text`
     line-height: 28px;
     color: ${Colors.white};
 `;
-
-interface SactionCardTypes {
-    top?: boolean;
-    bottom?: boolean;
-    onClick?: () => void;
-}
 
 export const TransactionCard: React.FC<SactionCardTypes> = ({
     top,

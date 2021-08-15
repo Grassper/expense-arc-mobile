@@ -1,9 +1,11 @@
 import {AntDesign} from '@expo/vector-icons';
 import {BottomTabBarButtonProps} from '@react-navigation/bottom-tabs';
 import React from 'react';
+import {GestureResponderEvent} from 'react-native';
 import {
     Transition,
     Transitioning,
+    TransitioningView,
     useAnimatedRef
 } from 'react-native-reanimated';
 import styled from 'styled-components/native';
@@ -16,7 +18,7 @@ interface BackgroundTypes {
     focused: boolean;
 }
 
-interface TabTypes extends BottomTabBarButtonProps {
+interface PropsTypes extends BottomTabBarButtonProps {
     label: string;
     name: 'home' | 'swap' | 'clockcircleo' | 'setting';
 }
@@ -30,6 +32,7 @@ const Background = styled(Transitioning.View)<BackgroundTypes>`
     border-radius: 50px;
     margin: 10px;
 `;
+
 const Label = styled.Text`
     margin-left: 10px;
     font-family: 'ms';
@@ -38,13 +41,13 @@ const Label = styled.Text`
     text-transform: capitalize;
 `;
 
-export const TabButton: React.FC<TabTypes> = ({
+export const TabButton: React.FC<PropsTypes> = ({
     label,
     name,
     accessibilityState,
     onPress
 }) => {
-    const focused = accessibilityState?.selected;
+    const focused = !!accessibilityState?.selected;
     const transition = (
         <Transition.Sequence>
             <Transition.Out durationMs={0} type="fade" />
@@ -52,9 +55,9 @@ export const TabButton: React.FC<TabTypes> = ({
             <Transition.In durationMs={10} type="fade" />
         </Transition.Sequence>
     );
-    const ref = useAnimatedRef();
+    const ref = useAnimatedRef<TransitioningView>();
     const onPressHandler = (): void => {
-        ref.current.animateNextTransition();
+        ref.current?.animateNextTransition();
         onPress();
     };
     return (

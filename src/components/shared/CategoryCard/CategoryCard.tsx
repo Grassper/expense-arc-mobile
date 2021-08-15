@@ -8,7 +8,7 @@ interface BoxTypes {
     color: string;
 }
 
-interface CategoryCardTypes {
+interface PropsTypes {
     color: string;
     mainText: string;
     onClick?: () => void;
@@ -34,7 +34,7 @@ const Text = styled.Text`
     margin: 10px 0 10px 10px;
 `;
 
-export const CategoryCard: React.FC<CategoryCardTypes> = ({
+export const CategoryCard: React.FC<PropsTypes> = ({
     color,
     mainText,
     onClick

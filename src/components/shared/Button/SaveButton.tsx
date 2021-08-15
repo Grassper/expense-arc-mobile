@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 
 import Colors from '@/root/src/constants/colors';
 
-interface SaveButtonTypes {
+interface PropsTypes {
     onClick?: () => void;
 }
 
@@ -21,7 +21,7 @@ const ButtonContainer = styled.Text`
     align-items: center;
 `;
 
-export const SaveButton: React.FC<SaveButtonTypes> = ({onClick}) => {
+export const SaveButton: React.FC<PropsTypes> = ({onClick}) => {
     return (
         <Pressable onPress={onClick}>
             <ButtonContainer>Save</ButtonContainer>

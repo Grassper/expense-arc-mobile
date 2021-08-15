@@ -8,7 +8,7 @@ interface FieldText {
     subText?: boolean;
 }
 
-interface FieldTextTypes {
+interface PropsTypes {
     mainText: string;
     subText?: string;
     onClick?: () => void;
@@ -28,11 +28,7 @@ const StyledSubText = styled.Text`
     margin: 10px 0;
 `;
 
-export const Text: React.FC<FieldTextTypes> = ({
-    mainText,
-    subText,
-    onClick
-}) => {
+export const Text: React.FC<PropsTypes> = ({mainText, subText, onClick}) => {
     return (
         <Pressable onPress={onClick}>
             <StyledFieldText subText={Boolean(subText)}>

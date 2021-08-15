@@ -6,6 +6,14 @@ import styled from 'styled-components/native';
 
 import Colors from '@/root/src/constants/colors';
 
+interface Props {
+    Income: number;
+    Expense: number;
+    Heading: string;
+    filter: string;
+    onClick?: () => void;
+}
+
 const OverviewContainer = styled.View`
     padding: 10px 20px;
     margin-top: 20px;
@@ -53,14 +61,6 @@ const HeadingTextLight = styled.Text`
     font-family: 'ms';
     color: ${Colors.toggleColor};
 `;
-
-interface Props {
-    Income: number;
-    Expense: number;
-    Heading: string;
-    filter: string;
-    onClick?: () => void;
-}
 
 export const OverviewStats: React.FC<Props> = ({
     Heading,

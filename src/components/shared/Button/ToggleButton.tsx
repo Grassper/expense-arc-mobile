@@ -3,12 +3,12 @@ import {Switch} from 'react-native';
 
 import Colors from '@/root/src/constants/colors';
 
-interface ToggleTypes {
+interface PropsTypes {
     isEnabled: boolean;
     onClick: () => void;
 }
 
-export const ToggleButton: React.FC<ToggleTypes> = ({isEnabled, onClick}) => {
+export const ToggleButton: React.FC<PropsTypes> = ({isEnabled, onClick}) => {
     return (
         <Switch
             ios_backgroundColor={Colors.white}

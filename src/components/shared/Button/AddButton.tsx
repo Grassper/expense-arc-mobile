@@ -5,7 +5,7 @@ import styled from 'styled-components/native';
 
 import Colors from '@/root/src/constants/colors';
 
-interface BackButtonTypes {
+interface PropsTypes {
     onClick?: () => void;
 }
 
@@ -19,7 +19,7 @@ const ButtonContainer = styled.View`
     border-color: ${Colors.white};
 `;
 
-export const OutlineAdd: React.FC<BackButtonTypes> = ({onClick}) => {
+export const OutlineAdd: React.FC<PropsTypes> = ({onClick}) => {
     return (
         <Pressable onPress={onClick}>
             <ButtonContainer>

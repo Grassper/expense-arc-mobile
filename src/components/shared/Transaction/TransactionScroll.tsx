@@ -7,6 +7,14 @@ import {OverviewCard} from '@/root/src/components/shared/Overview';
 import Colors from '@/root/src/constants/colors';
 import {ExpenseSchema, IncomeSchema} from '@/root/src/types';
 
+interface Props {
+    Heading: string;
+    onClick?: () => void;
+    type: string;
+    incomeTransaction: IncomeSchema[];
+    expenseTransaction: ExpenseSchema[];
+}
+
 const TransactionContainer = styled.FlatList`
     margin-top: 20px;
 `;
@@ -28,14 +36,6 @@ const HeadingTextLight = styled.Text`
     font-family: 'ms';
     color: ${Colors.toggleColor};
 `;
-
-interface Props {
-    Heading: string;
-    onClick?: () => void;
-    type: string;
-    incomeTransaction: IncomeSchema[] | null | undefined;
-    expenseTransaction: ExpenseSchema[] | null | undefined;
-}
 
 export const TransactionScroll: React.FC<Props> = ({
     Heading,

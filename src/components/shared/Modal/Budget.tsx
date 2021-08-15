@@ -4,6 +4,10 @@ import styled from 'styled-components/native';
 import {SaveButton} from '@/root/src/components/shared/Button';
 import Colors from '@/root/src/constants/colors';
 
+interface BudgetModal {
+    onClick: () => void;
+}
+
 const Container = styled.View`
     align-items: center;
     justify-content: center;
@@ -33,10 +37,6 @@ const TextBold = styled.Text`
     color: ${Colors.white};
     margin-bottom: 15px;
 `;
-
-interface BudgetModal {
-    onClick: () => void;
-}
 
 export const BudgetModel: React.FC<BudgetModal> = ({onClick}) => {
     const [amount, setAmount] = useState('');

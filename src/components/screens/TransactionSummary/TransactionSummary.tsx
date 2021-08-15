@@ -64,9 +64,6 @@ const FilterText = styled.Text`
     font-size: 16px;
     color: ${Colors.white};
     text-transform: capitalize;
-    /* border-bottom-width: 2px;
-    border-radius: 2px;
-    border-color: ${Colors.white}; */
     padding-bottom: 10px;
 `;
 
