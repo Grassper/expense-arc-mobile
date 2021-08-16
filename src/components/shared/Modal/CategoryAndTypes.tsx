@@ -15,16 +15,24 @@ import {
     Zocial
 } from '@expo/vector-icons';
 import React, {useState} from 'react';
-import {Pressable} from 'react-native';
+import {FlatList, ListRenderItem, Pressable} from 'react-native';
 import styled from 'styled-components/native';
+import {v4 as uuidv4} from 'uuid';
 
 import {SaveButton} from '@/root/src/components/shared/Button';
 import Colors from '@/root/src/constants/colors';
 import {Colorswatch} from '@/root/src/constants/colorswatch';
+import {IconCollection} from '@/root/src/constants/Icons';
 
 interface PropsTypes {
     onClick: () => void;
     title: string;
+}
+
+interface IconTypes {
+    iconName: string;
+    iconSet: string;
+    uuid: string;
 }
 
 const ModalContainer = styled.View`
@@ -93,11 +101,16 @@ const ColorBox = styled.Pressable<ColorBoxTypes>`
 const IconsContainer = styled.FlatList`
     flex-direction: row;
     flex-wrap: wrap;
+    flex: 1;
     width: 100%;
 `;
 
-const IconsBox = styled.Pressable`
-    background-color: ${Colors.darkGray};
+interface IconsBoxTypes {
+    backgroundColor: string;
+}
+
+const IconsBox = styled.Pressable<IconsBoxTypes>`
+    background-color: ${props => props.backgroundColor || Colors.darkGray};
     width: 50px;
     height: 50px;
     border-radius: 50px;
@@ -107,7 +120,7 @@ const IconsBox = styled.Pressable`
     align-items: center;
 `;
 
-const IconObj = [
+const IconObj = {
     AntDesign,
     Entypo,
     EvilIcons,
@@ -122,23 +135,33 @@ const IconObj = [
     Octicons,
     SimpleLineIcons,
     Zocial
-];
+};
 
 export const CategoryAndTypesModal: React.FC<PropsTypes> = ({
     onClick,
     title
 }) => {
     const [name, setName] = useState('');
-
     const [color, setColor] = useState(Colors.dodgerBlue);
-
-    const [icon, setIcon] = useState('');
-
+    const filteredIcons = IconCollection.filter(icon =>
+        icon.iconName.toLowerCase().includes(name.toLowerCase())
+    );
     const handleSubmit = (): void => {
         onClick();
     };
 
-    const IconComponent = IconObj[0];
+    const IconRenderer: ListRenderItem<IconTypes> = ({item}) => {
+        const IconBoxComponent = IconObj[item.iconSet];
+        return (
+            <IconsBox backgroundColor={`${color}`}>
+                <IconBoxComponent
+                    name={item.iconName}
+                    size={20}
+                    color={Colors.white}
+                />
+            </IconsBox>
+        );
+    };
 
     return (
         <ModalContainer>
@@ -148,6 +171,15 @@ export const CategoryAndTypesModal: React.FC<PropsTypes> = ({
                         <Ionicons
                             color={Colors.white}
                             name="ios-close"
+                            size={24}
+                        />
+                    </ButtonContainer>
+                </Pressable>
+                <Pressable onPress={onClick}>
+                    <ButtonContainer>
+                        <MaterialIcons
+                            color={Colors.white}
+                            name="done"
                             size={24}
                         />
                     </ButtonContainer>
@@ -163,7 +195,10 @@ export const CategoryAndTypesModal: React.FC<PropsTypes> = ({
             <MainText>Colors</MainText>
             <ColorsContainer>
                 {Colorswatch.map(entry => (
-                    <ColorBox color={entry} onPress={() => setColor(entry)}>
+                    <ColorBox
+                        color={entry}
+                        onPress={() => setColor(entry)}
+                        key={uuidv4()}>
                         {color === entry && (
                             <Feather
                                 name="check-circle"
@@ -175,23 +210,12 @@ export const CategoryAndTypesModal: React.FC<PropsTypes> = ({
                 ))}
             </ColorsContainer>
             <MainText>Icons</MainText>
-            <TextInput
-                onChangeText={setIcon}
-                placeholder="Search Icons"
-                placeholderTextColor={Colors.whiteTab}
-                value={icon}
+            <FlatList
+                numColumns={6}
+                data={filteredIcons}
+                renderItem={IconRenderer}
+                keyExtractor={item => item.uuid}
             />
-            {/* <IconsContainer>
-                <IconsBox>
-                    <MaterialCommunityIcons
-                        name="check-circle"
-                        size={20}
-                        color={Colors.white}
-                    />
-                </IconsBox>
-            </IconsContainer> */}
-            <IconsContainer />
-            <SaveButton onClick={handleSubmit} />
         </ModalContainer>
     );
 };
