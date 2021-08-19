@@ -14,6 +14,7 @@ import {
     SimpleLineIcons,
     Zocial
 } from '@expo/vector-icons';
+import {Icon} from '@expo/vector-icons/build/createIconSet';
 import React, {useState} from 'react';
 import {FlatList, ListRenderItem, Pressable} from 'react-native';
 import styled from 'styled-components/native';
@@ -120,7 +121,25 @@ const IconsBox = styled.Pressable<IconsBoxTypes>`
     align-items: center;
 `;
 
-const IconObj = {
+type IconObjTypes = {
+    [key: string]:
+        | typeof AntDesign
+        | typeof Entypo
+        | typeof EvilIcons
+        | typeof Feather
+        | typeof FontAwesome
+        | typeof FontAwesome5
+        | typeof Fontisto
+        | typeof Foundation
+        | typeof Ionicons
+        | typeof MaterialCommunityIcons
+        | typeof MaterialIcons
+        | typeof Octicons
+        | typeof SimpleLineIcons
+        | typeof Zocial;
+};
+
+const IconObj: IconObjTypes = {
     AntDesign,
     Entypo,
     EvilIcons,
