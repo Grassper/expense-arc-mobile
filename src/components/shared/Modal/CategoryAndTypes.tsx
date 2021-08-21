@@ -1,39 +1,21 @@
-import {
-    AntDesign,
-    Entypo,
-    EvilIcons,
-    Feather,
-    FontAwesome,
-    FontAwesome5,
-    Fontisto,
-    Foundation,
-    Ionicons,
-    MaterialCommunityIcons,
-    MaterialIcons,
-    Octicons,
-    SimpleLineIcons,
-    Zocial
-} from '@expo/vector-icons';
-import {Icon} from '@expo/vector-icons/build/createIconSet';
+import {Feather, Ionicons, MaterialIcons} from '@expo/vector-icons';
+import {IconPicker} from '@grassper/icon-picker-testing';
 import React, {useState} from 'react';
-import {FlatList, ListRenderItem, Pressable} from 'react-native';
+import {Pressable} from 'react-native';
 import styled from 'styled-components/native';
 import {v4 as uuidv4} from 'uuid';
 
-import {SaveButton} from '@/root/src/components/shared/Button';
 import Colors from '@/root/src/constants/colors';
 import {Colorswatch} from '@/root/src/constants/colorswatch';
-import {IconCollection} from '@/root/src/constants/Icons';
 
 interface PropsTypes {
     onClick: () => void;
     title: string;
 }
 
-interface IconTypes {
-    iconName: string;
-    iconSet: string;
-    uuid: string;
+interface ColorBoxTypes {
+    color: string;
+    selected?: boolean;
 }
 
 const ModalContainer = styled.View`
@@ -58,19 +40,6 @@ const MainText = styled.Text`
     margin: 15px 0px;
 `;
 
-const ScrollContainer = styled.ScrollView`
-    flex: 1;
-`;
-
-const TextInput = styled.TextInput`
-    font-family: 'mr';
-    font-size: 16px;
-    color: ${Colors.white};
-    background-color: ${Colors.darkGray};
-    border-radius: 7px;
-    padding: 17px 15px;
-`;
-
 const HeaderContainer = styled.View`
     justify-content: space-between;
     width: 100%;
@@ -84,11 +53,6 @@ const ColorsContainer = styled.View`
     width: 100%;
 `;
 
-interface ColorBoxTypes {
-    color: string;
-    selected?: boolean;
-}
-
 const ColorBox = styled.Pressable<ColorBoxTypes>`
     background-color: ${props => props.color};
     width: 50px;
@@ -99,87 +63,19 @@ const ColorBox = styled.Pressable<ColorBoxTypes>`
     align-items: center;
 `;
 
-const IconsContainer = styled.FlatList`
-    flex-direction: row;
-    flex-wrap: wrap;
-    flex: 1;
-    width: 100%;
-`;
-
-interface IconsBoxTypes {
-    backgroundColor: string;
-}
-
-const IconsBox = styled.Pressable<IconsBoxTypes>`
-    background-color: ${props => props.backgroundColor || Colors.darkGray};
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
-    margin: 5px;
-    justify-content: center;
-    margin-top: 20px;
-    align-items: center;
-`;
-
-type IconObjTypes = {
-    [key: string]:
-        | typeof AntDesign
-        | typeof Entypo
-        | typeof EvilIcons
-        | typeof Feather
-        | typeof FontAwesome
-        | typeof FontAwesome5
-        | typeof Fontisto
-        | typeof Foundation
-        | typeof Ionicons
-        | typeof MaterialCommunityIcons
-        | typeof MaterialIcons
-        | typeof Octicons
-        | typeof SimpleLineIcons
-        | typeof Zocial;
-};
-
-const IconObj: IconObjTypes = {
-    AntDesign,
-    Entypo,
-    EvilIcons,
-    Feather,
-    FontAwesome,
-    FontAwesome5,
-    Fontisto,
-    Foundation,
-    Ionicons,
-    MaterialCommunityIcons,
-    MaterialIcons,
-    Octicons,
-    SimpleLineIcons,
-    Zocial
-};
-
 export const CategoryAndTypesModal: React.FC<PropsTypes> = ({
     onClick,
     title
 }) => {
-    const [name, setName] = useState('');
     const [color, setColor] = useState(Colors.dodgerBlue);
-    const filteredIcons = IconCollection.filter(icon =>
-        icon.iconName.toLowerCase().includes(name.toLowerCase())
-    );
-    const handleSubmit = (): void => {
-        onClick();
-    };
-
-    const IconRenderer: ListRenderItem<IconTypes> = ({item}) => {
-        const IconBoxComponent = IconObj[item.iconSet];
-        return (
-            <IconsBox backgroundColor={`${color}`}>
-                <IconBoxComponent
-                    name={item.iconName}
-                    size={20}
-                    color={Colors.white}
-                />
-            </IconsBox>
-        );
+    const handleSubmit = (
+        id: string,
+        iconName: string,
+        iconSet: string,
+        iconColor: string,
+        backgroundColor: string
+    ): void => {
+        console.log(id, iconName, iconSet, iconColor, backgroundColor);
     };
 
     return (
@@ -204,12 +100,15 @@ export const CategoryAndTypesModal: React.FC<PropsTypes> = ({
                     </ButtonContainer>
                 </Pressable>
             </HeaderContainer>
-            <MainText>{title}</MainText>
-            <TextInput
-                onChangeText={setName}
-                placeholder="Name"
+            <IconPicker
+                searchTitle={title}
+                iconsTitle="Icons"
+                numColumns={6}
+                backgroundColor={color}
+                iconColor={color}
+                placeholderText="Name"
                 placeholderTextColor={Colors.whiteTab}
-                value={name}
+                onClick={handleSubmit}
             />
             <MainText>Colors</MainText>
             <ColorsContainer>
@@ -228,13 +127,6 @@ export const CategoryAndTypesModal: React.FC<PropsTypes> = ({
                     </ColorBox>
                 ))}
             </ColorsContainer>
-            <MainText>Icons</MainText>
-            <FlatList
-                numColumns={6}
-                data={filteredIcons}
-                renderItem={IconRenderer}
-                keyExtractor={item => item.uuid}
-            />
         </ModalContainer>
     );
 };

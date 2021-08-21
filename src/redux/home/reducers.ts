@@ -1,4 +1,9 @@
-import {HomeType} from '@/root/src/types';
+import {
+    FilterType,
+    HomeType,
+    ReducerActionTypes,
+    TransactionFilterType
+} from './types';
 
 const error = {
     errorOccurred: false,
@@ -6,8 +11,8 @@ const error = {
 };
 
 const filters = {
-    overviewFilter: 'Monthly',
-    transactionFilter: 'Expense'
+    overviewFilter: 'monthly' as FilterType,
+    transactionFilter: 'expense' as TransactionFilterType
 };
 
 const stats = {
@@ -32,14 +37,9 @@ const initialState = {
     ...error
 };
 
-interface ActionType<Payload> {
-    type: string;
-    payload: Payload;
-}
-
 export const home = (
     state: HomeType = initialState,
-    action: ActionType<string>
+    action: ReducerActionTypes
 ): HomeType => {
     switch (action.type) {
         default:
