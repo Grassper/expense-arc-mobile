@@ -1,8 +1,9 @@
 import {
     GraphFilterType,
+    ReducerActionTypes,
     TransactionFilterType,
     TransactionOverviewType
-} from '@/root/src/types';
+} from './types';
 
 const error = {
     errorOccurred: false,
@@ -15,7 +16,11 @@ const filter = {
 };
 
 const stats = {
-    candlePercents: []
+    candlePercents: [],
+    income: 0,
+    expense: 0,
+    incomeTransaction: [],
+    expenseTransaction: []
 };
 
 const initialState = {
@@ -25,14 +30,9 @@ const initialState = {
     ...error
 };
 
-interface ActionType<Payload> {
-    type: string;
-    payload: Payload;
-}
-
 export const transactionOverview = (
     state: TransactionOverviewType = initialState,
-    action: ActionType<string>
+    action: ReducerActionTypes
 ): TransactionOverviewType => {
     switch (action.type) {
         default:

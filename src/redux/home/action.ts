@@ -28,14 +28,28 @@ import {
 } from './types';
 
 export const ActionReduxTypes = {
-    SET_BUDGET: 'SET_BUDGET',
-    RESET_BUDGET: 'RESET_BUDGET',
-    SET_BUDGET_CONSUMED: 'SET_BUDGET_CONSUMED',
-    RESET_BUDGET_CONSUMED: 'RESET_BUDGET_CONSUMED',
-    SET_AVERAGE_CONSUMPTION: 'SET_AVERAGE_CONSUMPTION',
-    RESET_AVERAGE_CONSUMPTION: 'RESET_AVERAGE_CONSUMPTION',
-    SET_TODAY_CONSUMED: 'SET_TODAY_CONSUMED',
-    RESET_TODAY_CONSUMED: 'RESET_TODAY_CONSUMED'
+    SET_HO_BUDGET: 'SET_HO_BUDGET',
+    RESET_HO_BUDGET: 'RESET_HO_BUDGET',
+    SET_HO_BUDGET_CONSUMED: 'SET_HO_BUDGET_CONSUMED',
+    RESET_HO_BUDGET_CONSUMED: 'RESET_HO_BUDGET_CONSUMED',
+    SET_HO_AVERAGE_CONSUMPTION: 'SET_HO_AVERAGE_CONSUMPTION',
+    RESET_HO_AVERAGE_CONSUMPTION: 'RESET_HO_AVERAGE_CONSUMPTION',
+    SET_HO_TODAY_CONSUMED: 'SET_HO_TODAY_CONSUMED',
+    RESET_HO_TODAY_CONSUMED: 'RESET_HO_TODAY_CONSUMED',
+    SET_HO_INCOME: 'SET_HO_INCOME',
+    RESET_HO_INCOME: 'RESET_HO_INCOME',
+    SET_HO_EXPENSE: 'SET_HO_EXPENSE',
+    RESET_HO_EXPENSE: 'RESET_HO_EXPENSE',
+    SET_HO_INCOME_TRANSACTION: 'SET_HO_INCOME_TRANSACTION',
+    RESET_HO_INCOME_TRANSACTION: 'RESET_HO_INCOME_TRANSACTION',
+    SET_HO_EXPENSE_TRANSACTION: 'SET_HO_EXPENSE_TRANSACTION',
+    RESET_HO_EXPENSE_TRANSACTION: 'RESET_HO_EXPENSE_TRANSACTION',
+    SET_HO_OVERVIEW_FILTER: 'SET_HO_OVERVIEW_FILTER',
+    RESET_HO_OVERVIEW_FILTER: 'RESET_HO_OVERVIEW_FILTER',
+    SET_HO_TRANSACTION_FILTER: 'SET_HO_TRANSACTION_FILTER',
+    RESET_HO_TRANSACTION_FILTER: 'RESET_HO_TRANSACTION_FILTER',
+    SET_HO_ERROR_OCCURRED: 'SET_HO_ERROR_OCCURRED',
+    RESET_HO_ERROR_OCCURRED: 'RESET_HO_ERROR_OCCURRED'
 };
 
 /**
@@ -45,24 +59,24 @@ export const ActionReduxTypes = {
 // budget
 
 export const setBudget = (budget: number): SetBudget => ({
-    type: 'SET_BUDGET',
+    type: 'SET_HO_BUDGET',
     payload: budget
 });
 
 export const resetBudget = (): ResetBudget => ({
-    type: 'RESET_BUDGET',
+    type: 'RESET_HO_BUDGET',
     payload: 0
 });
 
 // budget consumed
 
 export const setBudgetConsumed = (consumed: number): SetBudgetConsumed => ({
-    type: 'SET_BUDGET_CONSUMED',
+    type: 'SET_HO_BUDGET_CONSUMED',
     payload: consumed
 });
 
 export const resetBudgetConsumed = (): ResetBudgetConsumed => ({
-    type: 'RESET_BUDGET_CONSUMED',
+    type: 'RESET_HO_BUDGET_CONSUMED',
     payload: 0
 });
 
@@ -71,24 +85,24 @@ export const resetBudgetConsumed = (): ResetBudgetConsumed => ({
 export const setAverageConsumption = (
     consumed: number
 ): SetAverageConsumption => ({
-    type: 'SET_AVERAGE_CONSUMPTION',
+    type: 'SET_HO_AVERAGE_CONSUMPTION',
     payload: consumed
 });
 
 export const resetAverageConsumption = (): ResetAverageConsumption => ({
-    type: 'RESET_AVERAGE_CONSUMPTION',
+    type: 'RESET_HO_AVERAGE_CONSUMPTION',
     payload: 0
 });
 
 // today consumed
 
 export const setTodayConsumed = (consumed: number): SetTodayConsumed => ({
-    type: 'SET_TODAY_CONSUMED',
+    type: 'SET_HO_TODAY_CONSUMED',
     payload: consumed
 });
 
 export const resetTodayConsumed = (): ResetTodayConsumed => ({
-    type: 'RESET_TODAY_CONSUMED',
+    type: 'RESET_HO_TODAY_CONSUMED',
     payload: 0
 });
 
@@ -99,24 +113,24 @@ export const resetTodayConsumed = (): ResetTodayConsumed => ({
 // income
 
 export const setIncome = (income: number): SetIncome => ({
-    type: 'SET_INCOME',
+    type: 'SET_HO_INCOME',
     payload: income
 });
 
 export const resetIncome = (): ResetIncome => ({
-    type: 'RESET_INCOME',
+    type: 'RESET_HO_INCOME',
     payload: 0
 });
 
 // expense
 
 export const setExpense = (expense: number): SetExpense => ({
-    type: 'SET_EXPENSE',
+    type: 'SET_HO_EXPENSE',
     payload: expense
 });
 
 export const resetExpense = (): ResetExpense => ({
-    type: 'RESET_EXPENSE',
+    type: 'RESET_HO_EXPENSE',
     payload: 0
 });
 
@@ -125,12 +139,12 @@ export const resetExpense = (): ResetExpense => ({
 export const setIncomeTransaction = (
     transaction: IncomeSchema[]
 ): SetIncomeTransaction => ({
-    type: 'SET_INCOME_TRANSACTION',
+    type: 'SET_HO_INCOME_TRANSACTION',
     payload: transaction
 });
 
 export const resetIncomeTransaction = (): ResetIncomeTransaction => ({
-    type: 'RESET_INCOME_TRANSACTION',
+    type: 'RESET_HO_INCOME_TRANSACTION',
     payload: []
 });
 
@@ -139,12 +153,12 @@ export const resetIncomeTransaction = (): ResetIncomeTransaction => ({
 export const setExpenseTransaction = (
     transaction: ExpenseSchema[]
 ): SetExpenseTransaction => ({
-    type: 'SET_EXPENSE_TRANSACTION',
+    type: 'SET_HO_EXPENSE_TRANSACTION',
     payload: transaction
 });
 
 export const resetExpenseTransaction = (): ResetExpenseTransaction => ({
-    type: 'RESET_EXPENSE_TRANSACTION',
+    type: 'RESET_HO_EXPENSE_TRANSACTION',
     payload: []
 });
 
@@ -155,12 +169,12 @@ export const resetExpenseTransaction = (): ResetExpenseTransaction => ({
 // overview filter
 
 export const setOverviewFilter = (filter: FilterType): SetOverviewFilter => ({
-    type: 'SET_OVERVIEW_FILTER',
+    type: 'SET_HO_OVERVIEW_FILTER',
     payload: filter
 });
 
 export const resetOverviewFilter = (): ResetOverviewFilter => ({
-    type: 'RESET_OVERVIEW_FILTER',
+    type: 'RESET_HO_OVERVIEW_FILTER',
     payload: 'monthly'
 });
 
@@ -169,12 +183,12 @@ export const resetOverviewFilter = (): ResetOverviewFilter => ({
 export const setTransactionFilter = (
     filter: TransactionFilterType
 ): SetTransactionFilter => ({
-    type: 'SET_TRANSACTION_FILTER',
+    type: 'SET_HO_TRANSACTION_FILTER',
     payload: filter
 });
 
 export const resetTransactionFilter = (): ResetTransactionFilter => ({
-    type: 'RESET_TRANSACTION_FILTER',
+    type: 'RESET_HO_TRANSACTION_FILTER',
     payload: 'expense'
 });
 
@@ -185,10 +199,10 @@ export const resetTransactionFilter = (): ResetTransactionFilter => ({
 // error occurred
 
 export const setErrorOccurred = (message: string): SetErrorOccurred => ({
-    type: 'SET_ERROR_OCCURRED',
+    type: 'SET_HO_ERROR_OCCURRED',
     payload: message
 });
 
 export const resetErrorOccurred = (): ResetErrorOccurred => ({
-    type: 'RESET_ERROR_OCCURRED'
+    type: 'RESET_HO_ERROR_OCCURRED'
 });
