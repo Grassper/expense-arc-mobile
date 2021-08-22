@@ -1260,10 +1260,10 @@
     lodash.pick "^4.4.0"
     lodash.template "^4.5.0"
 
-"@grassper/icon-picker-testing@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@grassper/icon-picker-testing/-/icon-picker-testing-1.0.0.tgz#0bb5fd4d52815509adac3e929b89d34060fb3c7b"
-  integrity sha512-xnwdzXs9/LUI78e6wABN4W/MbVJTipZNN/xM5HZffRHRc4dDcTYq81qp0swXTx+g3ViSoM5HLDTTAX6SgnUWoQ==
+"@grassper/react-native-icon-picker@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@grassper/react-native-icon-picker/-/react-native-icon-picker-1.0.4.tgz#391138f2726dc0fc567f72ff7f1738a44e12ac84"
+  integrity sha512-A6PCpjb7ST/ILtmrNnoiuRyoZlRHan9j2THge+bu309xKfRRtW4x5dQE6UGarOLD1uvPqTc0t83DkJVTb2UVvA==
   dependencies:
     "@expo/vector-icons" "^12.0.5"
 

@@ -1,5 +1,5 @@
 import {Feather, Ionicons, MaterialIcons} from '@expo/vector-icons';
-import {IconPicker} from '@grassper/icon-picker-testing';
+import {IconPicker} from '@grassper/react-native-icon-picker';
 import React, {useState} from 'react';
 import {Pressable} from 'react-native';
 import styled from 'styled-components/native';
@@ -104,6 +104,7 @@ export const CategoryAndTypesModal: React.FC<PropsTypes> = ({
                 searchTitle={title}
                 iconsTitle="Icons"
                 numColumns={6}
+                iconSize={20}
                 backgroundColor={color}
                 iconColor={color}
                 placeholderText="Name"
