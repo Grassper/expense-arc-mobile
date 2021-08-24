@@ -2,6 +2,7 @@ import {AntDesign, Feather, Ionicons} from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import React, {useState} from 'react';
 import {Modal, Platform, Pressable} from 'react-native';
+import {useSelector} from 'react-redux';
 
 import {SaveButton, ToggleButton} from '@/root/src/components/shared/Button';
 import {
@@ -11,6 +12,7 @@ import {
 import {Header} from '@/root/src/components/shared/Header';
 import {HeadingText} from '@/root/src/components/shared/HeadingText';
 import Colors from '@/root/src/constants/colors';
+import {StoreType} from '@/root/src/redux/types';
 
 import * as Styled from './Styles';
 import {
@@ -27,14 +29,21 @@ interface PropsTypes {
 
 type AndroidMode = 'date' | 'time';
 
-const CategoryArr = [
-    ['Food', '#FBAB7E'],
-    ['Petrol', '#85FFBD'],
-    ['Shopping', '#C850C0']
-];
-const TransferArr = [['Indian Bank x31'], ['State Bank x31'], ['Cash']];
+// const CategoryArr = [
+//     ['Food', '#FBAB7E'],
+//     ['Petrol', '#85FFBD'],
+//     ['Shopping', '#C850C0']
+// ];
+// const TransferArr = [['Indian Bank x31'], ['State Bank x31'], ['Cash']];
 
 export const Form: React.FC<PropsTypes> = ({onClick}) => {
+    const {categories} = useSelector<StoreType, StoreType['categories']>(
+        state => state.categories
+    );
+    const {transferTypes} = useSelector<StoreType, StoreType['transferTypes']>(
+        state => state.transferTypes
+    );
+
     const [categoryModal, setCategoryModal] = useState(false);
     const [transferModal, setTransferModal] = useState(false);
 
@@ -189,7 +198,7 @@ export const Form: React.FC<PropsTypes> = ({onClick}) => {
                 <SaveButton onClick={handleSubmit} />
                 <Modal animationType="fade" visible={categoryModal}>
                     <PickerModel
-                        contentArray={CategoryArr}
+                        contentArray={categories}
                         onClick={() => setCategoryModal(false)}
                         selected={category}
                         setSelected={setCategory}
@@ -198,7 +207,7 @@ export const Form: React.FC<PropsTypes> = ({onClick}) => {
                 </Modal>
                 <Modal animationType="fade" visible={transferModal}>
                     <PickerModel
-                        contentArray={TransferArr}
+                        contentArray={transferTypes}
                         onClick={() => setTransferModal(false)}
                         selected={transferType}
                         setSelected={setTransferType}

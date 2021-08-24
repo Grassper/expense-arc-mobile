@@ -6,7 +6,7 @@ export type FilterType = 'daily' | 'weekly' | 'monthly';
 
 export type TransactionFilterType = 'income' | 'expense';
 
-export interface HomeType {
+export interface InitialState {
     loading: boolean;
     errorOccurred: boolean;
     errorMessage: string;

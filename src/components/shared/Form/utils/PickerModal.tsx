@@ -6,11 +6,12 @@ import styled from 'styled-components/native';
 import {OutlineAdd} from '@/root/src/components/shared/Button';
 import {CategoryAndTypesModal} from '@/root/src/components/shared/Modal';
 import Colors from '@/root/src/constants/colors';
+import {CategoryAndTransferType} from '@/root/src/redux/types';
 
 interface PickerTypes {
     onClick: () => void;
     title: string;
-    contentArray: Array<Array<string>>;
+    contentArray: CategoryAndTransferType[];
     selected: string;
     setSelected: React.Dispatch<React.SetStateAction<string>>;
 }
@@ -158,9 +159,9 @@ export const PickerModel: React.FC<PickerTypes> = ({
                 {contentArray.map(entry => {
                     return (
                         <PickerButton
-                            key={entry[0]}
-                            color={entry[1] || undefined}
-                            content={entry[0]}
+                            key={entry.id}
+                            color={entry.iconColor}
+                            content={entry.name}
                             selected={selected}
                             setSelected={setSelected}
                         />

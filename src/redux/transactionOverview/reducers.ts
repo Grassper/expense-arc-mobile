@@ -1,8 +1,8 @@
 import {
     GraphFilterType,
+    InitialState,
     ReducerActionTypes,
-    TransactionFilterType,
-    TransactionOverviewType
+    TransactionFilterType
 } from './types';
 
 const error = {
@@ -31,9 +31,9 @@ const initialState = {
 };
 
 export const transactionOverview = (
-    state: TransactionOverviewType = initialState,
+    state: InitialState = initialState,
     action: ReducerActionTypes
-): TransactionOverviewType => {
+): InitialState => {
     switch (action.type) {
         default:
             return state;

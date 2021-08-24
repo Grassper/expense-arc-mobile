@@ -1,6 +1,6 @@
 import {
     FilterType,
-    HomeType,
+    InitialState,
     ReducerActionTypes,
     TransactionFilterType
 } from './types';
@@ -38,9 +38,9 @@ const initialState = {
 };
 
 export const home = (
-    state: HomeType = initialState,
+    state: InitialState = initialState,
     action: ReducerActionTypes
-): HomeType => {
+): InitialState => {
     switch (action.type) {
         default:
             return state;

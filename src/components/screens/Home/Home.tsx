@@ -14,7 +14,8 @@ import {
 import {OverviewStats} from '@/root/src/components/shared/Overview';
 import {TransactionScroll} from '@/root/src/components/shared/Transaction';
 import Colors from '@/root/src/constants/colors';
-import {RootStackParamList, StoreType} from '@/root/src/types';
+import {StoreType} from '@/root/src/redux/types';
+import {RootStackParamList} from '@/root/src/types';
 
 import * as Styled from './Styles';
 

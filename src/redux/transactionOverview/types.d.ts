@@ -17,7 +17,7 @@ export interface CandlePercents {
     transactionType: 'Expense' | 'Income';
 }
 
-export interface TransactionOverviewType {
+export interface InitialState {
     loading: boolean;
     candlePercents: CandlePercents[];
     income: number;

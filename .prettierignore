@@ -3,5 +3,6 @@ android
 ios
 metro.config.js
 babel.config.js
+commitlint.config.js
 .eslintrc.js
 .prettierrc.js
