@@ -1,21 +1,50 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+import AppLoading from 'expo-app-loading'
+import * as Font from 'expo-font'
+import React, { useState } from 'react'
+import { enableScreens } from 'react-native-screens'
+import { Provider } from 'react-redux'
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import { GlobalNavigator } from '@/root/src/navigations'
+import { store } from '@/root/src/redux'
+
+enableScreens()
+
+const fetchFonts = (): Promise<void> => {
+  return Font.loadAsync({
+    ml: require('@/root/assets/fonts/Montserrat-Light.ttf'),
+    mr: require('@/root/assets/fonts/Montserrat-Regular.ttf'),
+    mm: require('@/root/assets/fonts/Montserrat-Medium.ttf'),
+    ms: require('@/root/assets/fonts/Montserrat-SemiBold.ttf'),
+    mb: require('@/root/assets/fonts/Montserrat-Bold.ttf'),
+    rl: require('@/root/assets/fonts/RobotoSlab-Light.ttf'),
+    rr: require('@/root/assets/fonts/RobotoSlab-Regular.ttf'),
+    rm: require('@/root/assets/fonts/RobotoSlab-Medium.ttf'),
+    rs: require('@/root/assets/fonts/RobotoSlab-SemiBold.ttf'),
+    rb: require('@/root/assets/fonts/RobotoSlab-Bold.ttf')
+  })
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const App: React.FC = () => {
+  const [dataLoaded, setDataLoaded] = useState(false)
+  if (!dataLoaded) {
+    return (
+      <AppLoading
+        onError={err => console.log(err)}
+        onFinish={() => setDataLoaded(true)}
+        startAsync={fetchFonts}
+      />
+    )
+  }
+
+  return (
+    <SafeAreaProvider>
+      <Provider store={store}>
+        <GlobalNavigator />
+      </Provider>
+    </SafeAreaProvider>
+  )
+}
+
+export default App

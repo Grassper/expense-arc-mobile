@@ -1,6 +1,12 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true
-  }
+    "strict": true,
+    "lib": ["es2017"],
+    "baseUrl": "./",
+    "paths": {
+      "@/root/*": ["./*"]
+    }
+  },
+  "exclude": ["commitlint.config.js"]
 }
