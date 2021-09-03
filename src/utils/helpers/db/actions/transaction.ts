@@ -1,139 +1,198 @@
-import Realm from 'realm';
-
-import {OpenDb} from '../config';
-
-const {UUID} = Realm.BSON;
+import { db } from '@/root/src/utils/helpers/db'
 
 interface TransactionTypes {
-    type: string;
-    name: string;
-    categoryId: string;
-    description: string;
-    amount: number;
-    date: Date;
-    transferTypeId: string;
-    transactionMessage: string;
-    billUrl: string;
-    trackAsIncome?: boolean;
-    trackAsExpense?: boolean;
+  type: string
+  name: string
+  categoryId: string
+  description: string
+  amount: number
+  createdDate: string
+  createdTime: string
+  transferTypeId: string
+  transactionMessage: string
+  billUrl: string
 }
 
-export const addTransaction = async (
-    transaction: TransactionTypes
-): Promise<void> => {
-    try {
-        const realm = await OpenDb();
+export const addTransaction = async (transactionObj: TransactionTypes) => {
+  const promise = new Promise((resolve, reject) => {
+    db.transaction(tx => {
+      tx.executeSql(
+        `
+        INSERT INTO
+            Transactions(
+            type,
+            name,
+            category,
+            description,
+            amount,
+            createdDate,
+            createdTime,
+            transferType,
+            transactionMessage,
+            billUrl
+            )
+         VALUES
+         (
+            ?,
+            ?,
+            ?,
+            ?,
+            ?,
+            ?,
+            ?,
+            ?,
+            ?,
+            ?
+         );
+        `,
+        [
+          transactionObj.type,
+          transactionObj.name,
+          transactionObj.categoryId,
+          transactionObj.description,
+          transactionObj.amount,
+          transactionObj.createdDate,
+          transactionObj.createdTime,
+          transactionObj.transferTypeId,
+          transactionObj.transactionMessage,
+          transactionObj.billUrl
+        ],
+        (_, result) => {
+          resolve(result)
+        },
+        (_, err) => {
+          reject(err)
+          return false
+        }
+      )
+    })
+  })
+  return promise
+}
 
-        const pickSchema =
-            transaction.type.toLowerCase() === 'expense' ? 'Expense' : 'Income';
+interface UpdateTypes extends TransactionTypes {
+  id: string
+}
 
-        const trackAs =
-            transaction.type.toLowerCase() === 'expense'
-                ? {trackAsExpense: transaction.trackAsExpense}
-                : {trackAsIncome: transaction.trackAsIncome};
+export const updateTransactionById = (transactionObj: UpdateTypes) => {
+  const promise = new Promise((resolve, reject) => {
+    db.transaction(tx => {
+      tx.executeSql(
+        `
+        UPDATE
+            Transactions
+        SET
+            type = ?,
+            name = ?,
+            category = ?,
+            description = ?,
+            amount = ?,
+            createdDate = ?,
+            createdTime = ?,
+            transferType = ?,
+            transactionMessage = ?,
+            billUrl = ?
+        WHERE
+            id = ?;
+        `,
+        [
+          transactionObj.type,
+          transactionObj.name,
+          transactionObj.categoryId,
+          transactionObj.description,
+          transactionObj.amount,
+          transactionObj.createdDate,
+          transactionObj.createdTime,
+          transactionObj.transferTypeId,
+          transactionObj.transactionMessage,
+          transactionObj.billUrl,
+          transactionObj.id
+        ],
+        (_, result) => {
+          resolve(result)
+        },
+        (_, err) => {
+          reject(err)
+          return false
+        }
+      )
+    })
+  })
+  return promise
+}
 
-        realm.write(() => {
-            realm.create(pickSchema, {
-                _id: new UUID(),
-                type: transaction.type,
-                name: transaction.name,
-                category: {
-                    _id: transaction.categoryId
-                },
-                description: transaction.description,
-                amount: transaction.amount,
-                date: transaction.date,
-                transferType: {
-                    _id: transaction.transferTypeId
-                },
-                transactionMessage: transaction.transactionMessage,
-                billUrl: transaction.billUrl,
-                ...trackAs
-            });
-        });
+export const removeTransactionById = (id: string) => {
+  const promise = new Promise((resolve, reject) => {
+    db.transaction(tx => {
+      tx.executeSql(
+        'DELETE FROM Transactions WHERE id = ?;',
+        [id],
+        (_, result) => {
+          resolve(result)
+        },
+        (_, err) => {
+          reject(err)
+          return false
+        }
+      )
+    })
+  })
+  return promise
+}
 
-        realm.close();
-    } catch (err) {
-        console.log(err, 'error');
-    }
-};
+export const removeTransactionAll = (id: string) => {
+  const promise = new Promise((resolve, reject) => {
+    db.transaction(tx => {
+      tx.executeSql(
+        'DELETE FROM Transactions;',
+        [id],
+        (_, result) => {
+          resolve(result)
+        },
+        (_, err) => {
+          reject(err)
+          return false
+        }
+      )
+    })
+  })
+  return promise
+}
 
-export const updateTransaction = async (): Promise<void> => {};
+export const getTransactionById = (id: string) => {
+  const promise = new Promise((resolve, reject) => {
+    db.transaction(tx => {
+      tx.executeSql(
+        'select * from Transactions WHERE id = ?;',
+        [id],
+        (_, result) => {
+          resolve(result)
+        },
+        (_, err) => {
+          reject(err)
+          return false
+        }
+      )
+    })
+  })
+  return promise
+}
 
-export const removeTransaction = async (
-    id: string,
-    type: string
-): Promise<void> => {
-    try {
-        const realm = await OpenDb();
-
-        const pickSchema =
-            type.toLowerCase() === 'expense' ? 'Expense' : 'Income';
-
-        realm.write(() => {
-            const obj = realm.objectForPrimaryKey(pickSchema, id);
-            realm.delete(obj);
-        });
-
-        realm.close();
-    } catch (err) {
-        console.log(err, 'error');
-    }
-};
-
-export const removeTransactionAll = async (type: string): Promise<void> => {
-    try {
-        const realm = await OpenDb();
-
-        const pickSchema =
-            type.toLowerCase() === 'expense' ? 'Expense' : 'Income';
-
-        realm.write(() => {
-            const obj = realm.objects(pickSchema);
-            realm.delete(obj);
-        });
-
-        realm.close();
-    } catch (err) {
-        console.log(err, 'error');
-    }
-};
-
-export const getTransaction = async (
-    id: string,
-    type: string
-): Promise<void> => {
-    try {
-        const realm = await OpenDb();
-
-        const pickSchema =
-            type.toLowerCase() === 'expense' ? 'Expense' : 'Income';
-
-        realm.write(() => {
-            const obj = realm.objectForPrimaryKey(pickSchema, id);
-            console.log(obj);
-        });
-
-        realm.close();
-    } catch (err) {
-        console.log(err, 'error');
-    }
-};
-
-export const getTransactionAll = async (type: string): Promise<void> => {
-    try {
-        const realm = await OpenDb();
-
-        const pickSchema =
-            type.toLowerCase() === 'expense' ? 'Expense' : 'Income';
-
-        realm.write(() => {
-            const obj = realm.objects(pickSchema);
-            console.log(obj);
-        });
-
-        realm.close();
-    } catch (err) {
-        console.log(err, 'error');
-    }
-};
+export const getTransactionPaginate = (limit: string, offset: string) => {
+  const promise = new Promise((resolve, reject) => {
+    db.transaction(tx => {
+      tx.executeSql(
+        'select * from Transactions limit ? offset ?;',
+        [limit, offset],
+        (_, result) => {
+          resolve(result)
+        },
+        (_, err) => {
+          reject(err)
+          return false
+        }
+      )
+    })
+  })
+  return promise
+}

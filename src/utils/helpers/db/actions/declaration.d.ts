@@ -4,4 +4,6 @@ export interface CategoryAndTransferTypes {
     iconSet: string;
     iconColor: string;
     backgroundColor: string;
+    createdDate: string;
+    createdTime: string;
 }

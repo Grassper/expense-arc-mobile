@@ -1,91 +1,137 @@
-import Realm from 'realm';
-const {UUID} = Realm.BSON;
-import {config} from '../config';
-import {CategoryAndTransferTypes} from './declaration';
+import { db } from '@/root/src/utils/helpers/db'
+import { CategoryAndTransferTypes } from './declaration'
 
-export const addCategory = (categoryObj: CategoryAndTransferTypes) =>
-    new Promise((resolve, reject) => {
-        Realm.open(config)
-            .then(realm => {
-                const writeObj = {
-                    _id: new UUID(),
-                    ...categoryObj
-                };
-                realm.write(() => {
-                    realm.create('Category', writeObj);
-                    resolve(writeObj._id);
-                });
-                realm.close();
-            })
-            .catch(error => reject(error));
-    });
+export const addCategory = (categoryObj: CategoryAndTransferTypes) => {
+  const promise = new Promise((resolve, reject) => {
+    db.transaction(tx => {
+      tx.executeSql(
+        'INSERT INTO Categories(name, iconName, iconSet, iconColor,backgroundColor,createdDate,createdTime) VALUES(?, ?, ?, ?, ?,?,?);',
+        [
+          categoryObj.name,
+          categoryObj.iconName,
+          categoryObj.iconSet,
+          categoryObj.iconColor,
+          categoryObj.backgroundColor,
+          categoryObj.createdDate,
+          categoryObj.createdTime
+        ],
+        (_, result) => {
+          resolve(result)
+        },
+        (_, err) => {
+          reject(err)
+          return false
+        }
+      )
+    })
+  })
+  return promise
+}
 
-export const updateCategory = (categoryObj: CategoryAndTransferTypes) =>
-    new Promise((resolve, reject) => {
-        Realm.open(config)
-            .then(realm => {
-                const writeObj = {
-                    _id: new UUID(),
-                    ...categoryObj
-                };
-                realm.write(() => {
-                    realm.create('Category', writeObj);
-                    resolve(writeObj);
-                });
-                realm.close();
-            })
-            .catch(error => reject(error));
-    });
+interface UpdateTypes extends CategoryAndTransferTypes {
+  id: string
+}
 
-export const removeCategory = (id: string) =>
-    new Promise((resolve, reject) => {
-        Realm.open(config)
-            .then(realm => {
-                realm.write(() => {
-                    const obj = realm.objectForPrimaryKey('Category', id);
-                    realm.delete(obj);
-                    resolve(`category with id:${id} is deleted`);
-                });
-                realm.close();
-            })
-            .catch(error => reject(error));
-    });
+export const updateCategoryById = (categoryObj: UpdateTypes) => {
+  const promise = new Promise((resolve, reject) => {
+    db.transaction(tx => {
+      tx.executeSql(
+        'UPDATE Categories SET name = ?, iconName = ?, iconSet = ?, iconColor = ?, backgroundColor = ?, createdDate = ?,createdTime = ?  WHERE id = ?;',
+        [
+          categoryObj.name,
+          categoryObj.iconName,
+          categoryObj.iconSet,
+          categoryObj.iconColor,
+          categoryObj.backgroundColor,
+          categoryObj.createdDate,
+          categoryObj.createdTime,
+          categoryObj.id
+        ],
+        (_, result) => {
+          resolve(result)
+        },
+        (_, err) => {
+          reject(err)
+          return false
+        }
+      )
+    })
+  })
+  return promise
+}
 
-export const removeCategoryAll = () =>
-    new Promise((resolve, reject) => {
-        Realm.open(config)
-            .then(realm => {
-                realm.write(() => {
-                    const obj = realm.objects('Category');
-                    realm.delete(obj);
-                    resolve('All category documents deleted');
-                });
-                realm.close();
-            })
-            .catch(error => reject(error));
-    });
+export const removeCategoryById = (id: string) => {
+  const promise = new Promise((resolve, reject) => {
+    db.transaction(tx => {
+      tx.executeSql(
+        'DELETE FROM Categories WHERE id = ?;',
+        [id],
+        (_, result) => {
+          resolve(result)
+        },
+        (_, err) => {
+          reject(err)
+          return false
+        }
+      )
+    })
+  })
+  return promise
+}
 
-export const getCategory = (id: string) =>
-    new Promise((resolve, reject) => {
-        Realm.open(config)
-            .then(realm => {
-                realm.write(() => {
-                    const obj = realm.objectForPrimaryKey('Category', id);
-                    resolve(obj?.toJSON);
-                });
-                realm.close();
-            })
-            .catch(error => reject(error));
-    });
+export const removeCategoryAll = () => {
+  const promise = new Promise((resolve, reject) => {
+    db.transaction(tx => {
+      tx.executeSql(
+        'DELETE FROM Categories;',
+        [],
+        (_, result) => {
+          resolve(result)
+        },
+        (_, err) => {
+          reject(err)
+          return false
+        }
+      )
+    })
+  })
+  return promise
+}
 
-export const getCategoryAll = () =>
-    new Promise((resolve, reject) => {
-        Realm.open(config)
-            .then(realm => {
-                realm.write(() => {
-                    const obj = realm.objects('Category');
-                    resolve(obj);
-                });
-            })
-            .catch(error => reject(error));
-    });
+export const getCategoryById = (id: string) => {
+  const promise = new Promise((resolve, reject) => {
+    db.transaction(tx => {
+      tx.executeSql(
+        'select * from Categories WHERE id = ?;',
+        [id],
+        (_, result) => {
+          resolve(result)
+        },
+        (_, err) => {
+          reject(err)
+          return false
+        }
+      )
+    })
+  })
+  return promise
+}
+
+export const getCategoryPaginate = (limit: string, offset: string) => {
+  const promise = new Promise((resolve, reject) => {
+    db.transaction(tx => {
+      tx.executeSql(
+        'select * from Categories limit ? offset ?;',
+        [limit, offset],
+        (_, result) => {
+          resolve(result)
+        },
+        (_, err) => {
+          reject(err)
+          return false
+        }
+      )
+    })
+  })
+  return promise
+}

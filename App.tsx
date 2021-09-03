@@ -5,11 +5,26 @@ import * as Font from 'expo-font'
 import React, { useState } from 'react'
 import { enableScreens } from 'react-native-screens'
 import { Provider } from 'react-redux'
-import {SafeAreaProvider} from 'react-native-safe-area-context';
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { GlobalNavigator } from '@/root/src/navigations'
 import { store } from '@/root/src/redux'
 
+import { initDb, db } from '@/root/src/utils/helpers/db'
+
 enableScreens()
+
+db.exec([{ sql: 'PRAGMA foreign_keys = ON;', args: [] }], false, () =>
+  console.log('Foreign keys turned on')
+);
+
+initDb()
+  .then(() => {
+    console.log('Initialized database')
+  })
+  .catch(err => {
+    console.log('Initializing db failed')
+    console.log(err)
+  })
 
 const fetchFonts = (): Promise<void> => {
   return Font.loadAsync({
