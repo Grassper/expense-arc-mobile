@@ -19,7 +19,7 @@ db.exec([{ sql: 'PRAGMA foreign_keys = ON;', args: [] }], false, () =>
 
 initDb()
   .then(() => {
-    console.log('Initialized database')
+    console.log('%cInitializing database completed',"color:green")
   })
   .catch(err => {
     console.log('Initializing db failed')

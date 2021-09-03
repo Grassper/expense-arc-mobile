@@ -1,4 +1,4 @@
-import { db } from '@/root/src/utils/helpers/db'
+import { db } from '@/root/src/utils/helpers/db/config'
 import { CategoryAndTransferTypes } from './declaration'
 
 export const addCategory = (categoryObj: CategoryAndTransferTypes) => {

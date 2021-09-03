@@ -1,4 +1,4 @@
-import { db } from '@/root/src/utils/helpers/db'
+import { db } from '@/root/src/utils/helpers/db/config'
 
 interface TransactionTypes {
   type: string
