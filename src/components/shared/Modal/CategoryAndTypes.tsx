@@ -95,8 +95,8 @@ export const CategoryAndTypesModal: React.FC<PropsTypes> = ({
           name,
           iconName,
           iconSet,
-          iconColor: color,
-          backgroundColor: Colors.primary,
+          iconColor: Colors.white,
+          backgroundColor: color,
           createdDate,
           createdTime
         })

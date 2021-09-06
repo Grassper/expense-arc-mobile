@@ -55,7 +55,7 @@ type IconObjTypes = {
     | typeof Zocial
 }
 
-const IconObj: IconObjTypes = {
+export const IconObj: IconObjTypes = {
   AntDesign,
   Entypo,
   EvilIcons,

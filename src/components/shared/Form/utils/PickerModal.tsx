@@ -2,7 +2,7 @@ import { Ionicons } from '@expo/vector-icons'
 import React, { useState } from 'react'
 import { Modal, Pressable } from 'react-native'
 import styled from 'styled-components/native'
-
+import { IconObj } from '@/root/iconPicker'
 import { OutlineAdd } from '@/root/src/components/shared/Button'
 import { CategoryAndTypesModal } from '@/root/src/components/shared/Modal'
 import Colors from '@/root/src/constants/colors'
@@ -18,9 +18,12 @@ interface PickerTypes {
 
 interface PickerButtonTypes {
   content: string
-  color?: string
   setSelected: React.Dispatch<React.SetStateAction<string>>
   selected: string
+  iconSet: string
+  iconColor: string
+  iconName: string
+  backgroundColor:string
 }
 
 interface BoxTypes {
@@ -94,9 +97,11 @@ const CircleInner = styled.View`
 `
 
 const Box = styled.View<BoxTypes>`
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border-radius: 5px;
+  justify-content: center;
+  align-items: center;
   margin-right: 10px;
   background-color: ${props => props.color};
 `
@@ -110,14 +115,20 @@ const HeaderContainer = styled.View`
 
 export const PickerButton: React.FC<PickerButtonTypes> = ({
   content,
-  color,
+  iconSet,
+  iconColor,
+  iconName,
   setSelected,
+  backgroundColor,
   selected
 }) => {
+  const IconBoxComponent = IconObj[iconSet]
   return (
     <RadioButton onPress={() => setSelected(content)}>
       <Container>
-        {color && <Box color={color} />}
+        <Box color={backgroundColor}>
+          <IconBoxComponent name={iconName} size={20} color={iconColor || '#fff'} />
+        </Box>
         <TextLight>{content}</TextLight>
       </Container>
       <CircleOuter>{selected === content && <CircleInner />}</CircleOuter>
@@ -154,12 +165,16 @@ export const PickerModel: React.FC<PickerTypes> = ({
       <MainText>{title}</MainText>
       <ScrollContainer>
         {contentArray.map(entry => {
+          console.log(entry);
           return (
             <PickerButton
               key={entry.id}
-              color={entry.iconColor}
+              iconColor={entry.iconColor}
+              iconSet={entry.iconSet}
+              iconName={entry.iconName}
               content={entry.name}
               selected={selected}
+              backgroundColor={entry.backgroundColor}
               setSelected={setSelected}
             />
           )

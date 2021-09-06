@@ -17,4 +17,6 @@ export interface CategoryAndTransferType {
     iconSet: string;
     iconColor: string;
     backgroundColor: string;
+    createdDate: string;
+    createdTime: string;
 }
