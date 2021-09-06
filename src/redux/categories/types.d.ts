@@ -7,6 +7,8 @@ interface Category {
     iconSet: string;
     iconColor: string;
     backgroundColor: string;
+    createdDate: string;
+    createdTime: string;
 }
 
 export interface InitialState {

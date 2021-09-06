@@ -1,8 +1,9 @@
 import { db } from '@/root/src/utils/helpers/db/config'
 import { CategoryAndTransferTypes } from './declaration'
+import { SQLResultSet } from 'expo-sqlite'
 
 export const addCategory = (categoryObj: CategoryAndTransferTypes) => {
-  const promise = new Promise((resolve, reject) => {
+  const promise = new Promise<SQLResultSet>((resolve, reject) => {
     db.transaction(tx => {
       tx.executeSql(
         'INSERT INTO Categories(name, iconName, iconSet, iconColor,backgroundColor,createdDate,createdTime) VALUES(?, ?, ?, ?, ?,?,?);',
@@ -33,7 +34,7 @@ interface UpdateTypes extends CategoryAndTransferTypes {
 }
 
 export const updateCategoryById = (categoryObj: UpdateTypes) => {
-  const promise = new Promise((resolve, reject) => {
+  const promise = new Promise<SQLResultSet>((resolve, reject) => {
     db.transaction(tx => {
       tx.executeSql(
         'UPDATE Categories SET name = ?, iconName = ?, iconSet = ?, iconColor = ?, backgroundColor = ?, createdDate = ?,createdTime = ?  WHERE id = ?;',
@@ -118,7 +119,7 @@ export const getCategoryById = (id: string) => {
 }
 
 export const getCategoryPaginate = (limit: string, offset: string) => {
-  const promise = new Promise((resolve, reject) => {
+  const promise = new Promise<SQLResultSet>((resolve, reject) => {
     db.transaction(tx => {
       tx.executeSql(
         'select * from Categories limit ? offset ?;',

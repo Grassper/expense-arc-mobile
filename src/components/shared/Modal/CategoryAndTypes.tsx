@@ -1,16 +1,17 @@
 import { Feather, Ionicons, MaterialIcons } from '@expo/vector-icons'
 import { IconPicker } from '@/root/iconPicker'
 import React, { useState } from 'react'
-import { Pressable, StyleSheet, TextInput } from 'react-native'
+import { Pressable, StyleSheet } from 'react-native'
 import styled from 'styled-components/native'
-
+import { HeadingText } from '@/root/src/components/shared/HeadingText'
 import Colors from '@/root/src/constants/colors'
 import { Colorswatch } from '@/root/src/constants/colorswatch'
 import { addCategoryAsync } from '@/root/src/redux/categories'
-
+import { useDispatch } from 'react-redux'
 interface PropsTypes {
   onClick: () => void
   title: string
+  modalType: string
 }
 
 interface ColorBoxTypes {
@@ -74,8 +75,10 @@ const ColorBox = styled.Pressable<ColorBoxTypes>`
 
 export const CategoryAndTypesModal: React.FC<PropsTypes> = ({
   onClick,
-  title
+  title,
+  modalType
 }) => {
+  const dispatch = useDispatch()
   const [name, setName] = useState('')
   const [iconName, setIconName] = useState('')
   const [iconSet, setIconSet] = useState('')
@@ -85,15 +88,21 @@ export const CategoryAndTypesModal: React.FC<PropsTypes> = ({
     const date = new Date()
     const createdDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
     const createdTime = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
-    await addCategoryAsync({
-      name,
-      iconName,
-      iconSet,
-      iconColor: color,
-      backgroundColor: Colors.primary,
-      createdDate,
-      createdTime
-    })
+
+    if (modalType === 'Categories') {
+      dispatch(
+        addCategoryAsync({
+          name,
+          iconName,
+          iconSet,
+          iconColor: color,
+          backgroundColor: Colors.primary,
+          createdDate,
+          createdTime
+        })
+      )
+    }
+
     onClick()
   }
 
@@ -116,6 +125,7 @@ export const CategoryAndTypesModal: React.FC<PropsTypes> = ({
             <Ionicons color={Colors.white} name='ios-close' size={24} />
           </ButtonContainer>
         </Pressable>
+        <HeadingText size={20}>{title}</HeadingText>
         <Pressable onPress={handleSubmit}>
           <ButtonContainer>
             <MaterialIcons color={Colors.white} name='done' size={24} />
