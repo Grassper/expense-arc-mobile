@@ -4,7 +4,4 @@ export const Colorswatch = [
     '#FBBF24',
     '#34D399',
     '#60A5FA',
-    '#818CF8',
-    '#A78BFA',
-    '#F472B6'
 ];

@@ -3,9 +3,10 @@ import * as SQLite from 'expo-sqlite'
 export const db = SQLite.openDatabase('expensearc.db')
 
 const createDbPromise = new Promise((resolve, reject) => {
-  db.transaction(tx => {
-    tx.executeSql(
-      `CREATE TABLE IF NOT EXISTS Transactions(
+  db.transaction(
+    tx => {
+      tx.executeSql(
+        `CREATE TABLE IF NOT EXISTS Transactions(
           id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
           type TEXT NOT NULL,
           name TEXT NOT NULL,
@@ -20,7 +21,10 @@ const createDbPromise = new Promise((resolve, reject) => {
           FOREIGN KEY(category) REFERENCES Categories(id),
           FOREIGN KEY(transferType) REFERENCES TransferTypes(id)
         );
-        CREATE TABLE IF NOT EXISTS Categories(
+        `
+      )
+      tx.executeSql(
+        `CREATE TABLE IF NOT EXISTS Categories(
           id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
           name TEXT NOT NULL UNIQUE,
           iconName TEXT NOT NULL,
@@ -30,45 +34,41 @@ const createDbPromise = new Promise((resolve, reject) => {
           createdDate TEXT NOT NULL,
           createdTime TEXT NOT NULL
         );
-        CREATE TABLE IF NOT EXISTS TransferTypes(
-          id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-          name TEXT NOT NULL UNIQUE,
-          iconName TEXT NOT NULL,
-          iconSet TEXT NOT NULL,
-          iconColor TEXT NOT NULL,
-          backgroundColor TEXT NOT NULL,
-          createdDate TEXT NOT NULL,
-          createdTime TEXT NOT NULL
-        );
+        `
+      )
+      tx.executeSql(
+        `
         CREATE TABLE IF NOT EXISTS MonthlyStats(
           id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
           name TEXT NOT NULL UNIQUE,
           income REAL NOT NULL,
           expense REAL NOT NULL
         );
+      `
+      )
+      tx.executeSql(
+        `
         CREATE TABLE IF NOT EXISTS WeeklyStats(
           id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
           name TEXT NOT NULL UNIQUE,
           income REAL NOT NULL,
           expense REAL NOT NULL
         );
+      `
+      )
+      tx.executeSql(
+        `
         CREATE TABLE IF NOT EXISTS DailyStats(
           id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
           name TEXT NOT NULL UNIQUE,
           income REAL NOT NULL,
           expense REAL NOT NULL
-        );`,
-      [],
-      () => {
-        console.log('%cdb created',"color:green")
-        resolve('db created')
-      },
-      (_, err) => {
-        reject(err)
-        return false
-      }
-    )
-  })
+        );`
+      )
+    },
+    (err) => reject(err),
+    () => resolve("db created")
+  )
 })
 
 const createdTransactionOccurTrigger = new Promise((resolve, reject) => {
@@ -148,7 +148,7 @@ const createdTransactionOccurTrigger = new Promise((resolve, reject) => {
       `,
       [],
       () => {
-        console.log('%con transaction occur trigger created','color:green')
+        console.log('%con transaction occur trigger created', 'color:green')
         resolve('on transaction occur trigger created')
       },
       (_, err) => {
@@ -420,7 +420,7 @@ const createdTransactionUpdateTrigger = new Promise((resolve, reject) => {
       `,
       [],
       () => {
-        console.log('%con transaction update trigger created',"color:green")
+        console.log('%con transaction update trigger created', 'color:green')
         resolve('on transaction update trigger created')
       },
       (_, err) => {
@@ -484,7 +484,7 @@ const createdTransactionDeleteTrigger = new Promise((resolve, reject) => {
       `,
       [],
       () => {
-        console.log('%con transaction delete trigger created',"color:green")
+        console.log('%con transaction delete trigger created', 'color:green')
         resolve('on transaction delete trigger created')
       },
       (_, err) => {
