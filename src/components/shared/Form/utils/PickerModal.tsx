@@ -10,7 +10,7 @@ import { CategoryAndTransferType } from '@/root/src/redux/types'
 
 interface PickerTypes {
   onClick: () => void
-  title: string
+  title: "Categories" | "Transfer Types"
   contentArray: CategoryAndTransferType[]
   selected: string
   setSelected: React.Dispatch<React.SetStateAction<string>>
@@ -165,7 +165,6 @@ export const PickerModel: React.FC<PickerTypes> = ({
       <MainText>{title}</MainText>
       <ScrollContainer>
         {contentArray.map(entry => {
-          console.log(entry);
           return (
             <PickerButton
               key={entry.id}

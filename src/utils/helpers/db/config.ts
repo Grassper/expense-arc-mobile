@@ -37,6 +37,19 @@ const createDbPromise = new Promise((resolve, reject) => {
         `
       )
       tx.executeSql(
+        `CREATE TABLE IF NOT EXISTS TransferTypes(
+          id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+          name TEXT NOT NULL UNIQUE,
+          iconName TEXT NOT NULL,
+          iconSet TEXT NOT NULL,
+          iconColor TEXT NOT NULL,
+          backgroundColor TEXT NOT NULL,
+          createdDate TEXT NOT NULL,
+          createdTime TEXT NOT NULL
+        );
+        `
+      )
+      tx.executeSql(
         `
         CREATE TABLE IF NOT EXISTS MonthlyStats(
           id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,

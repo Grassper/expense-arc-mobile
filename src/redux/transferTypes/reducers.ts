@@ -1,25 +1,27 @@
-import {InitialState, ReducerActionTypes} from './types';
+import { InitialState, ReducerActionTypes } from './types'
+import { ActionReduxTypes } from './action'
 
 const initialState = {
-    loading: false,
-    transferTypes: [
-        {
-            id: '0caa62bf-8575-44da-adac-f9a7478c70b2',
-            iconName: 'money-check',
-            name: 'DBS card',
-            iconSet: 'FontAwesome5',
-            iconColor: '#3a6186',
-            backgroundColor: '#121212'
-        }
-    ]
-};
+  loading: false,
+  transferTypes: []
+}
 
 export const transferTypes = (
-    state: InitialState = initialState,
-    action: ReducerActionTypes
+  state: InitialState = initialState,
+  action: ReducerActionTypes
 ): InitialState => {
-    switch (action.type) {
-        default:
-            return state;
-    }
-};
+  switch (action.type) {
+    case ActionReduxTypes.SET_TT_TRANSFER_TYPE:
+      return {
+        ...initialState,
+        transferTypes: action.payload
+      }
+    case ActionReduxTypes.RESET_TT_TRANSFER_TYPE:
+      return {
+        ...initialState,
+        transferTypes: action.payload
+      }
+    default:
+      return state
+  }
+}

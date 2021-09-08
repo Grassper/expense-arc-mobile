@@ -7,11 +7,12 @@ import { HeadingText } from '@/root/src/components/shared/HeadingText'
 import Colors from '@/root/src/constants/colors'
 import { Colorswatch } from '@/root/src/constants/colorswatch'
 import { addCategoryAsync } from '@/root/src/redux/categories'
+import { addTransferTypesAsync } from '@/root/src/redux/transferTypes'
 import { useDispatch } from 'react-redux'
 interface PropsTypes {
   onClick: () => void
   title: string
-  modalType: string
+  modalType: "Categories" | "Transfer Types"
 }
 
 interface ColorBoxTypes {
@@ -92,6 +93,20 @@ export const CategoryAndTypesModal: React.FC<PropsTypes> = ({
     if (modalType === 'Categories') {
       dispatch(
         addCategoryAsync({
+          name,
+          iconName,
+          iconSet,
+          iconColor: Colors.white,
+          backgroundColor: color,
+          createdDate,
+          createdTime
+        })
+      )
+    }
+
+    if (modalType === 'Transfer Types') {
+      dispatch(
+        addTransferTypesAsync({
           name,
           iconName,
           iconSet,

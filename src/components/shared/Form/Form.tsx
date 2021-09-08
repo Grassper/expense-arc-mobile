@@ -15,6 +15,7 @@ import Colors from '@/root/src/constants/colors'
 import { StoreType } from '@/root/src/redux/types'
 
 import { getCategoryAsync, resetCategories } from '@/root/src/redux/categories'
+import { getTransferTypesAsync, resetTransferTypes } from '@/root/src/redux/transferTypes'
 
 import * as Styled from './Styles'
 import {
@@ -42,10 +43,12 @@ export const Form: React.FC<PropsTypes> = ({ onClick }) => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getCategoryAsync('10', '0'))
+    dispatch(getTransferTypesAsync('10', '0'))
     return () => {
       dispatch(resetCategories())
+      dispatch(resetTransferTypes())
     }
-  }, [getCategoryAsync, resetCategories])
+  }, [getCategoryAsync, resetCategories,getTransferTypesAsync,resetTransferTypes])
 
   const [categoryModal, setCategoryModal] = useState(false)
   const [transferModal, setTransferModal] = useState(false)

@@ -10,10 +10,10 @@ export const ActionReduxTypes = {
  */
 
 export const setTransferTypes = (
-    categories: TransferType[]
+    transferType: TransferType[]
 ): SetTransferTypes => ({
     type: 'SET_TT_TRANSFER_TYPE',
-    payload: categories
+    payload: transferType
 });
 
 export const resetTransferTypes = (): ResetTransferTypes => ({
