@@ -5,7 +5,7 @@ import Colors from '@/root/src/constants/colors';
 
 interface PropsTypes {
     name: string;
-    input: string;
+    input: "income" | "expense";
     onClick: (value: string) => void;
 }
 
@@ -20,19 +20,19 @@ export const InputTypePicker: React.FC<PropsTypes> = ({
             <Styled.RadioContainer>
                 <Styled.RadioButton
                     color={
-                        input === 'Income' ? Colors.skyBlue : Colors.darkGray
+                        input === 'income' ? Colors.skyBlue : Colors.darkGray
                     }
-                    onPress={() => onClick('Income')}>
+                    onPress={() => onClick('income')}>
                     <Styled.CircleOuter>
-                        {input === 'Income' && <Styled.CircleInner />}
+                        {input === 'income' && <Styled.CircleInner />}
                     </Styled.CircleOuter>
                     <Styled.TextLight>Income</Styled.TextLight>
                 </Styled.RadioButton>
                 <Styled.RadioButton
-                    color={input === 'Expense' ? Colors.pink : Colors.darkGray}
-                    onPress={() => onClick('Expense')}>
+                    color={input === 'expense' ? Colors.pink : Colors.darkGray}
+                    onPress={() => onClick('expense')}>
                     <Styled.CircleOuter>
-                        {input === 'Expense' && <Styled.CircleInner />}
+                        {input === 'expense' && <Styled.CircleInner />}
                     </Styled.CircleOuter>
                     <Styled.TextLight>Expense</Styled.TextLight>
                 </Styled.RadioButton>

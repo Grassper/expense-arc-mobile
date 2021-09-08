@@ -13,12 +13,13 @@ interface PickerTypes {
   title: "Categories" | "Transfer Types"
   contentArray: CategoryAndTransferType[]
   selected: string
-  setSelected: React.Dispatch<React.SetStateAction<string>>
+  setSelected: (id: string, content: string) => void
 }
 
 interface PickerButtonTypes {
+  id: string
   content: string
-  setSelected: React.Dispatch<React.SetStateAction<string>>
+  setSelected: (id: string, content: string) => void
   selected: string
   iconSet: string
   iconColor: string
@@ -114,6 +115,7 @@ const HeaderContainer = styled.View`
 `
 
 export const PickerButton: React.FC<PickerButtonTypes> = ({
+  id,
   content,
   iconSet,
   iconColor,
@@ -124,7 +126,7 @@ export const PickerButton: React.FC<PickerButtonTypes> = ({
 }) => {
   const IconBoxComponent = IconObj[iconSet]
   return (
-    <RadioButton onPress={() => setSelected(content)}>
+    <RadioButton onPress={() => setSelected(id, content)}>
       <Container>
         <Box color={backgroundColor}>
           <IconBoxComponent name={iconName} size={20} color={iconColor || '#fff'} />
@@ -168,6 +170,7 @@ export const PickerModel: React.FC<PickerTypes> = ({
           return (
             <PickerButton
               key={entry.id}
+              id={entry.id}
               iconColor={entry.iconColor}
               iconSet={entry.iconSet}
               iconName={entry.iconName}

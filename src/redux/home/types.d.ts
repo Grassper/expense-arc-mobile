@@ -1,6 +1,6 @@
 import {Action} from 'redux';
 
-import {ExpenseSchema, IncomeSchema} from '@/root/src/types/transaction';
+import {TransactionSchema} from '@/root/src/types/transaction';
 
 export type FilterType = 'daily' | 'weekly' | 'monthly';
 
@@ -18,8 +18,8 @@ export interface InitialState {
     transactionFilter: TransactionFilterType;
     income: number;
     expense: number;
-    incomeTransaction: Array<IncomeSchema>;
-    expenseTransaction: Array<ExpenseSchema>;
+    incomeTransaction: Array<TransactionSchema>;
+    expenseTransaction: Array<TransactionSchema>;
 }
 
 /**
@@ -106,7 +106,7 @@ export interface ResetExpense extends Action {
 
 export interface SetIncomeTransaction extends Action {
     type: 'SET_HO_INCOME_TRANSACTION';
-    payload: IncomeSchema[];
+    payload: TransactionSchema[];
 }
 
 export interface ResetIncomeTransaction extends Action {
@@ -118,7 +118,7 @@ export interface ResetIncomeTransaction extends Action {
 
 export interface SetExpenseTransaction extends Action {
     type: 'SET_HO_EXPENSE_TRANSACTION';
-    payload: ExpenseSchema[];
+    payload: TransactionSchema[];
 }
 
 export interface ResetExpenseTransaction extends Action {

@@ -1,4 +1,4 @@
-import {ExpenseSchema, IncomeSchema} from '@/root/src/types/transaction';
+import {TransactionSchema} from '@/root/src/types/transaction';
 
 import {
     CandlePercents,
@@ -84,7 +84,7 @@ export const resetExpense = (): ResetExpense => ({
 // income transaction
 
 export const setIncomeTransaction = (
-    transaction: IncomeSchema[]
+    transaction: TransactionSchema[]
 ): SetIncomeTransaction => ({
     type: 'SET_TR_INCOME_TRANSACTION',
     payload: transaction
@@ -98,7 +98,7 @@ export const resetIncomeTransaction = (): ResetIncomeTransaction => ({
 // expense transaction
 
 export const setExpenseTransaction = (
-    transaction: ExpenseSchema[]
+    transaction: TransactionSchema[]
 ): SetExpenseTransaction => ({
     type: 'SET_TR_EXPENSE_TRANSACTION',
     payload: transaction

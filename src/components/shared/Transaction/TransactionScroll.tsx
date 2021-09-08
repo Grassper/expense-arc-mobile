@@ -5,14 +5,14 @@ import styled from 'styled-components/native';
 
 import {OverviewCard} from '@/root/src/components/shared/Overview';
 import Colors from '@/root/src/constants/colors';
-import {ExpenseSchema, IncomeSchema} from '@/root/src/types';
+import {TransactionSchema} from '@/root/src/types';
 
 interface Props {
     Heading: string;
     onClick?: () => void;
     type: string;
-    incomeTransaction: IncomeSchema[];
-    expenseTransaction: ExpenseSchema[];
+    incomeTransaction: TransactionSchema[];
+    expenseTransaction: TransactionSchema[];
 }
 
 const TransactionContainer = styled.FlatList`

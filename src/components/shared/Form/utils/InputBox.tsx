@@ -10,6 +10,7 @@ interface PropsTypes {
     placeholder?: string;
     placeholderTextColor?: ColorValue;
     value?: string;
+    
 }
 
 export const InputBox: React.FC<PropsTypes> = ({
@@ -18,12 +19,14 @@ export const InputBox: React.FC<PropsTypes> = ({
     onChangeText,
     placeholder,
     placeholderTextColor,
-    value
+    value,
+    ...props
 }) => {
     return (
         <Styled.InputContainer>
             <Styled.TextBold>{name}</Styled.TextBold>
             <Styled.TextInput
+                {...props}
                 keyboardType={keyboardType}
                 onChangeText={onChangeText}
                 placeholder={placeholder}

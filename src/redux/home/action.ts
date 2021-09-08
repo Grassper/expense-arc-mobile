@@ -1,4 +1,4 @@
-import {ExpenseSchema, IncomeSchema} from '@/root/src/types/transaction';
+import {TransactionSchema} from '@/root/src/types/transaction';
 
 import {
     FilterType,
@@ -137,7 +137,7 @@ export const resetExpense = (): ResetExpense => ({
 // income transaction
 
 export const setIncomeTransaction = (
-    transaction: IncomeSchema[]
+    transaction: TransactionSchema[]
 ): SetIncomeTransaction => ({
     type: 'SET_HO_INCOME_TRANSACTION',
     payload: transaction
@@ -151,7 +151,7 @@ export const resetIncomeTransaction = (): ResetIncomeTransaction => ({
 // expense transaction
 
 export const setExpenseTransaction = (
-    transaction: ExpenseSchema[]
+    transaction: TransactionSchema[]
 ): SetExpenseTransaction => ({
     type: 'SET_HO_EXPENSE_TRANSACTION',
     payload: transaction

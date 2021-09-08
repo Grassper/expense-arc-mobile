@@ -15,7 +15,12 @@ import Colors from '@/root/src/constants/colors'
 import { StoreType } from '@/root/src/redux/types'
 
 import { getCategoryAsync, resetCategories } from '@/root/src/redux/categories'
-import { getTransferTypesAsync, resetTransferTypes } from '@/root/src/redux/transferTypes'
+import {
+  getTransferTypesAsync,
+  resetTransferTypes
+} from '@/root/src/redux/transferTypes'
+
+import { AddTransactionAsync } from '@/root/src/redux/transactions'
 
 import * as Styled from './Styles'
 import {
@@ -48,17 +53,25 @@ export const Form: React.FC<PropsTypes> = ({ onClick }) => {
       dispatch(resetCategories())
       dispatch(resetTransferTypes())
     }
-  }, [getCategoryAsync, resetCategories,getTransferTypesAsync,resetTransferTypes])
+  }, [
+    getCategoryAsync,
+    resetCategories,
+    getTransferTypesAsync,
+    resetTransferTypes
+  ])
 
   const [categoryModal, setCategoryModal] = useState(false)
   const [transferModal, setTransferModal] = useState(false)
 
-  const [type, setType] = useState('Expense')
+  const [type, setType] = useState('expense')
   const [name, setName] = useState('')
   const [amount, setAmount] = useState('')
+  const [categoryId, setCategoryId] = useState('')
   const [category, setCategory] = useState('')
+  const [transferTypeId, setTransferTypeId] = useState('')
   const [transferType, setTransferType] = useState('')
   const [date, setDate] = useState(new Date())
+  const [description, setDescription] = useState('')
   const [transactionMessage, setTransactionMessage] = useState('')
   const [imageUrl, setImageUrl] = useState('')
 
@@ -84,7 +97,33 @@ export const Form: React.FC<PropsTypes> = ({ onClick }) => {
     showMode('time')
   }
 
-  const handleSubmit = async (): Promise<void> => {}
+  const handleSubmit = async (): Promise<void> => {
+    const createdDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
+    const createdTime = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+    await AddTransactionAsync({
+      type,
+      name,
+      categoryId,
+      description,
+      amount: Number(amount),
+      createdDate,
+      createdTime,
+      transferTypeId,
+      transactionMessage,
+      billUrl: imageUrl
+    })
+    onClick()
+  }
+
+  const handleCategory = (id: string, content: string): void => {
+    setCategoryId(id)
+    setCategory(content)
+  }
+
+  const handleTransferType = (id: string, content: string): void => {
+    setTransferTypeId(id)
+    setTransferType(content)
+  }
 
   return (
     <Container>
@@ -132,6 +171,13 @@ export const Form: React.FC<PropsTypes> = ({ onClick }) => {
           onPress={() => setTransferModal(true)}
           input={transferType}
         />
+        <InputBox
+          name='Description'
+          onChangeText={setDescription}
+          placeholder='Optional'
+          placeholderTextColor={Colors.whiteTab}
+          value={description}
+        />
         <Styled.InputContainer>
           <Styled.RowContainer>
             <Styled.RowText>Upload Bill Or Warranty</Styled.RowText>
@@ -177,7 +223,7 @@ export const Form: React.FC<PropsTypes> = ({ onClick }) => {
             contentArray={categories}
             onClick={() => setCategoryModal(false)}
             selected={category}
-            setSelected={setCategory}
+            setSelected={handleCategory}
             title='Categories'
           />
         </Modal>
@@ -186,7 +232,7 @@ export const Form: React.FC<PropsTypes> = ({ onClick }) => {
             contentArray={transferTypes}
             onClick={() => setTransferModal(false)}
             selected={transferType}
-            setSelected={setTransferType}
+            setSelected={handleTransferType}
             title='Transfer Types'
           />
         </Modal>

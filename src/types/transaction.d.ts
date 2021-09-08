@@ -15,11 +15,3 @@ export interface TransactionSchema {
     transactionMessage: string;
     billUrl: string;
 }
-
-export interface IncomeSchema extends TransactionSchema {
-    trackAsIncome: boolean;
-}
-
-export interface ExpenseSchema extends TransactionSchema {
-    trackAsExpense: boolean;
-}
