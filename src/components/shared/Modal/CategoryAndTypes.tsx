@@ -12,7 +12,7 @@ import { useDispatch } from 'react-redux'
 interface PropsTypes {
   onClick: () => void
   title: string
-  modalType: "Categories" | "Transfer Types"
+  modalType: 'Categories' | 'Transfer Types'
 }
 
 interface ColorBoxTypes {
@@ -87,8 +87,12 @@ export const CategoryAndTypesModal: React.FC<PropsTypes> = ({
   const [iconId, setIconId] = useState('')
   const handleSubmit = async (): Promise<void> => {
     const date = new Date()
-    const createdDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
-    const createdTime = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+    const createdDate = `${date.getFullYear()}-${String(
+      date.getMonth() + 1
+    ).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
+    const createdTime = `${date.getHours()}:${String(
+      date.getMinutes()
+    ).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}`
 
     if (modalType === 'Categories') {
       dispatch(

@@ -13,12 +13,12 @@ export const categories = (
     switch (action.type) {
         case ActionReduxTypes.SET_CA_CATEGORIES:
             return {
-                ...initialState,
+                ...state,
                 categories: action.payload
             };
         case ActionReduxTypes.RESET_CA_CATEGORIES:
             return {
-                ...initialState,
+                ...state,
                 categories: action.payload
             };
         default:

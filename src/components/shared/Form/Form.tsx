@@ -2,8 +2,7 @@ import { AntDesign, Feather, Ionicons } from '@expo/vector-icons'
 import DateTimePicker from '@react-native-community/datetimepicker'
 import React, { useState, useEffect } from 'react'
 import { Modal, Platform, Pressable } from 'react-native'
-import { useSelector } from 'react-redux'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { SaveButton, ToggleButton } from '@/root/src/components/shared/Button'
 import {
   Container,
@@ -20,6 +19,8 @@ import {
   resetTransferTypes
 } from '@/root/src/redux/transferTypes'
 
+
+import { seedHomeAsync } from '@/root/src/redux/home'
 import { AddTransactionAsync } from '@/root/src/redux/transactions'
 
 import * as Styled from './Styles'
@@ -98,8 +99,12 @@ export const Form: React.FC<PropsTypes> = ({ onClick }) => {
   }
 
   const handleSubmit = async (): Promise<void> => {
-    const createdDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
-    const createdTime = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+    const createdDate = `${date.getFullYear()}-${String(
+      date.getMonth() + 1
+    ).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
+    const createdTime = `${date.getHours()}:${String(
+      date.getMinutes()
+    ).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}`
     await AddTransactionAsync({
       type,
       name,
@@ -112,6 +117,7 @@ export const Form: React.FC<PropsTypes> = ({ onClick }) => {
       transactionMessage,
       billUrl: imageUrl
     })
+    dispatch(seedHomeAsync())
     onClick()
   }
 

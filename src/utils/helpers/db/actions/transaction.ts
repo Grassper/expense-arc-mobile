@@ -140,12 +140,12 @@ export const removeTransactionById = (id: string) => {
   return promise
 }
 
-export const removeTransactionAll = (id: string) => {
+export const removeTransactionAll = () => {
   const promise = new Promise((resolve, reject) => {
     db.transaction(tx => {
       tx.executeSql(
         'DELETE FROM Transactions;',
-        [id],
+        [],
         (_, result) => {
           resolve(result)
         },

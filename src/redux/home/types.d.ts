@@ -167,6 +167,7 @@ export interface SetErrorOccurred extends Action {
 
 export interface ResetErrorOccurred extends Action {
     type: 'RESET_HO_ERROR_OCCURRED';
+    payload: string;
 }
 
 export type ReducerActionTypes =

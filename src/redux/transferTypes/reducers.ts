@@ -13,12 +13,12 @@ export const transferTypes = (
   switch (action.type) {
     case ActionReduxTypes.SET_TT_TRANSFER_TYPE:
       return {
-        ...initialState,
+        ...state,
         transferTypes: action.payload
       }
     case ActionReduxTypes.RESET_TT_TRANSFER_TYPE:
       return {
-        ...initialState,
+        ...state,
         transferTypes: action.payload
       }
     default:

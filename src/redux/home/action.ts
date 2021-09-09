@@ -204,5 +204,6 @@ export const setErrorOccurred = (message: string): SetErrorOccurred => ({
 });
 
 export const resetErrorOccurred = (): ResetErrorOccurred => ({
-    type: 'RESET_HO_ERROR_OCCURRED'
+    type: 'RESET_HO_ERROR_OCCURRED',
+    payload: "clearing error messages"
 });
