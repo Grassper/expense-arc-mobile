@@ -1,93 +1,98 @@
-import {useNavigation} from '@react-navigation/native';
-import React from 'react';
-import {TouchableWithoutFeedback} from 'react-native';
-import styled from 'styled-components/native';
+import { useNavigation } from '@react-navigation/native'
+import React from 'react'
+import {
+  TouchableWithoutFeedback,
+  ListRenderItem,
+  FlatList
+} from 'react-native'
+import styled from 'styled-components/native'
+import millify from 'millify'
+import { OverviewCard } from '@/root/src/components/shared/Overview'
+import Colors from '@/root/src/constants/colors'
+import { TransactionSchema } from '@/root/src/types'
+import { format } from 'date-fns'
 
-import {OverviewCard} from '@/root/src/components/shared/Overview';
-import Colors from '@/root/src/constants/colors';
-import {TransactionSchema} from '@/root/src/types';
-
+interface TransactionSchemaExtend extends TransactionSchema {
+  createdDate: string
+  createdTime: string
+}
 interface Props {
-    Heading: string;
-    onClick?: () => void;
-    type: string;
-    incomeTransaction: TransactionSchema[];
-    expenseTransaction: TransactionSchema[];
+  Heading: string
+  onClick?: () => void
+  type: string
+  incomeTransaction: TransactionSchemaExtend[]
+  expenseTransaction: TransactionSchemaExtend[]
 }
 
-const TransactionContainer = styled.FlatList`
-    margin-top: 20px;
-`;
-
 const HeadingContainer = styled.View`
-    margin-top: 20px;
-    flex-direction: row;
-    justify-content: space-between;
-`;
+  margin-top: 20px;
+  flex-direction: row;
+  justify-content: space-between;
+`
 
 const HeadingTextBold = styled.Text`
-    font-size: 16px;
-    font-family: 'ms';
-    color: ${Colors.primary};
-`;
+  font-size: 16px;
+  font-family: 'ms';
+  color: ${Colors.primary};
+`
 
 const HeadingTextLight = styled.Text`
-    font-size: 14px;
-    font-family: 'ms';
-    color: ${Colors.toggleColor};
-`;
+  font-size: 14px;
+  font-family: 'ms';
+  color: ${Colors.toggleColor};
+`
 
 export const TransactionScroll: React.FC<Props> = ({
-    Heading,
-    type,
-    onClick,
-    incomeTransaction,
-    expenseTransaction
+  Heading,
+  type,
+  onClick,
+  incomeTransaction,
+  expenseTransaction
 }) => {
-    const navigation = useNavigation();
+  const navigation = useNavigation()
 
-    const handleNavigation = (): void => {
-        navigation.navigate('TransactionDetail');
-    };
+
+  console.log(incomeTransaction)
+
+  const handleNavigation = (): void => {
+    navigation.navigate('TransactionDetail')
+  }
+
+  const CardRenderer: ListRenderItem<TransactionSchemaExtend> = ({ item }) => {
     return (
-        <>
-            <HeadingContainer>
-                <HeadingTextBold>{Heading}</HeadingTextBold>
-                <TouchableWithoutFeedback onPress={onClick}>
-                    <HeadingTextLight>{type}</HeadingTextLight>
-                </TouchableWithoutFeedback>
-            </HeadingContainer>
-            {type === 'Expense' ? (
-                <TransactionContainer
-                    data={expenseTransaction}
-                    renderItem={item => (
-                        <OverviewCard
-                            bottomLeftText="April 12, 2021"
-                            mode="light"
-                            onClick={handleNavigation}
-                            tagText="pf"
-                            topLeftText="Petrol"
-                            topRightText="- $100"
-                        />
-                    )}
-                    keyExtractor={item => item.id}
-                />
-            ) : (
-                <TransactionContainer
-                    data={incomeTransaction}
-                    renderItem={item => (
-                        <OverviewCard
-                            bottomLeftText="April 12, 2021"
-                            mode="light"
-                            onClick={handleNavigation}
-                            tagText="pf"
-                            topLeftText="Petrol"
-                            topRightText="- $100"
-                        />
-                    )}
-                    keyExtractor={item => item.id}
-                />
-            )}
-        </>
-    );
-};
+      <OverviewCard
+        bottomLeftText={format(new Date(item.createdDate), 'PP')}
+        mode='light'
+        onClick={handleNavigation}
+        tagText='pf'
+        topLeftText={item.name}
+        topRightText={millify(item.amount)}
+        category={item.category}
+      />
+    )
+  }
+
+  return (
+    <>
+      <HeadingContainer>
+        <HeadingTextBold>{Heading}</HeadingTextBold>
+        <TouchableWithoutFeedback onPress={onClick}>
+          <HeadingTextLight>{type}</HeadingTextLight>
+        </TouchableWithoutFeedback>
+      </HeadingContainer>
+      {type === 'expense' ? (
+        <FlatList
+          data={expenseTransaction}
+          renderItem={CardRenderer}
+          keyExtractor={item => item.id}
+        />
+      ) : (
+        <FlatList
+          data={incomeTransaction}
+          renderItem={CardRenderer}
+          keyExtractor={item => item.id}
+        />
+      )}
+    </>
+  )
+}

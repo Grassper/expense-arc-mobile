@@ -20,7 +20,7 @@ interface TransactionTypes {
 export const AddTransactionAsync = async (transactionObj: TransactionTypes) => {
   try {
     await addTransaction(transactionObj)
-    const obj = await getTransactionPaginate('10', '0')
+    const obj = await getTransactionPaginate('expense', '10', '0')
   } catch (err) {
     console.log(err)
   }

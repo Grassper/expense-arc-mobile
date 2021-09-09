@@ -178,12 +178,16 @@ export const getTransactionById = (id: string) => {
   return promise
 }
 
-export const getTransactionPaginate = (limit: string, offset: string) => {
+export const getTransactionPaginate = (
+  type: string,
+  limit: string,
+  offset: string
+) => {
   const promise = new Promise((resolve, reject) => {
     db.transaction(tx => {
       tx.executeSql(
-        'select * from Transactions limit ? offset ?;',
-        [limit, offset],
+        'select * from Transactions WHERE type = ? ORDER BY createdDate DESC limit ? offset ?;',
+        [type, limit, offset],
         (_, result) => {
           resolve(result)
         },

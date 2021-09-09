@@ -68,6 +68,30 @@ export const home = (
         ...state,
         averageConsumption: Number(action.payload)
       }
+    case ActionReduxTypes.SET_HO_INCOME:
+    case ActionReduxTypes.RESET_HO_INCOME:
+      return {
+        ...state,
+        income: Number(action.payload)
+      }
+    case ActionReduxTypes.SET_HO_EXPENSE:
+    case ActionReduxTypes.RESET_HO_EXPENSE:
+      return {
+        ...state,
+        expense: Number(action.payload)
+      }
+    case ActionReduxTypes.SET_HO_INCOME_TRANSACTION:
+    case ActionReduxTypes.RESET_HO_INCOME_TRANSACTION:
+      return {
+        ...state,
+        incomeTransaction: action.payload
+      }
+    case ActionReduxTypes.SET_HO_EXPENSE_TRANSACTION:
+    case ActionReduxTypes.RESET_HO_EXPENSE_TRANSACTION:
+      return {
+        ...state,
+        expenseTransaction: action.payload
+      }
     default:
       return state
   }

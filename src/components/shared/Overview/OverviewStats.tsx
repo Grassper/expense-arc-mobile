@@ -3,7 +3,7 @@ import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {TouchableWithoutFeedback} from 'react-native';
 import styled from 'styled-components/native';
-
+import millify from 'millify'
 import Colors from '@/root/src/constants/colors';
 
 interface Props {
@@ -90,7 +90,7 @@ export const OverviewStats: React.FC<Props> = ({
                     <AntDesign color="black" name="arrowup" size={24} />
                     <OverviewContentBox>
                         <OverviewText>Income</OverviewText>
-                        <OverviewTextBold>$ {Income}</OverviewTextBold>
+                        <OverviewTextBold>$ {millify(Income)}</OverviewTextBold>
                     </OverviewContentBox>
                 </OverviewBox>
                 <OverviewBox
@@ -103,7 +103,7 @@ export const OverviewStats: React.FC<Props> = ({
                     <AntDesign color="black" name="arrowdown" size={24} />
                     <OverviewContentBox>
                         <OverviewText>Expense</OverviewText>
-                        <OverviewTextBold>$ {Expense}</OverviewTextBold>
+                        <OverviewTextBold>$ {millify(Expense)}</OverviewTextBold>
                     </OverviewContentBox>
                 </OverviewBox>
             </OverviewContainer>
